@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
-class EditCard extends StatefulWidget {
-  const EditCard({super.key});
+class EditCardView extends StatefulWidget {
+  const EditCardView({super.key});
 
   @override
-  _EditCardState createState() => _EditCardState();
+  _EditCardViewState createState() => _EditCardViewState();
 }
 
-class _EditCardState extends State<EditCard> {
+class _EditCardViewState extends State<EditCardView> {
   final List<String> names = ["1", "2"];
   String? selectedName;
 

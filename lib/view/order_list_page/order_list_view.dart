@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OrderList extends StatelessWidget {
-  const OrderList({super.key});
+class OrderListView extends StatelessWidget {
+  const OrderListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class OrderList extends StatelessWidget {
               children: [
                 Image.asset("assets/img/angle-circle-right 1.png"),
                 Text(
-                  "My orders",
+                  "Orders",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                       color: Color(0xFF7EC1EB),
@@ -79,8 +79,8 @@ class OrderList extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 5),
                               child: Text(
                                 'Regular Clean',
-                                style: TextStyle(
-                                  fontSize: 16,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                   color: Color(0xFF000000),
                                 ),
@@ -95,16 +95,16 @@ class OrderList extends StatelessWidget {
                       ),
                       Text(
                         'x2',
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF000000),
                         ),
                       ),
                       Text(
                         '50.000',
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF7EC1EB),
                         ),
@@ -173,8 +173,8 @@ class OrderList extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 5),
                               child: Text(
                                 'Regular Clean',
-                                style: TextStyle(
-                                  fontSize: 16,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                   color: Color(0xFF000000),
                                 ),
@@ -189,16 +189,16 @@ class OrderList extends StatelessWidget {
                       ),
                       Text(
                         'x2',
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF000000),
                         ),
                       ),
                       Text(
                         '50.000',
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF7EC1EB),
                         ),

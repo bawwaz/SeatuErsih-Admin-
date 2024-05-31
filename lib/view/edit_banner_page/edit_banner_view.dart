@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EditBanner extends StatelessWidget {
-  const EditBanner({super.key});
+class EditBannerView extends StatelessWidget {
+  const EditBannerView({super.key});
 
   @override
   Widget build(BuildContext context) {
