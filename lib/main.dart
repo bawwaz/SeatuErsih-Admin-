@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seatu_ersih_admin/view/edit_banner_page/edit_banner_view.dart';
+import 'package:seatu_ersih_admin/view/edit_card_page/edit_card_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const EditBanner(),
+      home: const EditCard(),
     );
   }
 }
