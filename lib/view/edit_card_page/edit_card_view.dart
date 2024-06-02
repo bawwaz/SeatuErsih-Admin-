@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:seatu_ersih_admin/widget/edit_card_page/input_name.dart';
+import 'package:seatu_ersih_admin/widget/edit_card_page/input_price.dart';
+import 'package:seatu_ersih_admin/widget/edit_card_page/submit_button_edit.dart';
 
 class EditCardView extends StatefulWidget {
   const EditCardView({super.key});
@@ -123,27 +126,7 @@ class _EditCardViewState extends State<EditCardView> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 27, top: 10),
-                              child: SizedBox(
-                                width: 209,
-                                height: 34,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    hintText: "Regular Clean",
-                                    hintStyle: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    contentPadding:
-                                        EdgeInsets.only(bottom: 5, left: 10),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            InputName(),
                             Padding(
                               padding: const EdgeInsets.only(top: 10, left: 27),
                               child: Text(
@@ -155,31 +138,7 @@ class _EditCardViewState extends State<EditCardView> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 27, top: 10),
-                              child: SizedBox(
-                                width: 209,
-                                height: 34,
-                                child: TextField(
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  decoration: InputDecoration(
-                                    hintText: "35k",
-                                    hintStyle: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    contentPadding:
-                                        EdgeInsets.only(bottom: 5, left: 10),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
+                            InputPrice()
                           ],
                         ),
                       ),
@@ -199,29 +158,7 @@ class _EditCardViewState extends State<EditCardView> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 35),
-              child: Center(
-                child: Container(
-                  width: 210,
-                  height: 29,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF7EC1EB),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Edit",
-                      style: GoogleFonts.poppins(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            SubmitEdit(),
             Image.asset("assets/img/shoes-icon.png")
           ],
         ),
