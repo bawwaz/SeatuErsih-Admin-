@@ -5,6 +5,7 @@ import 'package:seatu_ersih_admin/view/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/view/login_page/LoginpageView.dart';
 import 'package:seatu_ersih_admin/view/order_detail_page/order_detail_view.dart';
 import 'package:seatu_ersih_admin/view/order_list_page/order_list_view.dart';
+import 'package:seatu_ersih_admin/view/register_page/RegisterviewPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: RegisterPage(),
     );
   }
 }
