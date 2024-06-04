@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:seatu_ersih_admin/view/register_page/register_controller.dart';
 
 class InputEmailRegist extends StatelessWidget {
-  const InputEmailRegist({
-    super.key,
-  });
+  final RegisterController registController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +11,7 @@ class InputEmailRegist extends StatelessWidget {
       width: double.infinity,
       height: 53,
       child: TextField(
+        controller: registController.emailController,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

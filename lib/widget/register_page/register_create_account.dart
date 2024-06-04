@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/view/register_page/register_controller.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
-  const ButtonCreateAccount({
-    super.key,
-  });
+  final RegisterController registController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,9 @@ class ButtonCreateAccount extends StatelessWidget {
         width: double.infinity,
         height: 45,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            registController.register();
+          },
           style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF7EC1EB),
               shape: RoundedRectangleBorder(

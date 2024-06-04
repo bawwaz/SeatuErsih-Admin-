@@ -1,6 +1,9 @@
 import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/view/register_page/register_controller.dart';
 import 'package:seatu_ersih_admin/widget/edit_card_page/input_name.dart';
 import 'package:seatu_ersih_admin/widget/register_page/register_create_account.dart';
 import 'package:seatu_ersih_admin/widget/register_page/register_icon.dart';
@@ -11,7 +14,7 @@ import 'package:seatu_ersih_admin/widget/register_page/register_input_username.d
 import 'package:seatu_ersih_admin/widget/register_page/register_sign_up_google.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  final RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +114,9 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                    },
                     child: Text(
                       "Sign In",
                       style: GoogleFonts.poppins(
