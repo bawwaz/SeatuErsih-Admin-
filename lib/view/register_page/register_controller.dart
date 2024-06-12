@@ -29,7 +29,7 @@ class RegisterController extends GetxController {
       await registAuthService.regist(
         usernameController.text,
         emailController.text,
-        phoneController.text,
+        phoneController.text.toString(),
         passwordController.text,
       );
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:seatu_ersih_admin/widget/Homepage/HomepageBody.dart';
+import 'package:get/get.dart';
+import 'package:seatu_ersih_admin/view/home_page/widget/HomepageBody.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class HomePage extends StatelessWidget {
             child: Stack(
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                  },
                   child: Container(
                     height: 48,
                     width: 48,
@@ -33,32 +35,14 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 14.0, left: 14),
                   child: Image(image: AssetImage('assets/img/user.png')),
-                )
+                ),
               ],
             ),
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              HomeBody(),
-            ],
-          ),
-          Positioned(
-            bottom: 110,
-            right: 27,
-            child: InkWell(
-              onTap: () {
-                print("123");
-              },
-              child: Image.asset(
-                "assets/img/pen-edit.png",
-              ),
-            ),
-          ),
-        ],
+      body: SafeArea(
+        child: HomeBody(),
       ),
     );
   }
