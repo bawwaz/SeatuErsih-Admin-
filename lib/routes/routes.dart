@@ -5,7 +5,8 @@ import 'package:seatu_ersih_admin/view/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/view/login_page/LoginpageView.dart';
 import 'package:seatu_ersih_admin/view/order_detail_page/order_detail_view.dart';
 import 'package:seatu_ersih_admin/view/order_list_page/order_list_view.dart';
-import 'package:seatu_ersih_admin/view/order_management/order_management_view.dart';
+import 'package:seatu_ersih_admin/view/order_management_page/order_management_view.dart';
+import 'package:seatu_ersih_admin/view/order_request_page/order_request_view.dart';
 import 'package:seatu_ersih_admin/view/register_page/RegisterviewPage.dart';
 
 class Routes {
@@ -17,6 +18,7 @@ class Routes {
   static String orderlist = '/orderlist';
   static String orderdetail = '/orderdetail';
   static String ordermanagement = '/ordermanagement';
+  static String orderrequest = '/orderrequest';
 
   static List<GetPage> pages = [
     GetPage(name: homepage, page: () => HomePage()),
@@ -27,5 +29,6 @@ class Routes {
     GetPage(name: orderlist, page: () => OrderListView()),
     GetPage(name: orderdetail, page: () => OrderDetailView()),
     GetPage(name: ordermanagement, page: () => OrderManagementView()),
+    GetPage(name: orderrequest, page: () => OrderRequestView()),
   ];
 }
