@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.orderrequest,
+      initialRoute: Routes.orderstatusinprogress,
       getPages: Routes.pages,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF7EC1EB)),
