@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/view/order_management_page/widget/inprogress_order.dart';
-import 'package:seatu_ersih_admin/view/order_status_inprogress/widget/card_inprogress_orders.dart';
+import 'package:seatu_ersih_admin/view/order_status_inprogress_page/widget/card_inprogress_orders.dart';
 
 class OrderStatusInprogressView extends StatelessWidget {
   const OrderStatusInprogressView({super.key});

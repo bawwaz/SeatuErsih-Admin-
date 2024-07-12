@@ -7,7 +7,9 @@ import 'package:seatu_ersih_admin/view/order_detail_page/order_detail_view.dart'
 import 'package:seatu_ersih_admin/view/order_list_page/order_list_view.dart';
 import 'package:seatu_ersih_admin/view/order_management_page/order_management_view.dart';
 import 'package:seatu_ersih_admin/view/order_request_page/order_request_view.dart';
-import 'package:seatu_ersih_admin/view/order_status_inprogress/order_status_inprogress_view.dart';
+import 'package:seatu_ersih_admin/view/order_status_completed_page/order_status_completed_view.dart';
+import 'package:seatu_ersih_admin/view/order_status_declined_page/order_status_declined_view.dart';
+import 'package:seatu_ersih_admin/view/order_status_inprogress_page/order_status_inprogress_view.dart';
 import 'package:seatu_ersih_admin/view/register_page/RegisterviewPage.dart';
 
 class Routes {
@@ -21,6 +23,8 @@ class Routes {
   static String ordermanagement = '/ordermanagement';
   static String orderrequest = '/orderrequest';
   static String orderstatusinprogress = '/orderstatusinprogress';
+  static String orderstatuscompleted = '/orderstatuscompleted';
+  static String orderstatusdeclined = '/orderstatusdeclined';
 
   static List<GetPage> pages = [
     GetPage(name: homepage, page: () => HomePage()),
@@ -33,5 +37,7 @@ class Routes {
     GetPage(name: ordermanagement, page: () => OrderManagementView()),
     GetPage(name: orderrequest, page: () => OrderRequestView()),
     GetPage(name: orderstatusinprogress, page: () => OrderStatusInprogressView()),
+    GetPage(name: orderstatuscompleted, page: () => OrderStatusCompletedView()),
+    GetPage(name: orderstatusdeclined, page: () => OrderStatusDeclinedView()),
   ];
 }
