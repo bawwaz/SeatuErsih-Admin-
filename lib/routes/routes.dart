@@ -10,6 +10,7 @@ import 'package:seatu_ersih_admin/view/order_request_page/order_request_view.dar
 import 'package:seatu_ersih_admin/view/order_status_completed_page/order_status_completed_view.dart';
 import 'package:seatu_ersih_admin/view/order_status_declined_page/order_status_declined_view.dart';
 import 'package:seatu_ersih_admin/view/order_status_inprogress_page/order_status_inprogress_view.dart';
+import 'package:seatu_ersih_admin/view/product_review_page/product_review_view.dart';
 import 'package:seatu_ersih_admin/view/register_page/RegisterviewPage.dart';
 
 class Routes {
@@ -25,6 +26,7 @@ class Routes {
   static String orderstatusinprogress = '/orderstatusinprogress';
   static String orderstatuscompleted = '/orderstatuscompleted';
   static String orderstatusdeclined = '/orderstatusdeclined';
+  static String productreview = '/productreview';
 
   static List<GetPage> pages = [
     GetPage(name: homepage, page: () => HomePage()),
@@ -39,5 +41,6 @@ class Routes {
     GetPage(name: orderstatusinprogress, page: () => OrderStatusInprogressView()),
     GetPage(name: orderstatuscompleted, page: () => OrderStatusCompletedView()),
     GetPage(name: orderstatusdeclined, page: () => OrderStatusDeclinedView()),
+    GetPage(name: productreview, page: () => ProductReviewView()),
   ];
 }
