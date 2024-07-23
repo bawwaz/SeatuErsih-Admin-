@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/view/login_page/login_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/login_controller.dart';
 
 class SignIn extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());

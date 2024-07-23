@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_Icon.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_forget_password.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_input_name.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_input_password.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_sign.dart';
-import 'package:seatu_ersih_admin/widget/login_page/login_sign_google.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_Icon.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_forget_password.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_input_name.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_input_password.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_sign.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/widget/login_sign_google.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);

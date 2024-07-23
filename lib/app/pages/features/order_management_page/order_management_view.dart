@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/view/order_management_page/widget/completed_order.dart';
-import 'package:seatu_ersih_admin/view/order_management_page/widget/declined_order.dart';
-import 'package:seatu_ersih_admin/view/order_management_page/widget/inprogress_order.dart';
-import 'package:seatu_ersih_admin/view/order_management_page/widget/pending_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/completed_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/declined_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/inprogress_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/pending_order.dart';
 
 class OrderManagementView extends StatelessWidget {
   const OrderManagementView({super.key});

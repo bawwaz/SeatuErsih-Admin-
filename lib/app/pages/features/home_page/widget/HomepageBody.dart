@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/view/home_page/widget/bannerslogan.dart';
-import 'package:seatu_ersih_admin/view/home_page/widget/ordercontainer.dart';
-import 'package:seatu_ersih_admin/view/home_page/widget/orderservice.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/bannerslogan.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/ordercontainer.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});

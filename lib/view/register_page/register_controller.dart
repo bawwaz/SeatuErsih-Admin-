@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/api/users/service/login_auth_service.dart';
 import 'package:seatu_ersih_admin/api/users/service/regist_auth_service.dart';
-import 'package:seatu_ersih_admin/routes/routes.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
@@ -34,7 +34,7 @@ class RegisterController extends GetxController {
       );
 
       Get.snackbar("Register Success", "Welcome!");
-      Get.offAllNamed(Routes.homepage);
+      Get.offAllNamed(Routes.HOME);
     } catch (e) {
       if (e.toString().contains("email already exists")) {
         Get.snackbar("Register Failed", "Email sudah tersedia");
