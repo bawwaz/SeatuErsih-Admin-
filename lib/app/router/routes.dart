@@ -1,10 +1,9 @@
-
-
 part of 'app_pages.dart';
 
 class Routes {
   static String HOME = '/home';
   static String LOGIN = '/login';
+  static String BTMNAVBAR = '/btmnavbar';
   static String REGISTER = '/register';
   static String editbanner = '/editbanner';
   static String editcard = '/editcard';
@@ -20,7 +19,6 @@ class Routes {
 
 // class Routes {
   
-
 //   static List<GetPage> pages = [
 //     GetPage(name: homepage, page: () => HomePage()),
 //     GetPage(name: login, page: () => LoginPage()),
