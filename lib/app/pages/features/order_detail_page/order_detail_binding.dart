@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:seatu_ersih_admin/view/order_detail_page/order_detail_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_controller.dart';
 
 class orderStatusBinding extends Bindings {
   @override

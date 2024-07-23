@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seatu_ersih_admin/view/home_page/widget/HomepageBody.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/HomepageBody.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:seatu_ersih_admin/routes/routes.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.productreview,
-      getPages: Routes.pages,
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF7EC1EB)),
         useMaterial3: true,

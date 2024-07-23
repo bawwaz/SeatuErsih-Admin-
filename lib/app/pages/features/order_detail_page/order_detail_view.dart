@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/view/order_detail_page/widget/card_pending_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_pending_orders.dart';
 
 class OrderDetailView extends StatelessWidget {
   const OrderDetailView({super.key});

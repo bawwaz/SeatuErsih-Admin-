@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:seatu_ersih_admin/view/login_page/login_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/login_controller.dart';
 
 class InputName extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
