@@ -7,19 +7,34 @@ class InputPasswordRegist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 53,
-      child: TextField(
-        controller: registController.passwordController,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          labelText: "Password",
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Color(0xFF8A8A8A),
+    return Obx(
+      () => SizedBox(
+        width: double.infinity,
+        height: 53,
+        child: TextField(
+          controller: registController.passwordController,
+          obscureText: registController.isPasswordHidden.value,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            labelText: "Password",
+            prefixIcon: Icon(
+              Icons.lock,
+              color: Color(0xFF8A8A8A),
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                registController.isPasswordHidden.value
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                color: Color(0xFF8A8A8A),
+              ),
+              onPressed: () {
+                registController.isPasswordHidden.value =
+                    !registController.isPasswordHidden.value;
+              },
+            ),
           ),
         ),
       ),

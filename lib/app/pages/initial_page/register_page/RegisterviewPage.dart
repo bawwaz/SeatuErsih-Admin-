@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/register_controller.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 import 'package:seatu_ersih_admin/draft/widget/edit_card_page/input_name.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/widget/register_create_account.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/widget/register_icon.dart';
@@ -115,7 +116,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      
+                      Get.toNamed(Routes.LOGIN);
                     },
                     child: Text(
                       "Sign In",
