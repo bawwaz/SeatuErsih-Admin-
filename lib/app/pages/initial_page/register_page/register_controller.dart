@@ -11,6 +11,8 @@ class RegisterController extends GetxController {
   late TextEditingController phoneController;
   late TextEditingController passwordController;
 
+  var isPasswordHidden = true.obs;
+  
   late RegistAuthService registAuthService;
 
   @override
@@ -34,7 +36,7 @@ class RegisterController extends GetxController {
       );
 
       Get.snackbar("Register Success", "Welcome!");
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.LOGIN);
     } catch (e) {
       if (e.toString().contains("email already exists")) {
         Get.snackbar("Register Failed", "Email sudah tersedia");

@@ -7,8 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginController extends GetxController {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  var isPasswordHidden = true.obs;
 
   late LoginAuthService loginAuthService;
+
   @override
   void onInit() {
     emailController = TextEditingController();

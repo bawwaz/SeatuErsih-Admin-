@@ -16,6 +16,9 @@ class OrderManagementView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
+            SizedBox(
+              height: 25,
+            ),
             Container(
               width: double.infinity,
               height: 150,
