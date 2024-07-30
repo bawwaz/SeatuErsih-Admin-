@@ -7,6 +7,10 @@ import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_det
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_view.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/LoginpageView.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/login_binding.dart';
 import 'package:seatu_ersih_admin/draft/order_list_page/order_list_view.dart';
@@ -28,7 +32,7 @@ part 'routes.dart';
 class AppPages {
   AppPages._();
 
-  static final INITIAL = Routes.LOGIN;
+  static final INITIAL = Routes.PRODUCTREVIEWDEEP;
 
   static final routes = [
     GetPage(
@@ -94,6 +98,16 @@ class AppPages {
       name: Routes.ORDERREQUEST,
       page: () => OrderRequestView(),
       binding: OrderRequestBinding(),
+    ),
+    GetPage(
+      name: Routes.PRODUCTREVIEWREG,
+      page: () => ProductReviewRegView(),
+      binding: ProductReviewRegBinding(),
+    ),
+    GetPage(
+      name: Routes.PRODUCTREVIEWDEEP,
+      page: () => ProductReviewDeepView(),
+      binding: ProductReviewDeepBinding(),
     ),
   ];
 }

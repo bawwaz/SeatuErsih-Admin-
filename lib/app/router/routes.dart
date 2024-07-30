@@ -15,6 +15,10 @@ class Routes {
   static String ORDERSTATUSCOMPLETED = '/orderstatuscompleted';
   static String ORDERSTATUSDECLINED = '/orderstatusdeclined';
   static String PRODUCTREVIEW = '/productreview';
+    static String PRODUCTREVIEWREG = '/productreviewreg';
+        static String PRODUCTREVIEWDEEP = '/productreviewdeep';
+
+
 }
 
 // class Routes {
