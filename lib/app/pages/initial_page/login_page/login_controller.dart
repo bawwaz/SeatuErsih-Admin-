@@ -8,6 +8,7 @@ class LoginController extends GetxController {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   var isPasswordHidden = true.obs;
+  var isLoading = false.obs;
 
   late LoginAuthService loginAuthService;
 
@@ -21,6 +22,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
+    isLoading.value = true;
     try {
       final response = await loginAuthService.login(
           emailController.text, passwordController.text);
@@ -31,7 +33,13 @@ class LoginController extends GetxController {
       Get.snackbar("Login Success", "Welcome Back!");
       Get.offAllNamed(Routes.BTMNAVBAR);
     } catch (e) {
+      Get.snackbar("Login Failed", e.toString(),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.transparent,
+          colorText: Colors.black);
       print(e);
+    } finally {
+      isLoading.value = false;
     }
   }
 }

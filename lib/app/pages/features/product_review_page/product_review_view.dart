@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_page/widget/card_product_review_deep.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_page/widget/card_product_review_regular.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class ProductReviewView extends StatelessWidget {
   const ProductReviewView({super.key});
@@ -13,10 +15,10 @@ class ProductReviewView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xFFFFFFFF),
         automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () {},
-          child: Image.asset('assets/img/angle-circle-right 1.png'),
-        ),
+        // leading: InkWell(
+        //   onTap: () {},
+        //   child: Image.asset('assets/img/angle-circle-right 1.png'),
+        // ),
         centerTitle: true,
         title: Text(
           'Product Review',
@@ -32,42 +34,52 @@ class ProductReviewView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 3,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-                border: Border.all(color: Colors.grey.shade200),
+            InkWell(
+              onTap: () {
+                Get.toNamed(Routes.PRODUCTREVIEWREG);
+              },
+              child: Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      spreadRadius: 0,
+                      blurRadius: 3,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                  border: Border.all(color: Colors.grey.shade200),
+                ),
+                child: CardProductReviewRegular(),
               ),
-              child: CardProductReviewRegular(),
             ),
             SizedBox(
               height: 18,
             ),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 3,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-                border: Border.all(color: Colors.grey.shade200),
+            InkWell(
+              onTap: () {
+                Get.toNamed(Routes.PRODUCTREVIEWDEEP);
+              },
+              child: Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      spreadRadius: 0,
+                      blurRadius: 3,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                  border: Border.all(color: Colors.grey.shade200),
+                ),
+                child: CardProductReviewDeep(),
               ),
-              child: CardProductReviewDeep(),
             ),
           ],
         ),

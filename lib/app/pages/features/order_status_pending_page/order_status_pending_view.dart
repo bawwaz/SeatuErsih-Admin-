@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_inprogress_page/widget/card_inprogress_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/card_pending_orders.dart';
 
-class OrderStatusInprogressView extends StatelessWidget {
-  const OrderStatusInprogressView({super.key});
+class OrderStatusPendingView extends StatelessWidget {
+  const OrderStatusPendingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class OrderStatusInprogressView extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'In - progress',
+          'Pending Order',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -50,7 +50,7 @@ class OrderStatusInprogressView extends StatelessWidget {
                 ),
               ],
             ),
-            child: CardInprogressOrders(),
+            child: CardPendingOrders(),
           );
         },
       ),

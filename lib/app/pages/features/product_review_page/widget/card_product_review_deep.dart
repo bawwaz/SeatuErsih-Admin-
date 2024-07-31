@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CardProductReviewDeep extends StatelessWidget {
   const CardProductReviewDeep({
     super.key,
@@ -34,33 +33,33 @@ class CardProductReviewDeep extends StatelessWidget {
           color: Color(0xff8A8A8A),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Text(
-                  'Avg Rating :',
-                  style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(width: 4),
-                Text(
-                  '4.5',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(width: 4),
-                Icon(
-                  Icons.star,
-                  color: Color(0xFFFBBC05),
-                  size: 20,
-                ),
-              ],
+            Text(
+              'Avg Rating :',
+              style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
+            ),
+            SizedBox(width: 4),
+            Text(
+              '4.5',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(width: 4),
+            Icon(
+              Icons.star,
+              color: Color(0xFFFBBC05),
+              size: 20,
+            ),
+            Spacer(), 
+            Image.asset(
+              'assets/img/cleaning.png',
+              height: 40,
             ),
           ],
         ),

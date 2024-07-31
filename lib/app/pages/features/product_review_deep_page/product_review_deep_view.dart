@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/widget/card_review_deep.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/card_review_reg.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class ProductReviewDeepView extends StatelessWidget {
   const ProductReviewDeepView({super.key});
@@ -14,7 +16,9 @@ class ProductReviewDeepView extends StatelessWidget {
         backgroundColor: Color(0xFFFFFFFF),
         automaticallyImplyLeading: false,
         leading: InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.back();
+          },
           child: Image.asset('assets/img/angle-circle-right 1.png'),
         ),
         centerTitle: true,

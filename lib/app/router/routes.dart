@@ -11,14 +11,13 @@ class Routes {
   static String ORDERDETAIL = '/orderdetail';
   static String ORDERMANAGEMENT = '/ordermanagement';
   static String ORDERREQUEST = '/orderrequest';
+  static String ORDERSTATUSPENDING = '/orderstatuspending';
   static String ORDERSTATUSINPROGRESS = '/orderstatusinprogress';
   static String ORDERSTATUSCOMPLETED = '/orderstatuscompleted';
   static String ORDERSTATUSDECLINED = '/orderstatusdeclined';
   static String PRODUCTREVIEW = '/productreview';
-    static String PRODUCTREVIEWREG = '/productreviewreg';
-        static String PRODUCTREVIEWDEEP = '/productreviewdeep';
-
-
+  static String PRODUCTREVIEWREG = '/productreviewreg';
+  static String PRODUCTREVIEWDEEP = '/productreviewdeep';
 }
 
 // class Routes {

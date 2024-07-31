@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CardProductReviewRegular extends StatelessWidget {
   const CardProductReviewRegular({
     super.key,
@@ -61,6 +60,11 @@ class CardProductReviewRegular extends StatelessWidget {
                   size: 20,
                 ),
               ],
+            ),
+            Spacer(), 
+            Image.asset(
+              'assets/img/cleaning.png',
+              height: 40,
             ),
           ],
         ),

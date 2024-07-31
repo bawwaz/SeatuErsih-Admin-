@@ -12,22 +12,34 @@ class ButtonCreateAccount extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: 45,
-        child: ElevatedButton(
-          onPressed: () {
-            registController.register();
-          },
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF7EC1EB),
+        child: Obx(() {
+          return ElevatedButton(
+            onPressed: registController.isLoading.value
+                ? null 
+                : () {
+                    registController.register();
+                  },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: registController.isLoading.value
+                  ? Colors.grey 
+                  : Color(0xFF7EC1EB),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15))),
-          child: Text(
-            "Create account",
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
+                borderRadius: BorderRadius.circular(15),
+              ),
             ),
-          ),
-        ),
+            child: registController.isLoading.value
+                ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : Text(
+                    "Create account",
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+          );
+        }),
       ),
     );
   }
