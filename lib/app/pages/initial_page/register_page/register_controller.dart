@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seatu_ersih_admin/api/users/service/login_auth_service.dart';
 import 'package:seatu_ersih_admin/api/users/service/regist_auth_service.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
   late TextEditingController usernameController;
@@ -12,7 +10,8 @@ class RegisterController extends GetxController {
   late TextEditingController passwordController;
 
   var isPasswordHidden = true.obs;
-  
+  var isLoading = false.obs; // Add this line to manage loading state
+
   late RegistAuthService registAuthService;
 
   @override
@@ -27,11 +26,12 @@ class RegisterController extends GetxController {
   }
 
   Future<void> register() async {
+    isLoading.value = true; 
     try {
       await registAuthService.regist(
         usernameController.text,
         emailController.text,
-        phoneController.text.toString(),
+        phoneController.text,
         passwordController.text,
       );
 
@@ -44,6 +44,8 @@ class RegisterController extends GetxController {
         Get.snackbar("Register Failed", e.toString());
       }
       print(e);
+    } finally {
+      isLoading.value = false; // Set loading to false
     }
   }
 }

@@ -7,6 +7,8 @@ import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_det
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_binding.dart';
@@ -32,7 +34,7 @@ part 'routes.dart';
 class AppPages {
   AppPages._();
 
-  static final INITIAL = Routes.PRODUCTREVIEWDEEP;
+  static final INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -78,6 +80,11 @@ class AppPages {
       name: Routes.PRODUCTREVIEW,
       page: () => ProductReviewView(),
       binding: ProductReviewBinding(),
+    ),
+    GetPage(
+      name: Routes.ORDERSTATUSPENDING,
+      page: () => OrderStatusPendingView(),
+      binding: OrderStatusPendingBinding(),
     ),
     GetPage(
       name: Routes.ORDERSTATUSINPROGRESS,

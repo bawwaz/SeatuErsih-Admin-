@@ -10,23 +10,33 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        loginController.login();
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF7EC1EB),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+    return Obx(() {
+      return ElevatedButton(
+        onPressed: loginController.isLoading.value
+            ? null 
+            : () {
+                loginController.login();
+              },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: loginController.isLoading.value
+              ? Colors.grey 
+              : Color(0xFF7EC1EB),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
-      ),
-      child: Text(
-        "Sign In",
-        style: GoogleFonts.poppins(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
+        child: loginController.isLoading.value
+            ? CircularProgressIndicator(
+                color: Colors.white,
+              )
+            : Text(
+                "Sign In",
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+      );
+    });
   }
 }
