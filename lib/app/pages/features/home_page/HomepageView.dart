@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/HomepageBody.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,8 +22,7 @@ class HomePage extends StatelessWidget {
             child: Stack(
               children: [
                 InkWell(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   child: Container(
                     height: 48,
                     width: 48,
@@ -34,7 +34,14 @@ class HomePage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 14.0, left: 14),
-                  child: Image(image: AssetImage('assets/img/user.png')),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.PROFILE);
+                    },
+                    child: Image(
+                      image: AssetImage('assets/img/user.png'),
+                    ),
+                  ),
                 ),
               ],
             ),

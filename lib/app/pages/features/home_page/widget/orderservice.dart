@@ -25,7 +25,7 @@ class OrderService extends StatelessWidget {
           Image.asset('assets/img/icon-app.png'),
           Padding(
             padding: const EdgeInsets.only(top: 6.0),
-            child: Text('Order Service',
+            child: Text('Manage Service',
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
