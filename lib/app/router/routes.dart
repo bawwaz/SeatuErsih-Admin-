@@ -5,6 +5,7 @@ class Routes {
   static String LOGIN = '/login';
   static String BTMNAVBAR = '/btmnavbar';
   static String REGISTER = '/register';
+  static String PROFILE = '/profile';
   static String editbanner = '/editbanner';
   static String editcard = '/editcard';
   static String ORDERLIST = '/orderlist';
@@ -18,6 +19,7 @@ class Routes {
   static String PRODUCTREVIEW = '/productreview';
   static String PRODUCTREVIEWREG = '/productreviewreg';
   static String PRODUCTREVIEWDEEP = '/productreviewdeep';
+  static String TOTALCUSTOMER = '/totalcustomer';
 }
 
 // class Routes {

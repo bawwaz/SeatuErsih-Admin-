@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_contact.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_order.dart';
@@ -14,7 +15,9 @@ class OrderDetailView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.back();
+          },
           child: Image.asset('assets/img/angle-circle-right 1.png'),
         ),
         centerTitle: true,

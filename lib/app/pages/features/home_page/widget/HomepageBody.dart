@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/bannerslogan.dart';
-import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/ordercontainer.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_review.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -14,86 +16,95 @@ class HomeBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Color(0xFF7EC1EB),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 13),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Welcome,',
-                    style: GoogleFonts.poppins(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+          Stack(
+            children: [
+              Container(
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xFF7EC1EB),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 27, vertical: 13),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Welcome,',
+                      style: GoogleFonts.poppins(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "Page Admin",
-                    style: GoogleFonts.poppins(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    Text(
+                      "Page Admin",
+                      style: GoogleFonts.poppins(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Center(
-                child: Padding(
-              padding: const EdgeInsets.only(top: 100.0),
-              child: InkWell(
-                onTap: () {},
-                child: OrderService(),
-              ),
-            ))
-          ]),
-          SizedBox(
-            height: 31,
-          ),
-          Center(
-            child: BannerSlogan(),
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(top: 100.0),
+                child: InkWell(
+                  onTap: () {},
+                  child: OrderService(),
+                ),
+              ))
+            ],
           ),
           SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Customer’s Orders',
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+          InkWell(
+            onTap: () {Get.toNamed(Routes.TOTALCUSTOMER);},
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
                   ),
-                ),
-                Text(
-                  'See All',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
+                ],
+              ),
+              child: CardTotalCustomer(),
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: OrderContainer(),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardTotalReview(),
+            ),
           ),
         ],
       ),

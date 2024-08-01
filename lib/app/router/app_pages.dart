@@ -13,6 +13,10 @@ import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/pr
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/profile_page/profile_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/profile_page/profile_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_view.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/LoginpageView.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/login_binding.dart';
 import 'package:seatu_ersih_admin/draft/order_list_page/order_list_view.dart';
@@ -34,7 +38,7 @@ part 'routes.dart';
 class AppPages {
   AppPages._();
 
-  static final INITIAL = Routes.ORDERDETAIL;
+  static final INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -54,6 +58,11 @@ class AppPages {
       page: () => HomePage(),
       binding: homePageBinding(),
       transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: Routes.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
     ),
     GetPage(
       name: Routes.BTMNAVBAR,
@@ -115,6 +124,11 @@ class AppPages {
       name: Routes.PRODUCTREVIEWDEEP,
       page: () => ProductReviewDeepView(),
       binding: ProductReviewDeepBinding(),
+    ),
+    GetPage(
+      name: Routes.TOTALCUSTOMER,
+      page: () => TotalCustomerView(),
+      binding: TotalCustomerBinding(),
     ),
   ];
 }
