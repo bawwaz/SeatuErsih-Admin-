@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_pending_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_contact.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/floating_button.dart';
 
 class OrderDetailView extends StatelessWidget {
   const OrderDetailView({super.key});
@@ -17,7 +19,7 @@ class OrderDetailView extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'Pending Order',
+          'Order Detail',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -25,31 +27,73 @@ class OrderDetailView extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.only(bottom: 20),
-            width: double.infinity,
-            height: 85,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  spreadRadius: 0,
-                  blurRadius: 3,
-                  offset: Offset(0, 0),
-                ),
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Order',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: 17,
+              ),
             ),
-            child: CardPendingOrder(),
-          );
-        },
+            SizedBox(height: 5),
+            Container(
+              width: double.infinity,
+              height: 205,
+              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.symmetric(vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    spreadRadius: 0,
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardOrderDetail(),
+            ),
+            SizedBox(height: 15),
+            Text(
+              'Contact',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: 17,
+              ),
+            ),
+            SizedBox(height: 5),
+            Container(
+              width: double.infinity,
+              height: 140,
+              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.symmetric(vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    spreadRadius: 0,
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardContactDetail(),
+            ),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingButtonDetail(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
