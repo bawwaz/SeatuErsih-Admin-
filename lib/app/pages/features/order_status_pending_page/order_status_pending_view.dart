@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/card_pending_orders.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class OrderStatusPendingView extends StatelessWidget {
   const OrderStatusPendingView({super.key});
@@ -33,24 +34,29 @@ class OrderStatusPendingView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         itemCount: 4,
         itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.only(bottom: 20),
-            width: double.infinity,
-            height: 85,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  spreadRadius: 0,
-                  blurRadius: 3,
-                  offset: Offset(0, 0),
-                ),
-              ],
+          return InkWell(
+            onTap: () {
+              Get.toNamed(Routes.ORDERREQUEST);
+            },
+            child: Container(
+              margin: EdgeInsets.only(bottom: 20),
+              width: double.infinity,
+              height: 85,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    spreadRadius: 0,
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardPendingOrders(),
             ),
-            child: CardPendingOrders(),
           );
         },
       ),

@@ -34,7 +34,7 @@ part 'routes.dart';
 class AppPages {
   AppPages._();
 
-  static final INITIAL = Routes.LOGIN;
+  static final INITIAL = Routes.ORDERDETAIL;
 
   static final routes = [
     GetPage(
