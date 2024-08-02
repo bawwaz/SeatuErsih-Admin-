@@ -1,6 +1,8 @@
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageBinding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_binding.dart';
@@ -129,6 +131,11 @@ class AppPages {
       name: Routes.TOTALCUSTOMER,
       page: () => TotalCustomerView(),
       binding: TotalCustomerBinding(),
+    ),
+    GetPage(
+      name: Routes.ADDLOCATION,
+      page: () => AddLocationView(),
+      binding: AddLocationBinding(),
     ),
   ];
 }

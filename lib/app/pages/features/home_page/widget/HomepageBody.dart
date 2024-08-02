@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
-import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_review.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_manage_location.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
@@ -64,7 +64,9 @@ class HomeBody extends StatelessWidget {
             height: 20,
           ),
           InkWell(
-            onTap: () {Get.toNamed(Routes.TOTALCUSTOMER);},
+            onTap: () {
+              Get.toNamed(Routes.TOTALCUSTOMER);
+            },
             child: Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -87,7 +89,9 @@ class HomeBody extends StatelessWidget {
             height: 20,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.ADDLOCATION);
+            },
             child: Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -103,7 +107,7 @@ class HomeBody extends StatelessWidget {
                   ),
                 ],
               ),
-              child: CardTotalReview(),
+              child: CardManageLocation(),
             ),
           ),
         ],

@@ -36,7 +36,7 @@ class CardTotalCustomer extends StatelessWidget {
         Divider(color: Colors.grey.shade300, thickness: 1),
         SizedBox(height: 2),
         Text(
-          'Email',
+          'Bergabung pada:',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -45,26 +45,7 @@ class CardTotalCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          'bawwaz@gmail.com',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w400,
-            color: Color(0xff8A8A8A),
-            fontSize: 13,
-          ),
-        ),
-        Divider(color: Colors.grey.shade300, thickness: 1),
-        SizedBox(height: 2),
-        Text(
-          'No.Telepon',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: 15,
-          ),
-        ),
-        SizedBox(height: 2),
-        Text(
-          '0825376256327',
+          '10 Juli 2024',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

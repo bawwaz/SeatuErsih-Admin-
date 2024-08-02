@@ -73,7 +73,7 @@ class ProfileView extends StatelessWidget {
               ),
               alignment: Alignment.centerLeft,
               child: Text(
-                'Dude Nova Ariyanto',
+                'Pak Bajuri',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
                   color: Color(0xff8a8a8a8),
