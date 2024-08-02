@@ -35,7 +35,7 @@ class TotalCustomerView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Container(
             width: double.infinity,
-            height: 200,
+            height: 137,
             padding: EdgeInsets.all(16),
             margin: EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(

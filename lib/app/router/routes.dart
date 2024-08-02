@@ -20,6 +20,7 @@ class Routes {
   static String PRODUCTREVIEWREG = '/productreviewreg';
   static String PRODUCTREVIEWDEEP = '/productreviewdeep';
   static String TOTALCUSTOMER = '/totalcustomer';
+  static String ADDLOCATION = '/addlocation';
 }
 
 // class Routes {
