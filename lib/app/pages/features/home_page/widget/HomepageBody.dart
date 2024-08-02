@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_brand.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_manage_location.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
@@ -108,6 +109,31 @@ class HomeBody extends StatelessWidget {
                 ],
               ),
               child: CardManageLocation(),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.ADDLSHOESBRAND);
+            },
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardAddBrand(),
             ),
           ),
         ],

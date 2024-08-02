@@ -21,6 +21,7 @@ class Routes {
   static String PRODUCTREVIEWDEEP = '/productreviewdeep';
   static String TOTALCUSTOMER = '/totalcustomer';
   static String ADDLOCATION = '/addlocation';
+  static String ADDLSHOESBRAND = '/addshoesbrand';
 }
 
 // class Routes {

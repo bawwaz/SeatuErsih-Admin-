@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CardDataKab extends StatelessWidget {
-  const CardDataKab({
+class CardDataDisimpanAddBrand extends StatelessWidget {
+  const CardDataDisimpanAddBrand({
     super.key,
   });
 
@@ -12,7 +12,7 @@ class CardDataKab extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Kabupaten',
+          'Sepatu',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -23,7 +23,7 @@ class CardDataKab extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Kota: ',
+              'Nama Sepatu: ',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
@@ -31,7 +31,7 @@ class CardDataKab extends StatelessWidget {
               ),
             ),
             Text(
-              'Kudus,',
+              'Nike Air Force 1,',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
@@ -39,7 +39,7 @@ class CardDataKab extends StatelessWidget {
               ),
             ),
             Text(
-              ' Pati',
+              ' Converse 70',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
