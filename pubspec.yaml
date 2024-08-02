@@ -25,6 +25,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/img/
+    - assets/img/shoe-print.png
 
   uses-material-design: true
 

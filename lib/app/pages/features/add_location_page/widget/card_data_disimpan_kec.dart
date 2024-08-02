@@ -31,7 +31,7 @@ class CardDataKec extends StatelessWidget {
               ),
             ),
             Text(
-              'Gebog',
+              'Gebog,',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
@@ -39,15 +39,7 @@ class CardDataKec extends StatelessWidget {
               ),
             ),
             Text(
-              ', ',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-            Text(
-              'Sukolilo',
+              ' Sukolilo',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
