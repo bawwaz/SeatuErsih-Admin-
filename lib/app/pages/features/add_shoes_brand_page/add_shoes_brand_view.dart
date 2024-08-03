@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/card_data_disimpan_kab.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/card_data_disimpan_kec.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/floating_button_kab.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/floating_button_kec.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/textfield_add_kabupaten.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/textfield_add_kecamatan.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/widget/card_data_disimpan_add_brand.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/widget/floating_button_add_brand.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/widget/textfield_add_brand_shoes.dart';
@@ -16,6 +11,9 @@ class AddShoesBrandView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AddShoesBrandController controller =
+        Get.put(AddShoesBrandController());
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -100,7 +98,7 @@ class AddShoesBrandView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Data yang Disimpan',
+                      'Sepatu yang Ditambahkan:',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -123,7 +121,22 @@ class AddShoesBrandView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: CardDataDisimpanAddBrand(),
+                      child: Obx(() {
+                        return Wrap(
+                          spacing: 8.0, // space between items
+                          runSpacing: 4.0, // space between lines
+                          children: controller.brand_name.map((brand) {
+                            return Text(
+                              '${brand['brand']},',
+                              style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                fontSize: 14,
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      }),
                     ),
                   ],
                 ),

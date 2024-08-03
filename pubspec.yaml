@@ -13,6 +13,8 @@ dependencies:
   get: any
   dio: 
   shared_preferences: 
+  get_storage: 
+
 
   cupertino_icons: ^1.0.6
 

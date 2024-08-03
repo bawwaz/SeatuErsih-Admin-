@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardDataDisimpanAddBrand extends StatelessWidget {
+  final String brands;
+
   const CardDataDisimpanAddBrand({
     super.key,
+    required this.brands,
   });
 
   @override
@@ -20,34 +24,14 @@ class CardDataDisimpanAddBrand extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8),
-        Row(
-          children: [
-            Text(
-              'Nama Sepatu: ',
+        Text(
+              'Nama Sepatu: $brands',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
                 fontSize: 14,
               ),
             ),
-            Text(
-              'Nike Air Force 1,',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-            Text(
-              ' Converse 70',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
       ],
     );
   }
