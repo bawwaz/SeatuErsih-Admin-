@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/card_data_disimpan_kab.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/card_data_disimpan_kec.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/floating_button_kab.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/floating_button_kec.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/widget/textfield_add_kabupaten.dart';
@@ -13,6 +12,8 @@ class AddLocationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AddLocationController controller = Get.put(AddLocationController());
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -87,7 +88,7 @@ class AddLocationView extends StatelessWidget {
                   bottom: 20,
                   left: 20,
                   right: 20,
-                  child: FLoatingButtonKab(),
+                  child: FloatingButtonKab(),
                 ),
               ],
             ),
@@ -141,7 +142,7 @@ class AddLocationView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Data yang Disimpan',
+                      'Kabupaten yang berhasil ditambahkan:',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -164,8 +165,36 @@ class AddLocationView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: CardDataKab(),
+                      child: Obx(
+                        () {
+                          return Wrap(
+                            spacing: 8.0,
+                            runSpacing: 4.0,
+                            children: controller.kabupaten_name.map(
+                              (kabupaten) {
+                                return Text(
+                                  '${kabupaten['kabupaten']},',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                          );
+                        },
+                      ),
                     ),
+                    Text(
+                      'Kecamatan yang berhasil ditambahkan:',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 8),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(16),
@@ -180,7 +209,26 @@ class AddLocationView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: CardDataKec(),
+                      child: Obx(
+                        () {
+                          return Wrap(
+                            spacing: 8.0,
+                            runSpacing: 4.0,
+                            children: controller.kecamatan_name.map(
+                              (kecamatan) {
+                                return Text(
+                                  '${kecamatan['kecamatan']},',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

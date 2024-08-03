@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_controller.dart';
 
 class TextFieldAddKabupaten extends StatelessWidget {
   const TextFieldAddKabupaten({
@@ -8,7 +10,10 @@ class TextFieldAddKabupaten extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AddLocationController controller = Get.put(AddLocationController());
+
     return TextField(
+      controller: controller.kabupatenController,
       decoration: InputDecoration(
         hintText: 'Tambahkan disini...',
         hintStyle: GoogleFonts.poppins(
@@ -16,8 +21,7 @@ class TextFieldAddKabupaten extends StatelessWidget {
           fontSize: 14,
         ),
         border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(
-            horizontal: 16, vertical: 12),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
     );
   }
