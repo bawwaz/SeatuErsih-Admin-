@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardCustomer extends StatelessWidget {
-  const CardCustomer({
+  String username;
+  String email;
+  String phone;
+  CardCustomer({
     super.key,
+    required this.username,
+    required this.email,
+    required this.phone,
   });
 
   @override
@@ -23,7 +29,7 @@ class CardCustomer extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              'BawwazBagus',
+              '${username}',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -45,7 +51,7 @@ class CardCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          'bawwaz@gmail.com',
+          '${email}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -64,7 +70,7 @@ class CardCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          '0825376256327',
+          '${phone}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

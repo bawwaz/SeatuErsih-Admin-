@@ -6,8 +6,8 @@ import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   var isPasswordHidden = true.obs;
   var isLoading = false.obs;
   var box = GetStorage();
@@ -16,8 +16,8 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController.text = "admin@gmail.com";
+    passwordController.text = "admin12345";
 
     loginAuthService = LoginAuthService();
     super.onInit();

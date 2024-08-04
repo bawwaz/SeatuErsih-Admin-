@@ -142,7 +142,7 @@ class AddLocationView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Kabupaten yang berhasil ditambahkan:',
+                      'Kabupaten yang ditambahkan:',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -187,7 +187,7 @@ class AddLocationView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Kecamatan yang berhasil ditambahkan:',
+                      'Kecamatan yang ditambahkan:',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,

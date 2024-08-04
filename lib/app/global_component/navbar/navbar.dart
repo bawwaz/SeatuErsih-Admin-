@@ -6,17 +6,20 @@ import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order
 import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product_review_view.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final BottomNavigationController controller =
-      Get.put(BottomNavigationController());
-
-  final List<Widget> pages = [
-    HomePage(),
-    ProductReviewView(),
-    OrderManagementView(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final BottomNavigationController controller = Get.find();
+
+    // Check if there are arguments passed to set the initial tab index
+    int initialIndex = Get.arguments ?? 0;
+    controller.currentIndex.value = initialIndex;
+
+    final List<Widget> pages = [
+      HomePage(),
+      ProductReviewView(),
+      OrderManagementView(),
+    ];
+
     return Scaffold(
       body: Obx(
         () => IndexedStack(
