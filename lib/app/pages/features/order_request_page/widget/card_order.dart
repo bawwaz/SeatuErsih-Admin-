@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class CardOrder extends StatelessWidget {
-  const CardOrder({
+  String product;
+  String note;
+  DateTime date;
+
+  CardOrder({
     super.key,
+    required this.product,
+    required this.note,
+    required this.date,
   });
 
   @override
@@ -21,7 +29,7 @@ class CardOrder extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          'Regular Clean',
+          product == 'regular_clean' ? 'Regular Clean' : 'Deep Clean',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -39,7 +47,7 @@ class CardOrder extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          'Pick Up : 08/06/24',
+          '${DateFormat('dd MMMM yyyy').format(date)}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -57,7 +65,7 @@ class CardOrder extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          'Tiati bersihin nya ya mas',
+          '${note}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

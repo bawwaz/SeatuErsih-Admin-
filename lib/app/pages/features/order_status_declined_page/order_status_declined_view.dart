@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/order_status_declined_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/card_declined_orders.dart';
 
-class OrderStatusDeclinedView extends StatelessWidget {
+class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
   const OrderStatusDeclinedView({super.key});
 
   @override
@@ -21,7 +23,7 @@ class OrderStatusDeclinedView extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'Declined',
+          'Declined Orders',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -29,29 +31,60 @@ class OrderStatusDeclinedView extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(20),
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.only(bottom: 20),
-            width: double.infinity,
-            height: 85,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  spreadRadius: 0,
-                  blurRadius: 3,
-                  offset: Offset(0, 0),
-                ),
-              ],
-            ),
-            child: CardDeclinedOrders(),
-          );
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller.declinedOrder.isEmpty) {
+            return Center(
+              child: Text(
+                "Tidak Ada Data",
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: controller.declinedOrder.length,
+              itemBuilder: (context, index) {
+                DateTime date = DateTime.parse(
+                    controller.declinedOrder[index]["pickup_date"]);
+                String formattedPrice = NumberFormat.currency(
+                  locale: 'id_ID',
+                  symbol: 'Rp ',
+                  decimalDigits: 0,
+                ).format(controller.declinedOrder[index]["total_price"]);
+                return Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  width: double.infinity,
+                  height: 85,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        spreadRadius: 0,
+                        blurRadius: 3,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: CardDeclinedOrders(
+                    orderType: controller.declinedOrder[index]["order_type"],
+                    date: date,
+                    totalPrice: formattedPrice,
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );

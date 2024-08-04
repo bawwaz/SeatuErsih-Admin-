@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/card_pending_orders.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
-class OrderStatusPendingView extends StatelessWidget {
+class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
   const OrderStatusPendingView({super.key});
 
   @override
@@ -30,34 +32,49 @@ class OrderStatusPendingView extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(20),
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Get.toNamed(Routes.ORDERREQUEST);
-            },
-            child: Container(
-              margin: EdgeInsets.only(bottom: 20),
-              width: double.infinity,
-              height: 85,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 3,
-                    offset: Offset(0, 0),
-                  ),
-                ],
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller.pendingOrder.isEmpty) {
+            return Center(
+              child: Text(
+                "Tidak Ada Data",
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14),
               ),
-              child: CardPendingOrders(),
-            ),
-          );
+            );
+          } else {
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: controller.pendingOrder.length,
+              itemBuilder: (context, index) {
+                DateTime date = DateTime.parse(
+                    controller.pendingOrder[index]["pickup_date"]);
+                String formattedPrice = NumberFormat.currency(
+                  locale: 'id_ID',
+                  symbol: 'Rp ',
+                  decimalDigits: 0,
+                ).format(controller.pendingOrder[index]["total_price"]);
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.ORDERREQUEST,
+                        arguments:
+                            controller.pendingOrder[index]["id"].toString());
+                  },
+                  child: CardPendingOrders(
+                    orderType: controller.pendingOrder[index]["order_type"],
+                    date: date,
+                    totalPrice: formattedPrice,
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );

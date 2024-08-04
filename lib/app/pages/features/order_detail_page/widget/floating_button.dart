@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_controller.dart';
 
-class FloatingButtonDetail extends StatelessWidget {
+class FloatingButtonDetail extends GetView<OrderDetailController> {
   const FloatingButtonDetail({
     super.key,
   });
@@ -16,7 +18,9 @@ class FloatingButtonDetail extends StatelessWidget {
           height: 50,
           child: FloatingActionButton.extended(
             heroTag: null,
-            onPressed: () {},
+            onPressed: () {
+              controller.postUpdateStatus("completed");
+            },
             backgroundColor: Color(0xff7EC1EB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),

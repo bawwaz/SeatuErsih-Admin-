@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardDataDisimpanAddBrand extends StatelessWidget {
@@ -25,13 +24,13 @@ class CardDataDisimpanAddBrand extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-              'Nama Sepatu: $brands',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
+          'Nama Sepatu: $brands',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+            fontSize: 14,
+          ),
+        ),
       ],
     );
   }

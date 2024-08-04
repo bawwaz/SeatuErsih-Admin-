@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardContactDetail extends StatelessWidget {
-  const CardContactDetail({
+  String address;
+  String phone;
+  CardContactDetail({
     super.key,
+    required this.address,
+    required this.phone,
   });
 
   @override
@@ -21,7 +25,7 @@ class CardContactDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          'Jl.Besito, Jawa Tengah Kodepos 53356',
+          '${address}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -39,7 +43,7 @@ class CardContactDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          '0821231113218',
+          '${phone}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

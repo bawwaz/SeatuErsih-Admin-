@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class CardInprogressOrders extends StatelessWidget {
+  final String orderType;
+  final DateTime date;
+  final String totalPrice;
+
   const CardInprogressOrders({
     super.key,
+    required this.orderType,
+    required this.date,
+    required this.totalPrice,
   });
 
   @override
@@ -25,7 +33,7 @@ class CardInprogressOrders extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Deep Clean',
+                      orderType == 'deep_clean' ? "Deep Clean" : "Regular Clean",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -43,21 +51,17 @@ class CardInprogressOrders extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 2,
-                ),
+                SizedBox(height: 2),
                 Text(
-                  '02/06/24',
+                  DateFormat('dd MMMM yyyy').format(date),
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Color(0xFF8A8A8A),
                   ),
                 ),
-                SizedBox(
-                  height: 2,
-                ),
+                SizedBox(height: 2),
                 Text(
-                  '25.000',
+                  totalPrice,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
