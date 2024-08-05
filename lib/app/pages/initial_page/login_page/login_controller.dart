@@ -33,6 +33,7 @@ class LoginController extends GetxController {
 
       prefs.setString('token', response.data['token']);
       box.write('token', response.data['token']);
+      box.write('username', response.data['user']['username']);
 
       Get.snackbar("Login Success", "Welcome Back!");
       Get.offAllNamed(Routes.BTMNAVBAR);

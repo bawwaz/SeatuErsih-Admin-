@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/widget/card_review_deep.dart';
-import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/card_review_reg.dart';
-import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
-class ProductReviewDeepView extends StatelessWidget {
+class ProductReviewDeepView extends GetView<ProductReviewDeepController> {
   const ProductReviewDeepView({super.key});
 
   @override
@@ -31,31 +30,55 @@ class ProductReviewDeepView extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(20),
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 3,
-                    offset: Offset(0, 0),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return Center(child: CircularProgressIndicator());
+        } else if (controller.reviewDeepList.isEmpty) {
+          return Center(child: Text('No data found.'));
+        } else {
+          return ListView.builder(
+            padding: EdgeInsets.all(20),
+            itemCount: controller.reviewDeepList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        spreadRadius: 0,
+                        blurRadius: 3,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: CardReviewDeep(),
-            ),
+                  child: CardReviewDeep(
+                    orderType: controller.reviewDeepList[index]["order_type"] ??
+                        'No order',
+                    date: DateTime.parse(controller.reviewDeepList[index]
+                            ["review_date"] ??
+                        DateTime.now().toString()),
+                    name: controller.reviewDeepList[index]["user"]
+                            ?["username"] ??
+                        'No name',
+                    rating: controller.reviewDeepList[index]["rating"]
+                            ?.toString() ??
+                        'No rating',
+                    review: controller.reviewDeepList[index]["review"] ??
+                        'No review',
+                    profilePictureUrl: controller.reviewDeepList[index]["user"]
+                        ?["profile_picture"],
+                  ),
+                ),
+              );
+            },
           );
-        },
-      ),
+        }
+      }),
     );
   }
 }

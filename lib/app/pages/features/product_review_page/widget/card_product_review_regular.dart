@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardProductReviewRegular extends StatelessWidget {
+  final String name;
+  final String description;
+  final String rating;
+
   const CardProductReviewRegular({
     super.key,
+    required this.name,
+    required this.description,
+    required this.rating,
   });
 
   @override
@@ -12,7 +19,7 @@ class CardProductReviewRegular extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Regular Clean',
+          '${name}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
             fontSize: 17,
@@ -21,7 +28,7 @@ class CardProductReviewRegular extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          'Proses pembersihan standar untuk sepatu yang meliputi beberapa langkah dasar untuk menghilangkan kotoran, noda, dan bau yang menempel pada sepatu.',
+          '${name}',
           style: GoogleFonts.poppins(
               fontSize: 14,
               color: Color(0xff8A8A8A),
@@ -46,7 +53,7 @@ class CardProductReviewRegular extends StatelessWidget {
                 ),
                 SizedBox(width: 4),
                 Text(
-                  '4.5',
+                  '${rating}',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
@@ -61,7 +68,7 @@ class CardProductReviewRegular extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(), 
+            Spacer(),
             Image.asset(
               'assets/img/cleaning.png',
               height: 40,

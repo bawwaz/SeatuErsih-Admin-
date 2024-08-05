@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/profile_page/profile_controller.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController controller = Get.put(ProfileController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,9 +46,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Text(
               'Nama Penjual',
               style: GoogleFonts.poppins(
@@ -54,33 +55,34 @@ class ProfileView extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(7),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    blurRadius: 2,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-              ),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Pak Bajuri',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xff8a8a8a8),
-                  fontSize: 14,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(7),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 2,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
                 ),
-              ),
-            ),
+                alignment: Alignment.centerLeft,
+                child: Obx(
+                  () {
+                    return Text(
+                      '${controller.username.value}',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff8a8a8a8),
+                        fontSize: 14,
+                      ),
+                    );
+                  },
+                )),
           ],
         ),
       ),
@@ -96,7 +98,9 @@ class ProfileView extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            controller.logout();
+          },
           child: Text(
             'Logout',
             style: GoogleFonts.poppins(
