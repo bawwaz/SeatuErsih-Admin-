@@ -20,7 +20,7 @@ class CardCompleted extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Text(
           '5',

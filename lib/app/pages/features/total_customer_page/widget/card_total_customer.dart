@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class CardTotalCustomer extends StatelessWidget {
-  const CardTotalCustomer({
+  final String name;
+  final DateTime joinDate;
+  final String? profilePictureUrl;
+
+  CardTotalCustomer({
     super.key,
+    required this.name,
+    required this.joinDate,
+    this.profilePictureUrl,
   });
 
   @override
@@ -15,15 +23,20 @@ class CardTotalCustomer extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20,
+              backgroundImage: profilePictureUrl != null
+                  ? NetworkImage(profilePictureUrl!)
+                  : null,
               backgroundColor: Colors.grey.shade400,
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
+              child: profilePictureUrl == null
+                  ? Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )
+                  : null,
             ),
             SizedBox(width: 10),
             Text(
-              'BawwazBagus',
+              name,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -45,7 +58,7 @@ class CardTotalCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          '10 Juli 2024',
+          DateFormat('dd MMMM yyyy').format(joinDate),
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
