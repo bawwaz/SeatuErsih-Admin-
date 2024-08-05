@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class CardReviewDeep extends StatelessWidget {
-  const CardReviewDeep({
+  String name;
+  DateTime date;
+  final String? profilePictureUrl;
+  String rating;
+  String orderType;
+  String review;
+
+  CardReviewDeep({
     super.key,
+    required this.name,
+    required this.date,
+    this.profilePictureUrl,
+    required this.rating,
+    required this.orderType,
+    required this.review,
   });
 
   @override
@@ -15,22 +29,23 @@ class CardReviewDeep extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundColor: Colors.grey.shade300,
-              child: ClipOval(
-                child: Image.asset(
-                  'assets/img/profile-icon.png',
-                  fit: BoxFit.cover,
-                  width: 40,
-                  height: 40,
-                ),
-              ),
+              backgroundImage: profilePictureUrl != null
+                  ? NetworkImage(profilePictureUrl!)
+                  : null,
+              backgroundColor: Colors.grey.shade400,
+              child: profilePictureUrl == null
+                  ? Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )
+                  : null,
             ),
             SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Bawwaz',
+                  '${name}',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -38,7 +53,7 @@ class CardReviewDeep extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '4 Okt 2024',
+                  DateFormat('dd MMMM yyyy').format(date),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
                     fontSize: 12,
@@ -53,7 +68,7 @@ class CardReviewDeep extends StatelessWidget {
                 Icon(Icons.star, color: Color(0xffFBBC05), size: 25),
                 SizedBox(width: 4),
                 Text(
-                  '4.5',
+                  '${rating}',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -68,7 +83,7 @@ class CardReviewDeep extends StatelessWidget {
         Divider(),
         SizedBox(height: 8),
         Text(
-          'Regular Clean x2',
+          '${orderType}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             fontSize: 16,
@@ -80,7 +95,7 @@ class CardReviewDeep extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Saya nga pernah liat spatu saya sebersih ini',
+                '${review}',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
                   fontSize: 14,

@@ -1,6 +1,7 @@
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
+import 'package:seatu_ersih_admin/app/global_component/navbar/navbarBinding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_binding.dart';
@@ -75,6 +76,7 @@ class AppPages {
         homePageBinding(),
         ProductReviewBinding(),
         OrderManagementBinding(),
+        navbarBinding(),
       ],
       transition: Transition.noTransition,
     ),
