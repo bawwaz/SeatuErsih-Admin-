@@ -62,7 +62,7 @@ class HomeBody extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -78,7 +78,7 @@ class HomeBody extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
-                    blurRadius: 3,
+                    blurRadius: 2,
                     offset: Offset(0, 0),
                   ),
                 ],
@@ -103,7 +103,7 @@ class HomeBody extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
-                    blurRadius: 3,
+                    blurRadius: 2,
                     offset: Offset(0, 0),
                   ),
                 ],
@@ -128,7 +128,8 @@ class HomeBody extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
-                    blurRadius: 3,
+                    blurRadius: 2,
+                    spreadRadius: 1,
                     offset: Offset(0, 0),
                   ),
                 ],

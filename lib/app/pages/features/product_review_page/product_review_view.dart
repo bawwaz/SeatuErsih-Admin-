@@ -12,28 +12,42 @@ class ProductReviewView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFFFFFF),
-        automaticallyImplyLeading: false,
-        // leading: InkWell(
-        //   onTap: () {},
-        //   child: Image.asset('assets/img/angle-circle-right 1.png'),
-        // ),
-        centerTitle: true,
-        title: Text(
-          'Product Review',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Color(0xFFFFFFFF),
+      //   automaticallyImplyLeading: false,
+      //   leading: InkWell(
+      //     onTap: () {},
+      //     child: Image.asset('assets/img/angle-circle-right 1.png'),
+      //   ),
+      //   centerTitle: true,
+      //   title: Text(
+      //     'Product Review',
+      //     style: GoogleFonts.poppins(
+      //       fontWeight: FontWeight.w600,
+      //       color: Colors.black,
+      //       fontSize: 20,
+      //     ),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Product Review',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
             InkWell(
               onTap: () {
                 Get.toNamed(Routes.PRODUCTREVIEWREG);

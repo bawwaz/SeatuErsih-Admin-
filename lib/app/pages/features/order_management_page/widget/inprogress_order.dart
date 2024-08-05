@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CardInProgress extends StatelessWidget {
   const CardInProgress({
     super.key,
@@ -21,7 +20,7 @@ class CardInProgress extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Text(
           '5',

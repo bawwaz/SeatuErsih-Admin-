@@ -13,13 +13,40 @@ class OrderManagementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   leading: InkWell(
+      //     onTap: () {},
+      //   ),
+      //   centerTitle: true,
+      //   title: Text(
+      //     'Order Management',
+      //     style: GoogleFonts.poppins(
+      //       fontWeight: FontWeight.w600,
+      //       color: Colors.black,
+      //       fontSize: 20,
+      //     ),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 25,
+              height: 30,
+            ),
+            Text(
+              'Order Management',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            SizedBox(
+              height: 15,
             ),
             InkWell(
               onTap: () {
@@ -27,7 +54,7 @@ class OrderManagementView extends StatelessWidget {
               },
               child: Container(
                 width: double.infinity,
-                height: 150,
+                height: 130,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -53,7 +80,7 @@ class OrderManagementView extends StatelessWidget {
               },
               child: Container(
                 width: double.infinity,
-                height: 150,
+                height: 110,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -79,7 +106,7 @@ class OrderManagementView extends StatelessWidget {
               },
               child: Container(
                 width: double.infinity,
-                height: 150,
+                height: 110,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -105,7 +132,7 @@ class OrderManagementView extends StatelessWidget {
               },
               child: Container(
                 width: double.infinity,
-                height: 150,
+                height: 110,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,

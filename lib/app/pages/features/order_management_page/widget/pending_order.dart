@@ -20,7 +20,7 @@ class CardPending extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Text(
           '18',
@@ -30,7 +30,7 @@ class CardPending extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Text(
           '10 more than last week',
