@@ -143,10 +143,10 @@ class OrderRequestView extends GetView<OrderRequestController> {
                     ],
                   ),
                   child: CardCustomer(
-                    username:
-                        controller.detailOrder["user"]["username"] ?? 'No username',
+                    username: controller.detailOrder["user"]["username"] ?? 'No username',
                     email: controller.detailOrder["user"]["email"] ?? 'No email',
                     phone: controller.detailOrder["user"]["phone"] ?? 'No phone',
+                    profile: controller.detailOrder["user"]["profile"] ?? '', // Assuming profile URL is in this field
                   ),
                 ),
                 SizedBox(height: 75),

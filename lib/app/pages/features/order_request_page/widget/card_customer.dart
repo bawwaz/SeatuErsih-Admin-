@@ -5,11 +5,14 @@ class CardCustomer extends StatelessWidget {
   String username;
   String email;
   String phone;
+  String profile;
+
   CardCustomer({
     super.key,
     required this.username,
     required this.email,
     required this.phone,
+    required this.profile,
   });
 
   @override
@@ -21,15 +24,20 @@ class CardCustomer extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20,
+              backgroundImage: profile.isNotEmpty
+                  ? NetworkImage(profile)
+                  : null,
               backgroundColor: Colors.grey.shade400,
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
+              child: profile.isEmpty
+                  ? Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )
+                  : null,
             ),
             SizedBox(width: 10),
             Text(
-              '${username}',
+              username,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -51,7 +59,7 @@ class CardCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          '${email}',
+          email,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -70,7 +78,7 @@ class CardCustomer extends StatelessWidget {
         ),
         SizedBox(height: 2),
         Text(
-          '${phone}',
+          phone,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
