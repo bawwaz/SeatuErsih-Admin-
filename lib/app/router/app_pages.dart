@@ -1,11 +1,12 @@
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbarBinding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageBinding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_binding.dart';
@@ -24,7 +25,6 @@ import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_c
 import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_view.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/LoginpageView.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/login_page/login_binding.dart';
-import 'package:seatu_ersih_admin/draft/order_list_page/order_list_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/order_request_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/order_request_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/order_status_completed_binding.dart';
@@ -37,7 +37,6 @@ import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product
 import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product_review_view.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/RegisterviewPage.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/register_binding.dart';
-
 part 'routes.dart';
 
 class AppPages {
@@ -145,6 +144,11 @@ class AppPages {
       name: Routes.ADDLSHOESBRAND,
       page: () => AddShoesBrandView(),
       binding: AddShoesBrandBinding(),
+    ),
+    GetPage(
+      name: Routes.HISTORYPAYEMENT,
+      page: () => HistoryPaymentView(),
+      binding: HistoryPaymentBinding(),
     ),
   ];
 }
