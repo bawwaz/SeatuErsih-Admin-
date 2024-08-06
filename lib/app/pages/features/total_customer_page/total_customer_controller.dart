@@ -42,7 +42,8 @@ class TotalCustomerController extends GetxController {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
         if (decodedResponse is Map && decodedResponse.containsKey('users')) {
-          customers.value = List<Map<String, dynamic>>.from(decodedResponse['users']);
+          customers.value =
+              List<Map<String, dynamic>>.from(decodedResponse['users']);
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }

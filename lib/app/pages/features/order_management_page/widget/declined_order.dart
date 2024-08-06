@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
 
-class CardDeclined extends StatelessWidget {
+class CardDeclined extends GetView<OrderManagementController> {
   const CardDeclined({
     super.key,
   });
@@ -22,12 +24,16 @@ class CardDeclined extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Text(
-          '5',
-          style: GoogleFonts.poppins(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+        Obx(
+          () {
+            return Text(
+              '${controller.declinedOrder.length}',
+              style: GoogleFonts.poppins(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
         ),
       ],
     );

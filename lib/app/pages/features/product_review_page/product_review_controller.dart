@@ -13,7 +13,8 @@ class ProductReviewController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    orderId.value = Get.arguments ?? '';
+    orderId.value = Get.arguments?.toString() ?? '';
+
     token.value = box.read('token');
     getAllLaundries();
   }

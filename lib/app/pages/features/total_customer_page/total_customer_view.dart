@@ -37,6 +37,9 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
               child: CircularProgressIndicator(),
             );
           } else {
+            final totalCustomer = controller.customers.length;
+            print(totalCustomer);
+
             return ListView.builder(
               padding: EdgeInsets.all(20),
               itemCount: controller.customers.length,
@@ -63,7 +66,10 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
                     joinDate: DateTime.parse(
                       controller.customers[index]["created_at"],
                     ),
-                    profilePictureUrl: controller.customers[index]["profile_picture"],
+                    profilePictureUrl: controller.customers[index]
+                        ["profile_picture"],
+                    totalCustomer: totalCustomer
+                        .toString(), // Mengirim totalCustomer ke CardTotalCustomer
                   ),
                 );
               },
