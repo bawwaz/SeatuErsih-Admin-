@@ -22,6 +22,7 @@ class Routes {
   static String TOTALCUSTOMER = '/totalcustomer';
   static String ADDLOCATION = '/addlocation';
   static String ADDLSHOESBRAND = '/addshoesbrand';
+  static String HISTORYPAYEMENT = '/historypayment';
 }
 
 // class Routes {
