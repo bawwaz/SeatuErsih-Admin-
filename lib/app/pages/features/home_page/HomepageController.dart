@@ -1,33 +1,64 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class homePageController extends GetxController {
-  var orders = [].obs;
+  var customers = <Map<String, dynamic>>[].obs;
+  var token = ''.obs;
+  var box = GetStorage();
 
   @override
   void onInit() {
-    fetchOrders();
     super.onInit();
+    token.value = box.read('token') ?? '';
+    if (token.value.isEmpty) {
+      print('Token is not saved in GetStorage.');
+    }
+    getAllCustomers();
   }
 
-  void fetchOrders() async {
+  Future<void> getAllCustomers() async {
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
+    final headers = this.headers;
+
     try {
-      final response = await http
-          .get(Uri.parse('http://seatuersih.pradiptaahmad.tech/api/orders'));
+      if (headers.isEmpty) {
+        Get.snackbar('Error', 'No authentication token found.');
+        return;
+      }
+
+      var response = await http.get(
+        Uri.parse(url),
+        headers: headers,
+      );
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
       if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        orders.value = data[
-            'orders']; // Assumes the API returns a JSON object with an 'orders' field
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is Map && decodedResponse.containsKey('users')) {
+          customers.value =
+              List<Map<String, dynamic>>.from(decodedResponse['users']);
+        } else {
+          Get.snackbar('Error', 'Unexpected response format');
+        }
       } else {
-        Get.snackbar('Error', 'Failed to fetch orders');
+        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', 'Exception occurred: $e');
+      print(e);
     }
   }
 
-  
+  Map<String, String> get headers {
+    print('Retrieved Token: ${token.value}');
+    return {
+      "Accept": "application/json",
+      "Authorization": "Bearer ${token.value}",
+      "Content-Type": "application/json"
+    };
+  }
 }

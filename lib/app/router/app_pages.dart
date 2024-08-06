@@ -1,4 +1,4 @@
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbarBinding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_binding.dart';
@@ -37,14 +37,21 @@ import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product
 import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product_review_view.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/RegisterviewPage.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/register_page/register_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_view.dart';
 part 'routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static final INITIAL = Routes.LOGIN;
+  static final INITIAL = Routes.SPLASHSCREEN;
 
   static final routes = [
+    GetPage(
+      name: Routes.SPLASHSCREEN,
+      page: () => SplashScreenView(),
+      binding: SplashScreenBinding(),
+    ),
     GetPage(
       name: Routes.LOGIN,
       page: () => LoginPage(),

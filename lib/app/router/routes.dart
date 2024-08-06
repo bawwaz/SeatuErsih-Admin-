@@ -1,6 +1,7 @@
 part of 'app_pages.dart';
 
 class Routes {
+  static String SPLASHSCREEN = '/splashscreen';
   static String HOME = '/home';
   static String LOGIN = '/login';
   static String BTMNAVBAR = '/btmnavbar';

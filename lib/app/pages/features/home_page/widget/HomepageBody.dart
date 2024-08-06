@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_brand.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_manage_location.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends GetView<homePageController> {
   const HomeBody({super.key});
 
   @override

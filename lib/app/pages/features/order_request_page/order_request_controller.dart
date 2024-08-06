@@ -26,7 +26,8 @@ class OrderRequestController extends GetxController {
   }
 
   Future<void> getDetailOrder() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/get/${orderId.value}';
+    final url =
+        'http://seatuersih.pradiptaahmad.tech/api/order/get/${orderId.value}';
     final headers = this.headers;
 
     isLoading.value = true;
@@ -45,7 +46,8 @@ class OrderRequestController extends GetxController {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
         if (decodedResponse is Map && decodedResponse.containsKey('data')) {
-          detailOrder.value = Map<String, dynamic>.from(decodedResponse['data']);
+          detailOrder.value =
+              Map<String, dynamic>.from(decodedResponse['data']);
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }

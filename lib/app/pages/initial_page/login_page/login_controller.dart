@@ -40,7 +40,7 @@ class LoginController extends GetxController {
     } catch (e) {
       Get.snackbar("Login Failed", e.toString(),
           snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xff7EC1EB),
           colorText: Colors.black);
       print(e);
     } finally {

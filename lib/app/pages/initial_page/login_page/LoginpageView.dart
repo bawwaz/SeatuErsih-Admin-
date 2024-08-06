@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         margin: EdgeInsets.all(28),
         child: SingleChildScrollView(
@@ -56,10 +57,10 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(
                   width: double.infinity, height: 53, child: InputPassword()),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ForgetPassword(),
-              ),
+              // Align(
+              //   alignment: Alignment.centerRight,
+              //   child: ForgetPassword(),
+              // ),
               SizedBox(
                 height: 20,
               ),
@@ -106,14 +107,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 33,
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 53,
-                child: SignInGoogle(),
-              ),
+              // SizedBox(
+              //   height: 33,
+              // ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   height: 53,
+              //   child: SignInGoogle(),
+              // ),
               SizedBox(
                 height: 20,
               ),

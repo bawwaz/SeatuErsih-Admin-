@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
+import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_controller.dart';
 
-class CardTotalCustomer extends StatelessWidget {
+class CardTotalCustomer extends GetView<homePageController> {
   const CardTotalCustomer({
     super.key,
   });
@@ -32,14 +35,16 @@ class CardTotalCustomer extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              '200',
+            Obx(() {
+              return Text(
+              '${controller.customers.length}',
               style: GoogleFonts.poppins(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
-            ),
+            );
+            },),
             Image.asset("assets/img/customer-care.png")
           ],
         ),

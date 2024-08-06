@@ -6,12 +6,14 @@ class CardTotalCustomer extends StatelessWidget {
   final String name;
   final DateTime joinDate;
   final String? profilePictureUrl;
+  final String? totalCustomer;
 
   CardTotalCustomer({
     super.key,
     required this.name,
     required this.joinDate,
     this.profilePictureUrl,
+    this.totalCustomer,
   });
 
   @override
