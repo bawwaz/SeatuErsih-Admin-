@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_contact.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/card_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/floating_button.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/shimmer_card_contact.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/widget/shimmer_card_order.dart';
 
 class OrderDetailView extends StatelessWidget {
   const OrderDetailView({super.key});
@@ -37,8 +38,16 @@ class OrderDetailView extends StatelessWidget {
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ShimmerCardOrderDetail(), // Shimmer for Order section
+                  SizedBox(height: 15),
+                  ShimmerCardContactDetail(), // Shimmer for Contact section
+                ],
+              ),
             );
           } else {
             final order = controller.orderDetail;

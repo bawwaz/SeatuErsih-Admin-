@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/card_review_reg.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/shimmer_review_reg.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductReviewRegView extends GetView<ProductReviewRegController> {
   const ProductReviewRegView({super.key});
@@ -33,7 +35,22 @@ class ProductReviewRegView extends GetView<ProductReviewRegController> {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return ListView.builder(
+            padding: EdgeInsets.all(20),
+            itemCount: controller.isLoading.value
+                ? 4
+                : controller.reviewRegList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: ShimmerReviewReg(),
+                ),
+              );
+            },
+          );
         } else if (controller.reviewRegList.isEmpty) {
           return Center(child: Text('No data found.'));
         } else {

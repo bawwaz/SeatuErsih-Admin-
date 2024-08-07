@@ -28,7 +28,7 @@ class CardProductReviewRegular extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          '${name}',
+          '${description}',
           style: GoogleFonts.poppins(
               fontSize: 14,
               color: Color(0xff8A8A8A),

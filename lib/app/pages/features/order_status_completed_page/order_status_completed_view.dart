@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/order_status_completed_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/card_completed_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/shimmer_card_completed_orders.dart'; // Import the shimmer widget
 
 class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
   const OrderStatusCompletedView({super.key});
@@ -34,8 +35,15 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: 4, // Adjust the number of shimmer items as needed
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: ShimmerCardCompletedOrders(), // Use shimmer widget
+                );
+              },
             );
           } else if (controller.completedOrder.isEmpty) {
             return Center(

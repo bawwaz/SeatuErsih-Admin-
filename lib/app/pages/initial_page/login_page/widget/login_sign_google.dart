@@ -13,7 +13,7 @@ class SignInGoogle extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
-        elevation: 5,
+        elevation: 3,
         shadowColor: Colors.black,
       ),
       child: Row(

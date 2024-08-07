@@ -6,6 +6,9 @@ import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/c
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/floating_button.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_contact.dart'; // Import shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_customer.dart'; // Import shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_order.dart'; // Import shimmer widget
 
 class OrderRequestView extends GetView<OrderRequestController> {
   const OrderRequestView({super.key});
@@ -36,7 +39,19 @@ class OrderRequestView extends GetView<OrderRequestController> {
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(child: CircularProgressIndicator());
+            return SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ShimmerCardOrder(), 
+                  SizedBox(height: 15),
+                  ShimmerCardContact(), 
+                  SizedBox(height: 15),
+                  ShimmerCardCustomer(), 
+                ],
+              ),
+            );
           }
 
           if (controller.detailOrder.isEmpty) {
@@ -143,10 +158,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
                     ],
                   ),
                   child: CardCustomer(
-                    username: controller.detailOrder["user"]["username"] ?? 'No username',
-                    email: controller.detailOrder["user"]["email"] ?? 'No email',
-                    phone: controller.detailOrder["user"]["phone"] ?? 'No phone',
-                    profile: controller.detailOrder["user"]["profile"] ?? '', // Assuming profile URL is in this field
+                    username: controller.detailOrder["user"]["username"] ??
+                        'No username',
+                    email:
+                        controller.detailOrder["user"]["email"] ?? 'No email',
+                    phone:
+                        controller.detailOrder["user"]["phone"] ?? 'No phone',
+                    profile: controller.detailOrder["user"]["profile"] ?? '',
                   ),
                 ),
                 SizedBox(height: 75),

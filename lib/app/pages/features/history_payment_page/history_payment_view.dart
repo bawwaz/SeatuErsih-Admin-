@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/widget/card_payment_history.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/widget/shimmer_payment_history.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HistoryPaymentView extends GetView<HistoryPaymentController> {
   const HistoryPaymentView({super.key});
@@ -45,25 +47,32 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
             ),
             SizedBox(height: 10),
             Obx(
-              () => controller.isLoading.value
-                  ? Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: controller.history.length,
-                      itemBuilder: (context, index) {
-                        final historyItem = controller.history[index];
-                        final user = historyItem['user'];
+              () => ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount:
+                    controller.isLoading.value ? 6 : controller.history.length,
+                itemBuilder: (context, index) {
+                  if (controller.isLoading.value) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child: ShimmerPaymentHistory(),
+                    );
+                  } else {
+                    final historyItem = controller.history[index];
+                    final user = historyItem['user'];
 
-                        return PaymentHistory(
-                          name: user['username'],
-                          orderDate: DateTime.parse(historyItem['order_date']),
-                          orderType: historyItem['order_type'],
-                          price: historyItem['total_price'].toString(),
-                          profilePictureUrl: user['profile_picture'],
-                        );
-                      },
-                    ),
+                    return PaymentHistory(
+                      name: user['username'],
+                      orderDate: DateTime.parse(historyItem['order_date']),
+                      orderType: historyItem['order_type'],
+                      price: historyItem['total_price'].toString(),
+                      profilePictureUrl: user['profile_picture'],
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
