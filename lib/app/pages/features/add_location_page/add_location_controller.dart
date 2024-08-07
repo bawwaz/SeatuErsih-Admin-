@@ -52,11 +52,9 @@ class AddLocationController extends GetxController {
         await getAllKabupaten();
         kabupatenController.clear();
         Get.snackbar('Success', 'Kabupaten berhasil ditambahkan');
-      } else {
-        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
-      }
+      } 
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      print(e);
     }
   }
 

@@ -173,6 +173,13 @@ class OrderManagementController extends GetxController {
     }
   }
 
+  Future<void> refreshOrders() async {
+    await getPendingOrder();
+    await getInprogressOrder();
+    await getCompletedOrder();
+    await getDeclinedOrder();
+  }
+
   Map<String, String> get headers {
     print('Retrieved Token: ${token.value}');
     return {

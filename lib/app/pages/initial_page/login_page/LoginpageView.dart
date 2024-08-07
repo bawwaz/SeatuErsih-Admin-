@@ -74,39 +74,39 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: 99,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF8A8A8A),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "or continue with",
-                      style: GoogleFonts.poppins(
-                        color: Color(0xFF8A8A8A),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: 99,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF8A8A8A),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: Container(
+              //         width: 99,
+              //         height: 1,
+              //         decoration: BoxDecoration(
+              //           color: Color(0xFF8A8A8A),
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: 10),
+              //       child: Text(
+              //         "or continue with",
+              //         style: GoogleFonts.poppins(
+              //           color: Color(0xFF8A8A8A),
+              //           fontWeight: FontWeight.w500,
+              //           fontSize: 13,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Container(
+              //         width: 99,
+              //         height: 1,
+              //         decoration: BoxDecoration(
+              //           color: Color(0xFF8A8A8A),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               // SizedBox(
               //   height: 33,
               // ),
@@ -115,34 +115,34 @@ class LoginPage extends StatelessWidget {
               //   height: 53,
               //   child: SignInGoogle(),
               // ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don’t have an account?",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF1F1F1F),
-                      fontWeight: FontWeight.normal,
-                      fontSize: 13,
-                    ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.REGISTER);
-                      },
-                      child: Text(
-                        "Sign Up",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF7EC1EB),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13,
-                        ),
-                      )),
-                ],
-              ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       "Don’t have an account?",
+              //       style: GoogleFonts.poppins(
+              //         color: Color(0xFF1F1F1F),
+              //         fontWeight: FontWeight.normal,
+              //         fontSize: 13,
+              //       ),
+              //     ),
+              //     TextButton(
+              //         onPressed: () {
+              //           Get.toNamed(Routes.REGISTER);
+              //         },
+              //         child: Text(
+              //           "Sign Up",
+              //           style: GoogleFonts.poppins(
+              //             color: Color(0xFF7EC1EB),
+              //             fontWeight: FontWeight.normal,
+              //             fontSize: 13,
+              //           ),
+              //         )),
+              //   ],
+              // ),
             ],
           ),
         ),

@@ -24,6 +24,7 @@ class Routes {
   static String ADDLOCATION = '/addlocation';
   static String ADDLSHOESBRAND = '/addshoesbrand';
   static String HISTORYPAYEMENT = '/historypayment';
+  static String CHARTORDER = '/chartorder';
 }
 
 // class Routes {
