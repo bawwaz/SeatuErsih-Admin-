@@ -43,16 +43,15 @@ class OrderStatusPendingController extends GetxController {
         var decodedResponse = jsonDecode(response.body);
         if (decodedResponse is List) {
           pendingOrder.value = List<Map<String, dynamic>>.from(decodedResponse);
-        } else if (decodedResponse is Map && decodedResponse.containsKey('data')) {
-          pendingOrder.value = List<Map<String, dynamic>>.from(decodedResponse['data']);
+        } else if (decodedResponse is Map &&
+            decodedResponse.containsKey('data')) {
+          pendingOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }
-      } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
       print(e);
     } finally {
       isLoading.value = false; // Set loading false setelah permintaan selesai

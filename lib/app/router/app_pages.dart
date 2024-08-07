@@ -5,6 +5,8 @@ import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_locat
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/chart_order_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/chart_order_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageBinding.dart';
@@ -156,6 +158,11 @@ class AppPages {
       name: Routes.HISTORYPAYEMENT,
       page: () => HistoryPaymentView(),
       binding: HistoryPaymentBinding(),
+    ),
+    GetPage(
+      name: Routes.CHARTORDER,
+      page: () => ChartOrderView(),
+      binding: ChartOrderBinding(),
     ),
   ];
 }

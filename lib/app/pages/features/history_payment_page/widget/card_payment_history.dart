@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class PaymentHistory extends StatelessWidget {
-  const PaymentHistory({
+  String name;
+  final DateTime orderDate;
+  String orderType;
+  String price;
+  final String? profilePictureUrl;
+
+  PaymentHistory({
     super.key,
+    required this.name,
+    required this.orderDate,
+    required this.orderType,
+    required this.price,
+    this.profilePictureUrl,
   });
 
   @override
@@ -13,13 +25,19 @@ class PaymentHistory extends StatelessWidget {
         Row(
           children: [
             SizedBox(height: 50),
-            SizedBox(
-                width: 29,
-                height: 29,
-                child: Image.asset(
-                  "assets/img/gopay-icon.png",
-                  fit: BoxFit.cover,
-                )),
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: profilePictureUrl != null
+                  ? NetworkImage(profilePictureUrl!)
+                  : null,
+              backgroundColor: Colors.grey.shade400,
+              child: profilePictureUrl == null
+                  ? Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    )
+                  : null,
+            ),
             SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -28,7 +46,7 @@ class PaymentHistory extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'GOPAY',
+                        '${name}',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
@@ -37,7 +55,7 @@ class PaymentHistory extends StatelessWidget {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        '• 05 Juli 2024',
+                        DateFormat('• dd MMMM yyyy').format(orderDate),
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           color: Color(0xff8A8A8A),
@@ -48,7 +66,7 @@ class PaymentHistory extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Regular Clean',
+                    '${orderType}',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w500,
                       color: Color(0xff8A8A8A),
@@ -59,7 +77,7 @@ class PaymentHistory extends StatelessWidget {
               ),
             ),
             Text(
-              '- IDR 25.000',
+              '- ${price}',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Color(0xffFF6363),

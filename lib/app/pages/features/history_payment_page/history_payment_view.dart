@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/widget/card_payment_history.dart';
 
-class HistoryPaymentView extends StatelessWidget {
+class HistoryPaymentView extends GetView<HistoryPaymentController> {
   const HistoryPaymentView({super.key});
 
   @override
@@ -43,13 +44,26 @@ class HistoryPaymentView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return PaymentHistory();
-              },
+            Obx(
+              () => controller.isLoading.value
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.history.length,
+                      itemBuilder: (context, index) {
+                        final historyItem = controller.history[index];
+                        final user = historyItem['user'];
+
+                        return PaymentHistory(
+                          name: user['username'],
+                          orderDate: DateTime.parse(historyItem['order_date']),
+                          orderType: historyItem['order_type'],
+                          price: historyItem['total_price'].toString(),
+                          profilePictureUrl: user['profile_picture'],
+                        );
+                      },
+                    ),
             ),
           ],
         ),

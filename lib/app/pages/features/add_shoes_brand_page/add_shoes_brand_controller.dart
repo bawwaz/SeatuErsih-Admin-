@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AddShoesBrandController extends GetxController {
-  
   TextEditingController brandController = TextEditingController();
   var brand_name = <Map<String, dynamic>>[].obs;
 
@@ -50,11 +49,9 @@ class AddShoesBrandController extends GetxController {
         await getAllBrand();
         brandController.clear();
         Get.snackbar('Success', 'Sepatu berhasil ditambahkan');
-      } else {
-        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      print(e);
     }
   }
 
