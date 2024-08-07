@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/widget/card_review_deep.dart';
+import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/widget/shimmer_review_deep.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductReviewDeepView extends GetView<ProductReviewDeepController> {
   const ProductReviewDeepView({super.key});
@@ -32,7 +34,22 @@ class ProductReviewDeepView extends GetView<ProductReviewDeepController> {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return ListView.builder(
+            padding: EdgeInsets.all(20),
+            itemCount: controller.isLoading.value
+                ? 4
+                : controller.reviewDeepList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: ShimmerReviewDeep(),
+                ),
+              );
+            },
+          );
         } else if (controller.reviewDeepList.isEmpty) {
           return Center(child: Text('No data found.'));
         } else {

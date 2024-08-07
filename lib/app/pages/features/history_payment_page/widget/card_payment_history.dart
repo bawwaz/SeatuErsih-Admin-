@@ -77,10 +77,10 @@ class PaymentHistory extends StatelessWidget {
               ),
             ),
             Text(
-              '- ${price}',
+              '+ ${price}',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
-                color: Color(0xffFF6363),
+                color: Colors.green,
                 fontSize: 13,
               ),
             ),

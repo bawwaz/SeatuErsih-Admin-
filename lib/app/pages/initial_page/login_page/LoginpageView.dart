@@ -74,47 +74,47 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: Container(
-              //         width: 99,
-              //         height: 1,
-              //         decoration: BoxDecoration(
-              //           color: Color(0xFF8A8A8A),
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.symmetric(horizontal: 10),
-              //       child: Text(
-              //         "or continue with",
-              //         style: GoogleFonts.poppins(
-              //           color: Color(0xFF8A8A8A),
-              //           fontWeight: FontWeight.w500,
-              //           fontSize: 13,
-              //         ),
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: Container(
-              //         width: 99,
-              //         height: 1,
-              //         decoration: BoxDecoration(
-              //           color: Color(0xFF8A8A8A),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: 33,
-              // ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   height: 53,
-              //   child: SignInGoogle(),
-              // ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 99,
+                      height: 1,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF8A8A8A),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "or continue with",
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF8A8A8A),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: 99,
+                      height: 1,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF8A8A8A),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 33,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 53,
+                child: SignInGoogle(),
+              ),
               // SizedBox(
               //   height: 20,
               // ),

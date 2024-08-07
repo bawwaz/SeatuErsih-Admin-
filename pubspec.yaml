@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.19.0
   shared_preferences: null
   another_flutter_splash_screen: 
+  shimmer: 
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/order_status_declined_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/card_declined_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/shimmer_card_decline_orders.dart';
 
 class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
   const OrderStatusDeclinedView({super.key});
@@ -34,8 +35,15 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: 4, // Adjust the number of shimmer items as needed
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: ShimmerCardDeclinedOrders(), // Use shimmer widget
+                );
+              },
             );
           } else if (controller.declinedOrder.isEmpty) {
             return Center(

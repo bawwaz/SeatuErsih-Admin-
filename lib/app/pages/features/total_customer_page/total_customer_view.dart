@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/widget/card_total_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/widget/shimmer_card_total_customer.dart';
+import 'package:shimmer/shimmer.dart';
 
 class TotalCustomerView extends GetView<TotalCustomerController> {
   const TotalCustomerView({super.key});
@@ -33,12 +35,22 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: ShimmerCardTotalCustomer(),
+                  ),
+                );
+              },
             );
           } else {
             final totalCustomer = controller.customers.length;
-            print(totalCustomer);
 
             return ListView.builder(
               padding: EdgeInsets.all(20),
@@ -68,8 +80,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
                     ),
                     profilePictureUrl: controller.customers[index]
                         ["profile_picture"],
-                    totalCustomer: totalCustomer
-                        .toString(), // Mengirim totalCustomer ke CardTotalCustomer
+                    totalCustomer: totalCustomer.toString(),
                   ),
                 );
               },

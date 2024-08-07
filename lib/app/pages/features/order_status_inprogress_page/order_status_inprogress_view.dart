@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_inprogress_page/order_status_inprogress_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_inprogress_page/widget/card_inprogress_orders.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_inprogress_page/widget/shimmer_card_inprogress_orders.dart'; // Import the shimmer widget
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class OrderStatusInprogressView
@@ -36,8 +37,12 @@ class OrderStatusInprogressView
       body: Obx(
         () {
           if (controller.isLoading.value) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return ListView.builder(
+              padding: EdgeInsets.all(20),
+              itemCount: 5, 
+              itemBuilder: (context, index) {
+                return ShimmerCardInprogressOrders(); 
+              },
             );
           } else if (controller.inprogressOrder.isEmpty) {
             return Center(
