@@ -13,22 +13,19 @@ class SignIn extends StatelessWidget {
     return Obx(() {
       return ElevatedButton(
         onPressed: loginController.isLoading.value
-            ? null 
+            ? null
             : () {
                 loginController.login();
               },
         style: ElevatedButton.styleFrom(
-          backgroundColor: loginController.isLoading.value
-              ? Colors.grey 
-              : Color(0xFF7EC1EB),
+          backgroundColor:
+              loginController.isLoading.value ? Colors.grey : Color(0xFF7EC1EB),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
         child: loginController.isLoading.value
-            ? CircularProgressIndicator(
-                color: Colors.white,
-              )
+            ? LoadingDots()
             : Text(
                 "Sign In",
                 style: GoogleFonts.poppins(
@@ -38,5 +35,49 @@ class SignIn extends StatelessWidget {
               ),
       );
     });
+  }
+}
+
+class LoadingDots extends StatefulWidget {
+  @override
+  _LoadingDotsState createState() => _LoadingDotsState();
+}
+
+class _LoadingDotsState extends State<LoadingDots>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _controller;
+  Animation<int>? _dotAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    )..repeat();
+    _dotAnimation = IntTween(begin: 0, end: 3).animate(_controller!);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _dotAnimation!,
+      builder: (context, child) {
+        String dots = '.' * (_dotAnimation!.value + 1);
+        return Text(
+          'Loading$dots',
+          style: GoogleFonts.poppins(
+            color: Colors.blueGrey,
+            fontWeight: FontWeight.w600,
+          ),
+        );
+      },
+    );
   }
 }

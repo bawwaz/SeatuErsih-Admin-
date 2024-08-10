@@ -6,6 +6,7 @@ class ProfileController extends GetxController {
   final box = GetStorage();
   var token = ''.obs;
   var username = ''.obs;
+  var isLoading = false.obs;
 
   @override
   void onInit() {
@@ -15,8 +16,8 @@ class ProfileController extends GetxController {
   }
 
   Future<void> logout() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/admins/logout'; // Ganti dengan URL yang sesuai
+    isLoading.value = true;  // Menampilkan loading
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout'; // Ganti dengan URL yang sesuai
     final headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${token.value}',
@@ -39,8 +40,7 @@ class ProfileController extends GetxController {
           snackPosition: SnackPosition.TOP,
         );
         // Menavigasi ke halaman login atau halaman lain yang sesuai setelah logout
-        Get.offAllNamed(
-            '/login'); // Pastikan Anda telah mendefinisikan rute '/login' di GetX
+        Get.offAllNamed('/login'); // Pastikan Anda telah mendefinisikan rute '/login' di GetX
       } else {
         Get.snackbar(
           'Error',
@@ -54,6 +54,8 @@ class ProfileController extends GetxController {
         'Exception occurred: $e',
         snackPosition: SnackPosition.BOTTOM,
       );
+    } finally {
+      isLoading.value = false;  // Menghilangkan loading
     }
   }
 }

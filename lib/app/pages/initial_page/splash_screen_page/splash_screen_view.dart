@@ -25,7 +25,7 @@ class SplashScreenView extends StatelessWidget {
             height: 20,
           ),
           Text(
-            'SEATUERSIH',
+            'SEATUERSIH ADMIN',
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold,
               color: Colors.white,
