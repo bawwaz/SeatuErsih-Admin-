@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbarBinding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_coupon_page/add_coupon_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/add_coupon_page/add_coupon_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_location_page/add_location_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_binding.dart';
@@ -163,6 +165,11 @@ class AppPages {
       name: Routes.CHARTORDER,
       page: () => ChartOrderView(),
       binding: ChartOrderBinding(),
+    ),
+    GetPage(
+      name: Routes.ADDCOUPON,
+      page: () => AddCouponView(),
+      binding: AddCouponBinding(),
     ),
   ];
 }

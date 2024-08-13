@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CardChart extends StatelessWidget {
-  const CardChart({
+class CardAddCoupon extends StatelessWidget {
+  const CardAddCoupon({
     super.key,
   });
 
@@ -12,7 +12,7 @@ class CardChart extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Chart Order',
+          'Tambah Coupon',
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -24,14 +24,14 @@ class CardChart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Customer',
+              'Discount',
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),
             ),
-            Image.asset("assets/img/chart-icon.png")
+            Image.asset("assets/img/ticket-icon.png")
           ],
         ),
       ],

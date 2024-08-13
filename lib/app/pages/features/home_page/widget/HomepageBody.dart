@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_brand.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_coupon.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_chart.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_manage_location.dart';
@@ -131,12 +132,36 @@ class HomeBody extends GetView<homePageController> {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
                     blurRadius: 2,
-                    spreadRadius: 1,
                     offset: Offset(0, 0),
                   ),
                 ],
               ),
               child: CardAddBrand(),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.ADDCOUPON);
+            },
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 2,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: CardAddCoupon(),
             ),
           ),
           SizedBox(
