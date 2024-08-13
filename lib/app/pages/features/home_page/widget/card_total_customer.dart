@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
-import 'package:seatu_ersih_admin/app/pages/features/total_customer_page/total_customer_controller.dart';
 
 class CardTotalCustomer extends GetView<homePageController> {
   const CardTotalCustomer({
