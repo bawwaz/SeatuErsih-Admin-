@@ -49,6 +49,16 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
                 );
               },
             );
+          } else if (controller.customers.isEmpty) {
+            return Center(
+              child: Text(
+                "Tidak Ada Data Customer",
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14),
+              ),
+            );
           } else {
             final totalCustomer = controller.customers.length;
 

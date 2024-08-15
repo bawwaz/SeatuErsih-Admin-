@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ScheduleWidget extends StatelessWidget {
   final Map<DateTime, List<dynamic>> ordersByDate;
