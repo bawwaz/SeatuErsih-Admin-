@@ -90,7 +90,7 @@ class HomeBody extends GetView<homePageController> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -115,7 +115,7 @@ class HomeBody extends GetView<homePageController> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -140,7 +140,7 @@ class HomeBody extends GetView<homePageController> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -165,7 +165,7 @@ class HomeBody extends GetView<homePageController> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           InkWell(
             onTap: () {

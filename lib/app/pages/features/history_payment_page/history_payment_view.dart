@@ -14,7 +14,7 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFFFFFFF),
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () {
@@ -33,46 +33,64 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Today',
+              'All',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
                 fontSize: 13,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Obx(
-              () => ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount:
-                    controller.isLoading.value ? 6 : controller.history.length,
-                itemBuilder: (context, index) {
-                  if (controller.isLoading.value) {
-                    return Shimmer.fromColors(
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.grey.shade100,
-                      child: ShimmerPaymentHistory(),
-                    );
-                  } else {
-                    final historyItem = controller.history[index];
-                    final user = historyItem['user'];
+              () {
+                if (controller.isLoading.value) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 6, 
+                    itemBuilder: (context, index) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey.shade300,
+                        highlightColor: Colors.grey.shade100,
+                        child: ShimmerPaymentHistory(),
+                      );
+                    },
+                  );
+                } else if (controller.history.isEmpty) {
+                  return Center(
+                    child: Text(
+                      "Tidak Ada Data Pembayaran",
+                      style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14),
+                    ),
+                  );
+                } else {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.history.length,
+                    itemBuilder: (context, index) {
+                      final historyItem = controller.history[index];
+                      final user = historyItem['user'];
 
-                    return PaymentHistory(
-                      name: user['username'],
-                      orderDate: DateTime.parse(historyItem['order_date']),
-                      orderType: historyItem['order_type'],
-                      price: historyItem['total_price'].toString(),
-                      profilePictureUrl: user['profile_picture'],
-                    );
-                  }
-                },
-              ),
+                      return PaymentHistory(
+                        name: user['username'],
+                        orderDate: DateTime.parse(historyItem['order_date']),
+                        orderType: historyItem['order_type'],
+                        price: historyItem['total_price'].toString(),
+                        profilePictureUrl: user['profile_picture'],
+                      );
+                    },
+                  );
+                }
+              },
             ),
           ],
         ),

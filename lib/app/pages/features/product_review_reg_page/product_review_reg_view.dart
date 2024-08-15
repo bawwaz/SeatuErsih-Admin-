@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/card_review_reg.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/widget/shimmer_review_reg.dart';
-import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductReviewRegView extends GetView<ProductReviewRegController> {

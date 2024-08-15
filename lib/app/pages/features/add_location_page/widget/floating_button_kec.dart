@@ -16,7 +16,15 @@ class FloatingButtonKec extends StatelessWidget {
       width: double.infinity,
       child: FloatingActionButton.extended(
         onPressed: () async {
+          if (controller.selectedKabupatenId.value == 0) {
+            Get.snackbar('Error', 'Pilih kabupaten terlebih dahulu.');
+            return;
+          }
           await controller.postKecamatan();
+          await controller.getAllKabupaten();
+          await controller.getAllKecamatan();
+          controller.kecamatanController.clear();
+          controller.selectedKabupatenId.value = 0; 
         },
         label: Text(
           'Simpan',

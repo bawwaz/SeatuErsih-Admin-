@@ -9,6 +9,8 @@ class AddLocationController extends GetxController {
   TextEditingController kecamatanController = TextEditingController();
   var kabupaten_name = <Map<String, dynamic>>[].obs;
   var kecamatan_name = <Map<String, dynamic>>[].obs;
+  var selectedKabupatenId = 0.obs;
+    var savedLocations = <Map<String, dynamic>>[].obs;
 
   final box = GetStorage();
   var token = ''.obs;
@@ -52,7 +54,7 @@ class AddLocationController extends GetxController {
         await getAllKabupaten();
         kabupatenController.clear();
         Get.snackbar('Success', 'Kabupaten berhasil ditambahkan');
-      } 
+      }
     } catch (e) {
       print(e);
     }
@@ -63,6 +65,7 @@ class AddLocationController extends GetxController {
 
     var data = {
       'kecamatan': kecamatanController.text,
+      'kabupaten_id': selectedKabupatenId.value, 
     };
 
     final headers = this.headers;
@@ -85,6 +88,7 @@ class AddLocationController extends GetxController {
       if (response.statusCode == 201) {
         await getAllKecamatan();
         kecamatanController.clear();
+        selectedKabupatenId.value = 0;
         Get.snackbar('Success', 'Kecamatan berhasil ditambahkan');
       } else {
         Get.snackbar('Error', 'Failed to submit data: ${response.body}');
@@ -96,79 +100,53 @@ class AddLocationController extends GetxController {
 
   Future<void> getAllKabupaten() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/kabupaten/getall';
-
     final headers = this.headers;
 
     try {
-      if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
-        return;
-      }
-
-      var response = await http.get(
-        Uri.parse(url),
-        headers: headers,
-      );
-
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
+      var response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        if (decodedResponse is List) {
-          kabupaten_name.value = List<Map<String, dynamic>>.from(decodedResponse);
-        } else if (decodedResponse is Map &&
-            decodedResponse.containsKey('data')) {
-          kabupaten_name.value =
-              List<Map<String, dynamic>>.from(decodedResponse['data']);
-        } else {
-          Get.snackbar('Error', 'Unexpected response format');
-        }
+        kabupaten_name.value = List<Map<String, dynamic>>.from(decodedResponse['data']);
+        mergeLocations();
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+        Get.snackbar('Error', 'Failed to retrieve data');
       }
     } catch (e) {
       Get.snackbar('Error', 'Exception occurred: $e');
-      print(e);
     }
   }
 
   Future<void> getAllKecamatan() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/kecamatan/getall';
-
     final headers = this.headers;
 
     try {
-      if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
-        return;
-      }
-
-      var response = await http.get(
-        Uri.parse(url),
-        headers: headers,
-      );
-
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
+      var response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        if (decodedResponse is List) {
-          kecamatan_name.value = List<Map<String, dynamic>>.from(decodedResponse);
-        } else if (decodedResponse is Map &&
-            decodedResponse.containsKey('data')) {
-          kecamatan_name.value =
-              List<Map<String, dynamic>>.from(decodedResponse['data']);
-        } else {
-          Get.snackbar('Error', 'Unexpected response format');
-        }
+        kecamatan_name.value = List<Map<String, dynamic>>.from(decodedResponse['data']);
+        mergeLocations();
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+        Get.snackbar('Error', 'Failed to retrieve data');
       }
     } catch (e) {
       Get.snackbar('Error', 'Exception occurred: $e');
-      print(e);
+    }
+  }
+
+  void mergeLocations() {
+    savedLocations.clear();
+    for (var kabupaten in kabupaten_name) {
+      var matchedKecamatan = kecamatan_name
+          .where((kec) => kec['kabupaten_id'].toString() == kabupaten['id'].toString())
+          .map((kec) => kec['kecamatan'])
+          .toList();
+      if (matchedKecamatan.isNotEmpty) {
+        savedLocations.add({
+          'kabupaten': kabupaten['kabupaten'],
+          'kecamatan': matchedKecamatan.join(', '),
+        });
+      }
     }
   }
 
