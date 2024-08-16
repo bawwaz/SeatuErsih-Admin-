@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class OrderStatusPendingController extends GetxController {
   var pendingOrder = <Map<String, dynamic>>[].obs;
-  var isLoading = true.obs; // Menambahkan state loading
+  var isLoading = true.obs; 
   final box = GetStorage();
   var token = ''.obs;
 
