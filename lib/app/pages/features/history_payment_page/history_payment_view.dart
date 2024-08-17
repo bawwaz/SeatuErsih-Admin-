@@ -31,19 +31,45 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
             fontSize: 20,
           ),
         ),
+        actions: [
+          // IconButton(
+          //   icon: Icon(Icons.download),
+          //   onPressed: () {
+          //     Get.find<HistoryPaymentController>().exportToExcel();
+          //   },
+          // ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'All',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                fontSize: 13,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'All',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 13,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.find<HistoryPaymentController>().exportToExcel();
+                  },
+                  child: Text(
+                    'Export to Excel',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xff7EC1EB),
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Obx(
@@ -52,7 +78,7 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 6, 
+                    itemCount: 6,
                     itemBuilder: (context, index) {
                       return Shimmer.fromColors(
                         baseColor: Colors.grey.shade300,

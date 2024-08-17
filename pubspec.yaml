@@ -22,6 +22,9 @@ dependencies:
   shimmer:
   animated_text_kit:
   fl_chart:
+  excel: ^4.0.3 
+  path_provider:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
