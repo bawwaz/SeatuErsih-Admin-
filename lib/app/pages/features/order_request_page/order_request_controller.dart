@@ -12,9 +12,18 @@ class OrderRequestController extends GetxController {
   var detailOrder = <String, dynamic>{}.obs;
   var isLoading = false.obs;
 
+  var noteText = ''.obs;
+  var isDeclineButtonEnabled = false.obs;
+
   @override
   void onInit() {
     super.onInit();
+    ever(
+      noteText,
+      (_) {
+        isDeclineButtonEnabled.value = noteText.isNotEmpty;
+      },
+    );
     token.value = box.read('token') ?? '';
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');
@@ -22,6 +31,10 @@ class OrderRequestController extends GetxController {
     orderId.value = Get.arguments;
     print(Get.arguments);
     getDetailOrder();
+  }
+
+  void updateNoteText(String value) {
+    noteText.value = value;
   }
 
   Future<void> getDetailOrder() async {
@@ -88,8 +101,8 @@ class OrderRequestController extends GetxController {
           navController.currentIndex.value = 2;
 
           String snackbarMessage = orderStatus == "decline"
-              ? 'Data berhasil diupdate dan silahkan cek didecline'
-              : 'Data berhasil diupdate silahkan cek di in-progress';
+              ? 'Pesanan berhasil ditolak dan silahkan cek didecline'
+              : 'Pesanan berhasil diupdate silahkan cek di in-progress';
 
           Get.snackbar(
             'Success',

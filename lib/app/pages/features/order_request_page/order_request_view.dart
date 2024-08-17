@@ -4,10 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/order_request_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_contact.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_customer.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_note.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/floating_button.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_contact.dart'; // Import shimmer widget
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_customer.dart'; // Import shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_note.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_order.dart'; // Import shimmer widget
 
 class OrderRequestView extends GetView<OrderRequestController> {
@@ -44,11 +46,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ShimmerCardOrder(), 
+                  ShimmerCardOrder(),
                   SizedBox(height: 15),
-                  ShimmerCardContact(), 
+                  ShimmerCardContact(),
                   SizedBox(height: 15),
-                  ShimmerCardCustomer(), 
+                  ShimmerCardCustomer(),
+                  SizedBox(height: 15),
+                  ShimmerCardNote(),
                 ],
               ),
             );
@@ -166,6 +170,36 @@ class OrderRequestView extends GetView<OrderRequestController> {
                         controller.detailOrder["user"]["phone"] ?? 'No phone',
                     profile: controller.detailOrder["user"]["profile"] ?? '',
                   ),
+                ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Text(
+                      'Beri alasan',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '(jika ingin membatalkan pesanan)',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff8a8a8a),
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  height: 85,
+                  child: CardNote(),
                 ),
                 SizedBox(height: 75),
               ],
