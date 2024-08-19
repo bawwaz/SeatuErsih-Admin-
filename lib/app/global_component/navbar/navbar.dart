@@ -45,8 +45,8 @@ class BottomNavBar extends StatelessWidget {
                   ProductReviewController()); // Inisialisasi ulang controller
             }
           },
-          backgroundColor: Color(0xFF7EC1EB), // Set color here
-          selectedItemColor: Colors.white, // Color for selected item
+          backgroundColor: Colors.white, // Set color here
+          selectedItemColor: Color(0xFF7EC1EB), // Color for selected item
           unselectedItemColor: Colors.blueGrey, // Color for unselected items
           items: [
             BottomNavigationBarItem(
@@ -55,11 +55,11 @@ class BottomNavBar extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.star_half),
-              label: 'Product Review',
+              label: 'Review',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_laundry_service),
-              label: 'Order Management',
+              label: 'Manage Order',
             ),
           ],
         );

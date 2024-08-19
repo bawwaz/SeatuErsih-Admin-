@@ -22,8 +22,7 @@ class CardNote extends GetView<OrderRequestController> {
         ],
       ),
       child: TextField(
-        onChanged: (value) =>
-            controller.updateNoteText(value), 
+        onChanged: (value) => controller.updateNoteText(value),
         decoration: InputDecoration(
           hintText: 'Berikan alasan...',
           hintStyle: GoogleFonts.poppins(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/HomepageBody.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<homePageController> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -49,8 +50,15 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: HomeBody(),
+      body: RefreshIndicator(
+        backgroundColor: Colors.white,
+        color: Color(0xff7EC1EB),
+        onRefresh: () async {
+          return await controller.getAllCustomers();
+        },
+        child: SafeArea(
+          child: HomeBody(),
+        ),
       ),
     );
   }
