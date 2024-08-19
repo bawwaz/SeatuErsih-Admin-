@@ -35,6 +35,7 @@ class OrderRequestController extends GetxController {
 
   void updateNoteText(String value) {
     noteText.value = value;
+    isDeclineButtonEnabled.value = value.trim().isNotEmpty;
   }
 
   Future<void> getDetailOrder() async {
@@ -112,6 +113,47 @@ class OrderRequestController extends GetxController {
         } else {
           Get.snackbar('Error', 'Unexpected order status: $orderStatus');
         }
+      } else {
+        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Exception occurred: $e');
+      print(e);
+    }
+  }
+
+  Future<void> postDeclineNote() async {
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/update';
+    var data = {
+      'id': orderId.value,
+      'order_status': 'decline',
+      'decline_note': noteText.value
+    };
+
+    // print(
+    //     'Data dikirim: $data'); // Debug print untuk memastikan data dikirim dengan benar
+
+    try {
+      var response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: json.encode(data),
+      );
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      print('Decline Note: ${noteText.value}');
+
+      if (response.statusCode == 200) {
+        Get.offAll(() => BottomNavBar(), arguments: 2);
+        final BottomNavigationController navController = Get.find();
+        navController.currentIndex.value = 2;
+
+        Get.snackbar(
+          'Success',
+          'Order has been declined successfully',
+          snackPosition: SnackPosition.TOP,
+        );
       } else {
         Get.snackbar('Error', 'Failed to submit data: ${response.body}');
       }

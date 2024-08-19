@@ -16,8 +16,11 @@ class OrderManagementView extends GetView<OrderManagementController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: RefreshIndicator(
+        backgroundColor: Colors.white,
+        color: Color(0xff7EC1EB),
         onRefresh: controller.refreshOrders,
         child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +45,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 130,
+                  height: 110,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,

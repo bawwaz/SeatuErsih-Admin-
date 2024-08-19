@@ -34,75 +34,95 @@ class OrderStatusInprogressView
           ),
         ),
       ),
-      body: Obx(
-        () {
-          if (controller.isLoading.value) {
-            return ListView.builder(
-              padding: EdgeInsets.all(20),
-              itemCount: 5, 
-              itemBuilder: (context, index) {
-                return ShimmerCardInprogressOrders(); 
-              },
-            );
-          } else if (controller.inprogressOrder.isEmpty) {
-            return Center(
-              child: Text(
-                "Tidak Ada Data",
-                style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
-              ),
-            );
-          } else {
-            return ListView.builder(
-              padding: EdgeInsets.all(20),
-              itemCount: controller.inprogressOrder.length,
-              itemBuilder: (context, index) {
-                DateTime date = DateTime.parse(
-                    controller.inprogressOrder[index]["pickup_date"]);
-                String formattedPrice = NumberFormat.currency(
-                  locale: 'id_ID',
-                  symbol: 'Rp ',
-                  decimalDigits: 0,
-                ).format(controller.inprogressOrder[index]["total_price"]);
-                return InkWell(
-                  onTap: () {
-                    Get.toNamed(
-                      Routes.ORDERDETAIL,
-                      arguments:
-                          controller.inprogressOrder[index]["id"].toString(),
-                    );
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    width: double.infinity,
-                    height: 85,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          spreadRadius: 0,
-                          blurRadius: 3,
-                          offset: Offset(0, 0),
+      body: RefreshIndicator(
+        backgroundColor: Colors.white,
+        color: Color(0xff7EC1EB),
+        onRefresh: () async {
+          return await controller.getInprogressOrder();
+        },
+        child: Obx(
+          () {
+            if (controller.isLoading.value) {
+              return ListView.builder(
+                padding: EdgeInsets.all(20),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return ShimmerCardInprogressOrders();
+                },
+              );
+            } else if (controller.inprogressOrder.isEmpty) {
+              return ListView(
+                physics: AlwaysScrollableScrollPhysics(),
+                children: [
+                  Container(
+                    height: 700,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text(
+                            "Tidak Ada Data",
+                            style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14),
+                          ),
                         ),
                       ],
                     ),
-                    child: CardInprogressOrders(
-                      orderType: controller.inprogressOrder[index]
-                          ["order_type"],
-                      date: date,
-                      totalPrice: formattedPrice,
-                    ),
                   ),
-                );
-              },
-            );
-          }
-        },
+                ],
+              );
+            } else {
+              return ListView.builder(
+                padding: EdgeInsets.all(20),
+                itemCount: controller.inprogressOrder.length,
+                itemBuilder: (context, index) {
+                  DateTime date = DateTime.parse(
+                      controller.inprogressOrder[index]["pickup_date"]);
+                  String formattedPrice = NumberFormat.currency(
+                    locale: 'id_ID',
+                    symbol: 'Rp ',
+                    decimalDigits: 0,
+                  ).format(controller.inprogressOrder[index]["total_price"]);
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed(
+                        Routes.ORDERDETAIL,
+                        arguments:
+                            controller.inprogressOrder[index]["id"].toString(),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      width: double.infinity,
+                      height: 85,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            spreadRadius: 0,
+                            blurRadius: 3,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                      child: CardInprogressOrders(
+                        orderType: controller.inprogressOrder[index]
+                            ["order_type"],
+                        date: date,
+                        totalPrice: formattedPrice,
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

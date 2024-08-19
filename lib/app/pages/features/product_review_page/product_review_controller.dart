@@ -59,6 +59,10 @@ class ProductReviewController extends GetxController {
     }
   }
 
+  Future<void> refreshOrders() async {
+    await getAllLaundries();
+  }
+
   Map<String, String> get headers {
     return {
       "Accept": "application/json",
