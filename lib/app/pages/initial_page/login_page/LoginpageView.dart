@@ -115,34 +115,6 @@ class LoginPage extends StatelessWidget {
                 height: 53,
                 child: SignInGoogle(),
               ),
-              // SizedBox(
-              //   height: 20,
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       "Don’t have an account?",
-              //       style: GoogleFonts.poppins(
-              //         color: Color(0xFF1F1F1F),
-              //         fontWeight: FontWeight.normal,
-              //         fontSize: 13,
-              //       ),
-              //     ),
-              //     TextButton(
-              //         onPressed: () {
-              //           Get.toNamed(Routes.REGISTER);
-              //         },
-              //         child: Text(
-              //           "Sign Up",
-              //           style: GoogleFonts.poppins(
-              //             color: Color(0xFF7EC1EB),
-              //             fontWeight: FontWeight.normal,
-              //             fontSize: 13,
-              //           ),
-              //         )),
-              //   ],
-              // ),
             ],
           ),
         ),

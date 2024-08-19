@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController extends GetxController {
   final box = GetStorage();
@@ -16,8 +17,9 @@ class ProfileController extends GetxController {
   }
 
   Future<void> logout() async {
-    isLoading.value = true;  // Menampilkan loading
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout'; // Ganti dengan URL yang sesuai
+    isLoading.value = true; // Menampilkan loading
+    final url =
+        'http://seatuersih.pradiptaahmad.tech/api/admins/logout'; // Ganti dengan URL yang sesuai
     final headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${token.value}',
@@ -32,6 +34,8 @@ class ProfileController extends GetxController {
 
       if (response.statusCode == 200) {
         // Menghapus token dari GetStorage
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.remove('token');
         box.remove('token');
         // Menampilkan snackbar
         Get.snackbar(
@@ -40,7 +44,8 @@ class ProfileController extends GetxController {
           snackPosition: SnackPosition.TOP,
         );
         // Menavigasi ke halaman login atau halaman lain yang sesuai setelah logout
-        Get.offAllNamed('/login'); // Pastikan Anda telah mendefinisikan rute '/login' di GetX
+        Get.offAllNamed(
+            '/login'); // Pastikan Anda telah mendefinisikan rute '/login' di GetX
       } else {
         Get.snackbar(
           'Error',
@@ -55,7 +60,7 @@ class ProfileController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     } finally {
-      isLoading.value = false;  // Menghilangkan loading
+      isLoading.value = false; // Menghilangkan loading
     }
   }
 }
