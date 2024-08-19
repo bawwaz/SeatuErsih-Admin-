@@ -4,6 +4,6 @@ import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/spla
 class SplashScreenBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SplashScreenController>(() => SplashScreenController());
+    Get.put<SplashScreenController>(SplashScreenController());
   }
 }
