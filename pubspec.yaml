@@ -24,6 +24,7 @@ dependencies:
   fl_chart:
   excel: ^4.0.3 
   path_provider:
+  smart_snackbars: ^1.0.0
   permission_handler:
 
 dev_dependencies:
