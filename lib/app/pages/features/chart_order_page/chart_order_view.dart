@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/widget/chart_deep_clean_month.dart';
 import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/widget/chart_deep_clean_week.dart';
+import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/widget/chart_reg_clean_month.dart';
 import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/widget/chart_regular_clean_week.dart';
 
 class ChartOrderView extends StatelessWidget {
@@ -54,13 +57,30 @@ class ChartOrderView extends StatelessWidget {
               child: Column(
                 children: [
                   ChartRegularClean(),
-                  const SizedBox(height: 50), 
+                  const SizedBox(height: 50),
                   ChartDeepClean(),
                 ],
               ),
             ),
-            // Month Tab (You can replace this with the actual content for the month tab)
-            Center(child: Text('Month view content here')),
+            SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    ChartRegCleanM(),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    ChartDeepCleanM(),
+                    SizedBox(
+                      height: 40,
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
