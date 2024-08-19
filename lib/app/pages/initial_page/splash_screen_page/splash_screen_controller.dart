@@ -8,7 +8,7 @@ class SplashScreenController extends GetxController {
     super.onInit();
     checkLoginStatus();
     Future.delayed(Duration(seconds: 3), () {
-      Get.offNamed(Routes.LOGIN); 
+      Get.offNamed(Routes.LOGIN);
     });
   }
 
@@ -17,17 +17,13 @@ class SplashScreenController extends GetxController {
     String? token = prefs.getString('token');
 
     if (token != null && token.isNotEmpty) {
-      // Jika token ada, arahkan ke halaman utama
-      
       Future.delayed(Duration(seconds: 3), () {
-      Get.offNamed(Routes.BTMNAVBAR);
-    });
+        Get.offNamed(Routes.LOGIN);
+      });
     } else {
-      // Jika token tidak ada, arahkan ke halaman login
-      
       Future.delayed(Duration(seconds: 3), () {
-      Get.offNamed(Routes.LOGIN);
-    });
+        Get.offNamed(Routes.LOGIN);
+      });
     }
   }
 }

@@ -162,7 +162,7 @@ class ChartDeepCleanM extends StatelessWidget {
                 child: Text(
                   'On $bestSellingDay, Deep Clean was the best selling,',
                   style: GoogleFonts.poppins(
-                    color: Color(0xFF7EC1EB),
+                    color: Colors.black,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
@@ -171,7 +171,7 @@ class ChartDeepCleanM extends StatelessWidget {
             Text(
               'with a total of $highestTotal orders!',
               style: GoogleFonts.poppins(
-                color: Color(0xFF7EC1EB),
+                color: Colors.black,
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),

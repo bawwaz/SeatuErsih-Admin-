@@ -38,14 +38,7 @@ class CardPending extends GetView<OrderManagementController> {
         SizedBox(
           height: 10,
         ),
-        // Text(
-        //   '10 more than last week',
-        //   style: GoogleFonts.poppins(
-        //     fontSize: 15,
-        //     color: Colors.black,
-        //     fontWeight: FontWeight.w500,
-        //   ),
-        // ),
+
       ],
     );
   }

@@ -6,9 +6,11 @@ class CardDeclinedOrders extends StatelessWidget {
   final String orderType;
   final DateTime date;
   final String totalPrice;
+  final String? decline_note;
 
   const CardDeclinedOrders({
     super.key,
+    required this.decline_note,
     required this.orderType,
     required this.date,
     required this.totalPrice,
@@ -78,14 +80,10 @@ class CardDeclinedOrders extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              'view',
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+            Icon(
+              Icons.info_rounded,
+              color: Color(0xff7EC1EB),
+            )
           ],
         ),
       ],

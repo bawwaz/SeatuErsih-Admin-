@@ -9,9 +9,16 @@ class OrderManagementController extends GetxController {
   var completedOrder = <Map<String, dynamic>>[].obs;
   var declinedOrder = <Map<String, dynamic>>[].obs;
 
-  var isLoading = true.obs; // Menambahkan state loading
+  var isLoading = true.obs; // State for loading
   final box = GetStorage();
   var token = ''.obs;
+
+  // Variables for chart data
+  final chartReg = [].obs;
+  final chartDeep = [].obs;
+  var currentWeekOrders = 0.obs;
+  var lastWeekOrders = 0.obs;
+  var orderDifference = 0.obs;
 
   @override
   void onInit() {
@@ -24,8 +31,11 @@ class OrderManagementController extends GetxController {
     getInprogressOrder();
     getCompletedOrder();
     getDeclinedOrder();
+    getChartReg();
+    getChartDeep();
   }
 
+  // Order fetching methods
   Future<void> getPendingOrder() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/pending';
     final headers = this.headers;
@@ -178,6 +188,89 @@ class OrderManagementController extends GetxController {
     await getInprogressOrder();
     await getCompletedOrder();
     await getDeclinedOrder();
+    await getChartReg();
+    await getChartDeep();
+  }
+
+  // Chart data fetching methods
+  Future<void> getChartReg() async {
+    isLoading.value = true;
+    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final token = box.read('token');
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    try {
+      final response = await http
+          .get(Uri.parse('$url/order/chart/regular_clean'), headers: headers);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data != null && data is List) {
+          chartReg.assignAll(data);
+          calculateOrderDifference(data);
+        } else {
+          print('no data found');
+        }
+      } else {
+        print('Failed to fetch data: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        throw Exception('Failed to fetch data');
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading.value = false;
+  }
+
+  Future<void> getChartDeep() async {
+    isLoading.value = true;
+    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final token = box.read('token');
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    try {
+      final response = await http.get(Uri.parse('$url/order/chart/deep_clean'),
+          headers: headers);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data != null && data is List) {
+          if (data.isEmpty) {
+            Get.snackbar(
+              'No Data',
+              'No deep clean data found.',
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          }
+          chartDeep.assignAll(data);
+          calculateOrderDifference(data);
+        } else {
+          print('no data found');
+        }
+      } else {
+        print('Failed to fetch data: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        throw Exception('Failed to fetch data');
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading.value = false;
+  }
+
+  void calculateOrderDifference(List data) {
+    if (data.length >= 2) {
+      currentWeekOrders.value =
+          data.last['total']; // Assuming order_count is the key
+      lastWeekOrders.value = data[data.length - 2]['total'];
+      orderDifference.value = currentWeekOrders.value - lastWeekOrders.value;
+    }
   }
 
   Map<String, String> get headers {

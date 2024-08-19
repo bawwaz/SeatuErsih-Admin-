@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/order_status_declined_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/card_declined_orders.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/shimmer_card_decline_orders.dart';
+import 'package:smart_snackbars/smart_snackbars.dart';
 
 class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
   const OrderStatusDeclinedView({super.key});
@@ -86,27 +87,48 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
                     symbol: 'Rp ',
                     decimalDigits: 0,
                   ).format(controller.declinedOrder[index]["total_price"]);
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    width: double.infinity,
-                    height: 85,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          spreadRadius: 0,
-                          blurRadius: 3,
-                          offset: Offset(0, 0),
+                  return InkWell(
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Order declined due to: ${controller.declinedOrder[index]['decline_note']}",
+                          ),
+                          backgroundColor: Colors.redAccent,
+                          behavior: SnackBarBehavior.floating,
+                          action: SnackBarAction(
+                            label: 'Dismiss',
+                            textColor: Colors.white,
+                            onPressed: () {},
+                          ),
                         ),
-                      ],
-                    ),
-                    child: CardDeclinedOrders(
-                      orderType: controller.declinedOrder[index]["order_type"],
-                      date: date,
-                      totalPrice: formattedPrice,
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      width: double.infinity,
+                      height: 85,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            spreadRadius: 0,
+                            blurRadius: 3,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                      child: CardDeclinedOrders(
+                        decline_note: controller.declinedOrder[index]
+                            ['decline_note'],
+                        orderType: controller.declinedOrder[index]
+                            ["order_type"],
+                        date: date,
+                        totalPrice: formattedPrice,
+                      ),
                     ),
                   );
                 },
