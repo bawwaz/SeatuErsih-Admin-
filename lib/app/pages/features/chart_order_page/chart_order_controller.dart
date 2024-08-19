@@ -14,6 +14,7 @@ class ChartOrderController extends GetxController {
   void onInit() {
     super.onInit();
     getChartReg();
+    getChartDeep();
   }
 
   Future<void> getChartReg() async {
@@ -62,6 +63,7 @@ class ChartOrderController extends GetxController {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        print('API Response Data: $data');
         if (data != null && data is List) {
           if (data.isEmpty) {
             Get.snackbar(

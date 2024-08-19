@@ -19,13 +19,16 @@ class ChartDeepClean extends StatelessWidget {
       }
 
       DateTime now = DateTime.now();
-      DateTime sevenDaysAgo = now.subtract(Duration(days: 6));
+      DateTime sevenDaysAgo = now.subtract(Duration(days: 7));
 
-      List<dynamic> filteredData = chartOrderController.chartReg.where((data) {
+      List<dynamic> filteredData = chartOrderController.chartDeep.where((data) {
         DateTime date = DateTime.parse(data['date']);
         return date.isAfter(sevenDaysAgo) &&
             date.isBefore(now.add(Duration(days: 1)));
       }).toList();
+
+      // Debugging print
+      print("Filtered Data: $filteredData");
 
       List<FlSpot> spots = filteredData.asMap().entries.map((entry) {
         int index = entry.key;
@@ -34,7 +37,8 @@ class ChartDeepClean extends StatelessWidget {
         return FlSpot(index.toDouble(), total);
       }).toList();
 
-      // Handle cases where all data points might be zero
+      print("Spots: $spots");
+
       double maxY = spots.isNotEmpty && spots.any((spot) => spot.y > 0)
           ? spots.map((spot) => spot.y).reduce((a, b) => a > b ? a : b) + 1
           : 1;
