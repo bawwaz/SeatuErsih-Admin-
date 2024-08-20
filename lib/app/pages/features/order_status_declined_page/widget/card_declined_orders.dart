@@ -76,16 +76,6 @@ class CardDeclinedOrders extends StatelessWidget {
             ),
           ],
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Icon(
-              Icons.info_rounded,
-              color: Color(0xff7EC1EB),
-            )
-          ],
-        ),
       ],
     );
   }

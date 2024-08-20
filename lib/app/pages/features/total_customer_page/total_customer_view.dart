@@ -11,6 +11,9 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,7 +23,11 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
           onTap: () {
             Get.back();
           },
-          child: Image.asset('assets/img/angle-circle-right 1.png'),
+          child: Image.asset(
+            'assets/img/angle-circle-right 1.png',
+            width:
+                screenWidth * 0.07,
+          ),
         ),
         centerTitle: true,
         title: Text(
@@ -28,7 +35,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20,
+            fontSize: screenWidth * 0.05, 
           ),
         ),
       ),
@@ -36,11 +43,11 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
         () {
           if (controller.isLoading.value) {
             return ListView.builder(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(screenWidth * 0.05),
               itemCount: 4,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
                   child: Shimmer.fromColors(
                     baseColor: Colors.grey.shade300,
                     highlightColor: Colors.grey.shade100,
@@ -54,23 +61,24 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
               child: Text(
                 "Tidak Ada Data Customer",
                 style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: screenWidth * 0.035,
+                ),
               ),
             );
           } else {
             final totalCustomer = controller.customers.length;
 
             return ListView.builder(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(screenWidth * 0.05),
               itemCount: controller.customers.length,
               itemBuilder: (context, index) {
                 return Container(
                   width: double.infinity,
-                  height: 137,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(vertical: 8),
+                  height: screenHeight * 0.17,
+                  padding: EdgeInsets.all(screenWidth * 0.04),
+                  margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),

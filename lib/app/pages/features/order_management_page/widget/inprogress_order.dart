@@ -16,7 +16,7 @@ class CardInProgress extends GetView<OrderManagementController> {
         Text(
           'In-progress Orders',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xff7EC1EB),
           ),
@@ -29,7 +29,7 @@ class CardInProgress extends GetView<OrderManagementController> {
             return Text(
               '${controller.inprogressOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             );

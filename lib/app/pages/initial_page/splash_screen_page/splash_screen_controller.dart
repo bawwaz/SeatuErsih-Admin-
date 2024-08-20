@@ -7,9 +7,6 @@ class SplashScreenController extends GetxController {
   void onInit() {
     super.onInit();
     checkLoginStatus();
-    Future.delayed(Duration(seconds: 3), () {
-      Get.offNamed(Routes.LOGIN);
-    });
   }
 
   Future<void> checkLoginStatus() async {
@@ -17,13 +14,19 @@ class SplashScreenController extends GetxController {
     String? token = prefs.getString('token');
 
     if (token != null && token.isNotEmpty) {
-      Future.delayed(Duration(seconds: 3), () {
-        Get.offNamed(Routes.LOGIN);
-      });
+      return Future.delayed(
+        Duration(seconds: 3),
+        () {
+          Get.offNamed(Routes.BTMNAVBAR);
+        },
+      );
     } else {
-      Future.delayed(Duration(seconds: 3), () {
-        Get.offNamed(Routes.LOGIN);
-      });
+      return Future.delayed(
+        Duration(seconds: 3),
+        () {
+          Get.offNamed(Routes.LOGIN);
+        },
+      );
     }
   }
 }

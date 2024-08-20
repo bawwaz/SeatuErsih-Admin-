@@ -16,7 +16,7 @@ class CardTotalCustomer extends GetView<homePageController> {
         Text(
           'Total Customer',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -25,7 +25,7 @@ class CardTotalCustomer extends GetView<homePageController> {
         Text(
           'All - time',
           style: GoogleFonts.poppins(
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
@@ -34,16 +34,18 @@ class CardTotalCustomer extends GetView<homePageController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Obx(() {
-              return Text(
-              '${controller.customers.length}',
-              style: GoogleFonts.poppins(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-            );
-            },),
+            Obx(
+              () {
+                return Text(
+                  '${controller.customers.length}',
+                  style: GoogleFonts.poppins(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                );
+              },
+            ),
             Image.asset("assets/img/customer-care.png")
           ],
         ),

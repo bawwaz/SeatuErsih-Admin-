@@ -16,7 +16,7 @@ class CardDeclined extends GetView<OrderManagementController> {
         Text(
           'Declined Orders',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xffE75060),
           ),
@@ -29,7 +29,7 @@ class CardDeclined extends GetView<OrderManagementController> {
             return Text(
               '${controller.declinedOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             );

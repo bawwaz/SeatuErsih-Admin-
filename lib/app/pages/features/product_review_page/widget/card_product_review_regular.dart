@@ -22,7 +22,7 @@ class CardProductReviewRegular extends StatelessWidget {
           '${name}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 16,
             color: Colors.black,
           ),
         ),
@@ -30,7 +30,7 @@ class CardProductReviewRegular extends StatelessWidget {
         Text(
           '${description}',
           style: GoogleFonts.poppins(
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xff8A8A8A),
               fontWeight: FontWeight.w500),
         ),
@@ -47,7 +47,7 @@ class CardProductReviewRegular extends StatelessWidget {
                 Text(
                   'Avg Rating :',
                   style: GoogleFonts.poppins(
-                      fontSize: 14,
+                      fontSize: 13,
                       color: Colors.black,
                       fontWeight: FontWeight.w600),
                 ),

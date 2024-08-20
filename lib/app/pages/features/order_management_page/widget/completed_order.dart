@@ -16,7 +16,7 @@ class CardCompleted extends GetView<OrderManagementController> {
         Text(
           'Completed Orders',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xff3AC430),
           ),
@@ -29,7 +29,7 @@ class CardCompleted extends GetView<OrderManagementController> {
             return Text(
               '${controller.completedOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             );

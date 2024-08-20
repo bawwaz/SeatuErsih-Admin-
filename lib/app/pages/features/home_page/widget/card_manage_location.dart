@@ -14,19 +14,19 @@ class CardManageLocation extends StatelessWidget {
         Text(
           'Atur Jangkauan Lokasi ',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               'Customer',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),

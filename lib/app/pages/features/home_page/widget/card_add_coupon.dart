@@ -14,7 +14,7 @@ class CardAddCoupon extends StatelessWidget {
         Text(
           'Tambah Coupon',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -26,7 +26,7 @@ class CardAddCoupon extends StatelessWidget {
             Text(
               'Discount',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),

@@ -7,16 +7,24 @@ import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/c
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_note.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/floating_button.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_contact.dart'; // Import shimmer widget
-import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_customer.dart'; // Import shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_contact.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_note.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_order.dart'; // Import shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/shimmer_card_order.dart';
 
 class OrderRequestView extends GetView<OrderRequestController> {
   const OrderRequestView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width for responsiveness
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Set responsive padding and font sizes
+    final horizontalPadding = screenWidth * 0.05; // 5% of screen width
+    final headingFontSize = screenWidth * 0.045; // 4.5% of screen width
+    final subheadingFontSize = screenWidth * 0.035; // 3.5% of screen width
+
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -34,7 +42,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20,
+            fontSize: headingFontSize, // Responsive font size
           ),
         ),
       ),
@@ -42,7 +50,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
         () {
           if (controller.isLoading.value) {
             return SingleChildScrollView(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -63,7 +71,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
           }
 
           return SingleChildScrollView(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -72,13 +80,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 17,
+                    fontSize: headingFontSize,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: 205,
+                  height: MediaQuery.of(context).size.height * 0.24,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -107,13 +115,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 17,
+                    fontSize: headingFontSize,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: 140,
+                  height: MediaQuery.of(context).size.height * 0.17,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -140,13 +148,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 17,
+                    fontSize: headingFontSize,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: 200,
+                  height: MediaQuery.of(context).size.height * 0.24,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -179,18 +187,18 @@ class OrderRequestView extends GetView<OrderRequestController> {
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: subheadingFontSize,
                       ),
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      '(jika ingin membatalkan pesanan)',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff8a8a8a),
-                        fontSize: 13,
+                    SizedBox(width: 5),
+                    Flexible(
+                      child: Text(
+                        '(jika ingin membatalkan pesanan)',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff8a8a8a),
+                          fontSize: screenWidth * 0.030,
+                        ),
                       ),
                     ),
                   ],
@@ -201,7 +209,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   height: 85,
                   child: CardNote(),
                 ),
-                SizedBox(height: 75),
+                SizedBox(height: 90),
               ],
             ),
           );

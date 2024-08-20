@@ -23,17 +23,6 @@ class HomePage extends GetView<homePageController> {
             padding: const EdgeInsets.only(right: 25.0),
             child: Stack(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color(0xff545454),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 14.0, left: 14),
                   child: InkWell(
@@ -41,7 +30,7 @@ class HomePage extends GetView<homePageController> {
                       Get.toNamed(Routes.PROFILE);
                     },
                     child: Image(
-                      image: AssetImage('assets/img/user.png'),
+                      image: AssetImage('assets/img/user-icon.png'),
                     ),
                   ),
                 ),
