@@ -20,7 +20,6 @@ class OrderRequestView extends GetView<OrderRequestController> {
     // Get screen width for responsiveness
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Set responsive padding and font sizes
     final horizontalPadding = screenWidth * 0.05; // 5% of screen width
     final headingFontSize = screenWidth * 0.045; // 4.5% of screen width
     final subheadingFontSize = screenWidth * 0.035; // 3.5% of screen width

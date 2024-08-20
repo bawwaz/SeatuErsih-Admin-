@@ -1,25 +1,163 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileController extends GetxController {
   final box = GetStorage();
   var token = ''.obs;
   var username = ''.obs;
+  var profileImagePath = ''.obs;
   var isLoading = false.obs;
+  final ImagePicker _picker = ImagePicker();
 
   @override
   void onInit() {
     super.onInit();
     token.value = box.read('token') ?? '';
     username.value = box.read('username') ?? '';
+    profileImagePath.value = box.read('profileImagePath') ?? '';
+  }
+
+  Future<void> pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final confirm = await Get.dialog<bool>(
+        AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Text(
+            'Konfirmasi',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          content: Text(
+            'Yakin memilih foto ini?',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w400,
+              color: Colors.black54,
+              fontSize: 14,
+            ),
+          ),
+          actions: [
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.grey[400],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => Get.back(result: false),
+              child: Text(
+                'Tidak',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Color(0xff7EC1EB),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => Get.back(result: true),
+              child: Text(
+                'Iya',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+      if (confirm == true) {
+        final directory = await getApplicationDocumentsDirectory();
+        final filePath = '${directory.path}/${pickedFile.name}';
+        final File file = File(pickedFile.path);
+        await file.copy(filePath);
+
+        profileImagePath.value = filePath;
+        box.write('profileImagePath', filePath);
+      }
+    }
+  }
+
+  void showImageOptions() {
+    Get.bottomSheet(
+      Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: Icon(Icons.image, color: Color(0xff7EC1EB)),
+              title: Text(
+                'Pilih dari Galeri',
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              onTap: () {
+                Get.back(); 
+                pickImage(); 
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.delete, color: Colors.red),
+              title: Text(
+                'Hapus Gambar',
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              onTap: () {
+                Get.back(); 
+                deleteImage(); 
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void deleteImage() {
+    profileImagePath.value = '';
+    box.remove('profileImagePath');
   }
 
   Future<void> logout() async {
-    isLoading.value = true; // Menampilkan loading
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/admins/logout'; // Ganti dengan URL yang sesuai
+    isLoading.value = true;
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout';
     final headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${token.value}',

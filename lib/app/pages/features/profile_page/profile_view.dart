@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,18 +33,46 @@ class ProfileView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: SizedBox(
-                width: 130,
-                height: 130,
-                child: Image.asset(
-                  "assets/img/profile-icon.png",
-                  fit: BoxFit.cover,
-                ),
+              child: Column(
+                children: [
+                  Obx(() {
+                    return CircleAvatar(
+                      radius: 65,
+                      backgroundImage: controller
+                              .profileImagePath.value.isNotEmpty
+                          ? FileImage(File(controller.profileImagePath.value))
+                          : AssetImage("assets/img/profile-icon.png")
+                              as ImageProvider,
+                      backgroundColor: Colors.grey[200],
+                    );
+                  }),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: controller.showImageOptions,
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: Color(0xff7EC1EB),
+                    ),
+                    child: Text(
+                      'Edit Image',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 20),
@@ -57,32 +86,33 @@ class ProfileView extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(7),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.25),
-                      blurRadius: 2,
-                      offset: Offset(0, 0),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(7),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 2,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              alignment: Alignment.centerLeft,
+              child: Obx(
+                () {
+                  return Text(
+                    '${controller.username.value}',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff8a8a8a),
+                      fontSize: 14,
                     ),
-                  ],
-                ),
-                alignment: Alignment.centerLeft,
-                child: Obx(
-                  () {
-                    return Text(
-                      '${controller.username.value}',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff8a8a8a8),
-                        fontSize: 14,
-                      ),
-                    );
-                  },
-                )),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -99,7 +129,8 @@ class ProfileView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: controller.isLoading.value ? null : () => controller.logout(),
+            onPressed:
+                controller.isLoading.value ? null : () => controller.logout(),
             child: controller.isLoading.value
                 ? CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
