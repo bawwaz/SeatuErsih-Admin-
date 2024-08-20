@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/btmnavcontroller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
@@ -16,20 +18,18 @@ class BottomNavBar extends StatelessWidget {
         final BottomNavigationController navController = Get.find();
         switch (navController.currentIndex.value) {
           case 0:
-            Get.lazyPut<homePageController>(
-                () => homePageController()); // Inisialisasi disini
+            Get.lazyPut<homePageController>(() => homePageController());
 
             return HomePage();
           case 1:
-            Get.lazyPut<ProductReviewController>(
-                () => ProductReviewController()); // Inisialisasi disini
+            Get.lazyPut<HistoryPaymentController>(
+                () => HistoryPaymentController());
 
-            return ProductReviewView();
+            return HistoryPaymentView();
           case 2:
             Get.lazyPut<OrderManagementController>(
-                () => OrderManagementController()); // Inisialisasi disini
-
-            return OrderManagementView(); // Pastikan Binding diaplikasikan di sini jika diperlukan
+                () => OrderManagementController());
+            return OrderManagementView();
           default:
             return HomePage();
         }
@@ -41,21 +41,20 @@ class BottomNavBar extends StatelessWidget {
           onTap: (index) {
             navController.currentIndex.value = index;
             if (index == 2) {
-              Get.put(
-                  ProductReviewController()); // Inisialisasi ulang controller
+              Get.put(HistoryPaymentController());
             }
           },
-          backgroundColor: Colors.white, // Set color here
-          selectedItemColor: Color(0xFF7EC1EB), // Color for selected item
-          unselectedItemColor: Colors.blueGrey, // Color for unselected items
+          backgroundColor: Colors.white,
+          selectedItemColor: Color(0xFF7EC1EB),
+          unselectedItemColor: Colors.blueGrey,
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.star_half),
-              label: 'Review',
+              icon: Icon(Icons.payment),
+              label: 'History',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_laundry_service),

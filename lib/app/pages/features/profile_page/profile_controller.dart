@@ -33,34 +33,30 @@ class ProfileController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        // Menghapus token dari GetStorage
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.remove('token');
         box.remove('token');
-        // Menampilkan snackbar
         Get.snackbar(
           'Logout',
           'Anda sudah logout',
           snackPosition: SnackPosition.TOP,
         );
-        // Menavigasi ke halaman login atau halaman lain yang sesuai setelah logout
-        Get.offAllNamed(
-            '/login'); // Pastikan Anda telah mendefinisikan rute '/login' di GetX
+        Get.offAllNamed('/login');
       } else {
         Get.snackbar(
           'Error',
           'Gagal logout: ${response.body}',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
       }
     } catch (e) {
       Get.snackbar(
         'Error',
         'Exception occurred: $e',
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
     } finally {
-      isLoading.value = false; // Menghilangkan loading
+      isLoading.value = false;
     }
   }
 }

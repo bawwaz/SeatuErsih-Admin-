@@ -13,33 +13,6 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
-        automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Image.asset('assets/img/angle-circle-right 1.png'),
-        ),
-        centerTitle: true,
-        title: Text(
-          'History Payment',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-        actions: [
-          // IconButton(
-          //   icon: Icon(Icons.download),
-          //   onPressed: () {
-          //     Get.find<HistoryPaymentController>().exportToExcel();
-          //   },
-          // ),
-        ],
-      ),
       body: RefreshIndicator(
         backgroundColor: Colors.white,
         color: Color(0xff7EC1EB),
@@ -52,6 +25,20 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Payment History',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -78,7 +65,6 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
               Obx(
                 () {
                   if (controller.isLoading.value) {

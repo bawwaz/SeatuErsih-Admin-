@@ -9,11 +9,11 @@ class OrderManagementController extends GetxController {
   var completedOrder = <Map<String, dynamic>>[].obs;
   var declinedOrder = <Map<String, dynamic>>[].obs;
 
-  var isLoading = true.obs; // State for loading
+  var isStoreOpen = false.obs;
+  var isLoading = true.obs;
   final box = GetStorage();
   var token = ''.obs;
 
-  // Variables for chart data
   final chartReg = [].obs;
   final chartDeep = [].obs;
   var currentWeekOrders = 0.obs;
@@ -35,7 +35,10 @@ class OrderManagementController extends GetxController {
     getChartDeep();
   }
 
-  // Order fetching methods
+  void toggleStoreStatus(bool value) {
+    isStoreOpen.value = value;
+  }
+
   Future<void> getPendingOrder() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/pending';
     final headers = this.headers;
