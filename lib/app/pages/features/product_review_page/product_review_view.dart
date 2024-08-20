@@ -15,6 +15,25 @@ class ProductReviewView extends GetView<ProductReviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Image.asset('assets/img/angle-circle-right 1.png'),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Product Review',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
+      ),
       body: RefreshIndicator(
         backgroundColor: Colors.white,
         color: Color(0xff7EC1EB),
@@ -25,17 +44,6 @@ class ProductReviewView extends GetView<ProductReviewController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Product Review',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                  fontSize: 20,
-                ),
-              ),
               Obx(
                 () => ListView.builder(
                   itemCount: controller.isLoading.value

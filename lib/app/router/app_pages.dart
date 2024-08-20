@@ -84,7 +84,7 @@ class AppPages {
       page: () => BottomNavBar(),
       bindings: [
         homePageBinding(),
-        ProductReviewBinding(),
+        HistoryPaymentBinding(),
         OrderManagementBinding(),
         navbarBinding(),
       ],

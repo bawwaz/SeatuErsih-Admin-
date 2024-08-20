@@ -29,8 +29,12 @@ class HomePage extends GetView<homePageController> {
                     onTap: () {
                       Get.toNamed(Routes.PROFILE);
                     },
-                    child: Image(
-                      image: AssetImage('assets/img/user-icon.png'),
+                    child: SizedBox(
+                      width: 27,
+                      height: 27,
+                      child: Image(
+                        image: AssetImage('assets/img/user-icon.png'),
+                      ),
                     ),
                   ),
                 ),

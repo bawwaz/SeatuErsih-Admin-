@@ -9,7 +9,9 @@ class OrderService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {Get.toNamed(Routes.HISTORYPAYEMENT);},
+      onTap: () {
+        Get.toNamed(Routes.PRODUCTREVIEW);
+      },
       child: Container(
         height: 126,
         width: MediaQuery.sizeOf(context).width * 0.9,
@@ -26,15 +28,21 @@ class OrderService extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/img/icon-app.png'),
+            SizedBox(
+              width: 55,
+              height: 55,
+              child: Image.asset('assets/img/feedback-review.png'),
+            ),
             Padding(
-              padding: const EdgeInsets.only(top: 6.0),
-              child: Text('Payment History',
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  )),
+              padding: const EdgeInsets.only(top: 15),
+              child: Text(
+                'Product Review',
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
         ),
