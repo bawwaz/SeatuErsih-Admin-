@@ -14,6 +14,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -35,7 +37,7 @@ class LoginPage extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       color: Color(0xFF000000),
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: screenWidth * 0.055,
                     ),
                   ),
                   Text(
@@ -43,7 +45,7 @@ class LoginPage extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       color: Color(0xFF7EC1EB),
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: screenWidth * 0.055,
                     ),
                   ),
                 ],
