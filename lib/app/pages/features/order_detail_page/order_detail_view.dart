@@ -15,9 +15,16 @@ class OrderDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final OrderDetailController controller = Get.find();
 
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final horizontalPadding = screenWidth * 0.05; // 5% of screen width
+    final headingFontSize = screenWidth * 0.045; // 4.5% of screen width
+    final subheadingFontSize = screenWidth * 0.035; // 3.5% of screen width
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () {
@@ -67,7 +74,7 @@ class OrderDetailView extends StatelessWidget {
                   SizedBox(height: 5),
                   Container(
                     width: double.infinity,
-                    height: 205,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     padding: EdgeInsets.all(16),
                     margin: EdgeInsets.symmetric(vertical: 8),
                     decoration: BoxDecoration(
@@ -100,7 +107,7 @@ class OrderDetailView extends StatelessWidget {
                   SizedBox(height: 5),
                   Container(
                     width: double.infinity,
-                    height: 140,
+                    height: MediaQuery.of(context).size.height * 0.17,
                     padding: EdgeInsets.all(16),
                     margin: EdgeInsets.symmetric(vertical: 8),
                     decoration: BoxDecoration(

@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class CardOrder extends StatelessWidget {
-  String product;
-  String note;
-  DateTime date;
+  final String product;
+  final String note;
+  final DateTime date;
 
   CardOrder({
     super.key,
@@ -16,6 +16,15 @@ class CardOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width for responsiveness
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Set responsive font sizes and padding
+    final titleFontSize = screenWidth * 0.04; // 4% of screen width
+    final contentFontSize = screenWidth * 0.035; // 3.5% of screen width
+    final dividerHeight = screenWidth * 0.03; // 3% of screen width
+    final verticalSpacing = screenWidth * 0.015; // 1.5% of screen width
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,52 +33,60 @@ class CardOrder extends StatelessWidget {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 15,
+            fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
           product == 'regular_clean' ? 'Regular Clean' : 'Deep Clean',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
-            fontSize: 13,
+            fontSize: screenWidth * 0.032,
           ),
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
+        Divider(
+          color: Color(0xffF1F1F1),
+          height: dividerHeight,
+          thickness: 1,
+        ),
         Text(
           'Tanggal',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 15,
+            fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
-          '${DateFormat('dd MMMM yyyy').format(date)}',
+          DateFormat('dd MMMM yyyy').format(date),
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
-            fontSize: 13,
+            fontSize: screenWidth * 0.032,
           ),
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
+        Divider(
+          color: Color(0xffF1F1F1),
+          height: dividerHeight,
+          thickness: 1,
+        ),
         Text(
           'Note',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 15,
+            fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
-          '${note}',
+          note,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
-            fontSize: 13,
+            fontSize: screenWidth * 0.032,
           ),
         ),
       ],

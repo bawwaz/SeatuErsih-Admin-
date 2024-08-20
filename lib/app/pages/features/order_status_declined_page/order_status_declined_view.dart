@@ -92,10 +92,18 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            "Order declined due to: ${controller.declinedOrder[index]['decline_note']}",
+                            "Pesanan Dibatalkan Karena: ${controller.declinedOrder[index]['decline_note']}",
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                            ),
                           ),
-                          backgroundColor: Colors.redAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: Color(0xffEB4335),
                           behavior: SnackBarBehavior.floating,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
                           action: SnackBarAction(
                             label: 'Dismiss',
                             textColor: Colors.white,

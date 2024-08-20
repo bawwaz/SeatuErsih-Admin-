@@ -16,7 +16,7 @@ class CardPending extends GetView<OrderManagementController> {
         Text(
           'Pending Orders',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xffFE9705),
           ),
@@ -29,16 +29,12 @@ class CardPending extends GetView<OrderManagementController> {
             return Text(
               '${controller.pendingOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             );
           },
         ),
-        SizedBox(
-          height: 10,
-        ),
-
       ],
     );
   }

@@ -40,7 +40,7 @@ class HomeBody extends GetView<homePageController> {
                       Text(
                         'Welcome,',
                         style: GoogleFonts.poppins(
-                          fontSize: 22,
+                          fontSize: 19,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -48,7 +48,7 @@ class HomeBody extends GetView<homePageController> {
                       Text(
                         "Page Admin",
                         style: GoogleFonts.poppins(
-                          fontSize: 22,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -58,7 +58,7 @@ class HomeBody extends GetView<homePageController> {
                 ),
                 Center(
                     child: Padding(
-                  padding: const EdgeInsets.only(top: 100.0),
+                  padding: const EdgeInsets.only(top: 85),
                   child: InkWell(
                     onTap: () {},
                     child: OrderService(),

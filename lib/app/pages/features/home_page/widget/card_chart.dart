@@ -14,7 +14,7 @@ class CardChart extends StatelessWidget {
         Text(
           'Chart Evaluasi',
           style: GoogleFonts.poppins(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
@@ -26,7 +26,7 @@ class CardChart extends StatelessWidget {
             Text(
               'Pemesanan',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),

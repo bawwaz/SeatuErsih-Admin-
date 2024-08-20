@@ -33,7 +33,9 @@ class CardInprogressOrders extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      orderType == 'deep_clean' ? "Deep Clean" : "Regular Clean",
+                      orderType == 'deep_clean'
+                          ? "Deep Clean"
+                          : "Regular Clean",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -76,14 +78,7 @@ class CardInprogressOrders extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              'view',
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+            Icon(Icons.arrow_forward_ios),
           ],
         ),
       ],
