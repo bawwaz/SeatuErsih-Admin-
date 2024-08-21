@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/order_status_completed_controller.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/card_completed_orders.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/shimmer_card_completed_orders.dart'; // Import the shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/order_status_waiting_payment_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/widget/card_waiting_payment.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/widget/shimmer_card_waiting_payment.dart'; // Import the shimmer widget
 
-class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
-  const OrderStatusCompletedView({super.key});
+class OrderStatusWaitingPaymentView
+    extends GetView<OrderStatusWaitingPaymentController> {
+  const OrderStatusWaitingPaymentView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
         ),
         centerTitle: true,
         title: Text(
-          'Completed Orders',
+          'Waiting For Pay',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -38,7 +39,7 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
         backgroundColor: Colors.white,
         color: Color(0xff7EC1EB),
         onRefresh: () async {
-          return await controller.getCompletedOrder();
+          return await controller.getWaitingPayment();
         },
         child: Obx(
           () {
@@ -49,11 +50,11 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: ShimmerCardCompletedOrders(),
+                    child: ShimmerCardWaitingPayment(),
                   );
                 },
               );
-            } else if (controller.completedOrder.isEmpty) {
+            } else if (controller.waitingOrder.isEmpty) {
               return ListView(
                 physics: AlwaysScrollableScrollPhysics(),
                 children: [
@@ -79,15 +80,15 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
             } else {
               return ListView.builder(
                 padding: EdgeInsets.all(20),
-                itemCount: controller.completedOrder.length,
+                itemCount: controller.waitingOrder.length,
                 itemBuilder: (context, index) {
                   DateTime date = DateTime.parse(
-                      controller.completedOrder[index]["pickup_date"]);
+                      controller.waitingOrder[index]["pickup_date"]);
                   String formattedPrice = NumberFormat.currency(
                     locale: 'id_ID',
                     symbol: 'Rp ',
                     decimalDigits: 0,
-                  ).format(controller.completedOrder[index]["total_price"]);
+                  ).format(controller.waitingOrder[index]["total_price"]);
                   return Container(
                     margin: EdgeInsets.only(bottom: 20),
                     width: double.infinity,
@@ -105,8 +106,8 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
                         ),
                       ],
                     ),
-                    child: CardCompletedOrders(
-                      orderType: controller.completedOrder[index]["order_type"],
+                    child: CardWaitingPayment(
+                      orderType: controller.waitingOrder[index]["order_type"],
                       date: date,
                       totalPrice: formattedPrice,
                     ),

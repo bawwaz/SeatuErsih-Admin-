@@ -20,6 +20,8 @@ class ChartOrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return DefaultTabController(
       length: 2, // Number of tabs
       child: Scaffold(
@@ -39,7 +41,7 @@ class ChartOrderView extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               color: Colors.black,
-              fontSize: 20,
+              fontSize: headingFontSize,
             ),
           ),
           bottom: const TabBar(

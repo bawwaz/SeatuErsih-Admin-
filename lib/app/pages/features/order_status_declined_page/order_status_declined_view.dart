@@ -5,13 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/order_status_declined_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/card_declined_orders.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_declined_page/widget/shimmer_card_decline_orders.dart';
-import 'package:smart_snackbars/smart_snackbars.dart';
 
 class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
   const OrderStatusDeclinedView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -29,7 +30,7 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20,
+            fontSize: headingFontSize,
           ),
         ),
       ),
@@ -100,7 +101,7 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: Color(0xffEB4335),
+                          backgroundColor: Color(0xff7EC1EB),
                           behavior: SnackBarBehavior.floating,
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),

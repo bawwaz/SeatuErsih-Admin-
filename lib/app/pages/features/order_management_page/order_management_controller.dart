@@ -8,6 +8,7 @@ class OrderManagementController extends GetxController {
   var inprogressOrder = <Map<String, dynamic>>[].obs;
   var completedOrder = <Map<String, dynamic>>[].obs;
   var declinedOrder = <Map<String, dynamic>>[].obs;
+  var waitingOrder = <Map<String, dynamic>>[].obs;
 
   var isStoreOpen = false.obs;
   var isLoading = true.obs;
@@ -28,6 +29,7 @@ class OrderManagementController extends GetxController {
       print('Token is not saved in GetStorage.');
     }
     getPendingOrder();
+    getWaitingOrder();
     getInprogressOrder();
     getCompletedOrder();
     getDeclinedOrder();
@@ -64,6 +66,43 @@ class OrderManagementController extends GetxController {
         } else if (decodedResponse is Map &&
             decodedResponse.containsKey('data')) {
           pendingOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
+        } else {
+          Get.snackbar('Error', 'Unexpected response format');
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> getWaitingOrder() async {
+    final url =
+        'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
+    final headers = this.headers;
+
+    try {
+      if (headers.isEmpty) {
+        Get.snackbar('Error', 'No authentication token found.');
+        return;
+      }
+
+      var response = await http.get(
+        Uri.parse(url),
+        headers: headers,
+      );
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is List) {
+          waitingOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse);
+        } else if (decodedResponse is Map &&
+            decodedResponse.containsKey('data')) {
+          waitingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
           Get.snackbar('Error', 'Unexpected response format');
@@ -188,6 +227,7 @@ class OrderManagementController extends GetxController {
 
   Future<void> refreshOrders() async {
     await getPendingOrder();
+    await getWaitingOrder();
     await getInprogressOrder();
     await getCompletedOrder();
     await getDeclinedOrder();
@@ -195,7 +235,6 @@ class OrderManagementController extends GetxController {
     await getChartDeep();
   }
 
-  // Chart data fetching methods
   Future<void> getChartReg() async {
     isLoading.value = true;
     final url = 'http://seatuersih.pradiptaahmad.tech/api';

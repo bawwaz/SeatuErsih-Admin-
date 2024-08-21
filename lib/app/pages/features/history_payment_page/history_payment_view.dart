@@ -11,6 +11,9 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: RefreshIndicator(
@@ -33,7 +36,7 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: headingFontSize,
                 ),
               ),
               SizedBox(

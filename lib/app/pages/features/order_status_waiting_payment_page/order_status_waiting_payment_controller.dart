@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
 
-class OrderStatusPendingController extends GetxController {
-  var pendingOrder = [].obs;
-  var isLoading = true.obs;
+class OrderStatusWaitingPaymentController extends GetxController {
+  var waitingOrder = <Map<String, dynamic>>[].obs;
+  var isLoading = true.obs; // Menambahkan state loading
   final box = GetStorage();
   var token = ''.obs;
 
@@ -16,11 +16,13 @@ class OrderStatusPendingController extends GetxController {
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');
     }
-    getPendingOrder();
+    getWaitingPayment();
   }
 
-  Future<void> getPendingOrder() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/pending';
+  Future<void> getWaitingPayment() async {
+    final url =
+        'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
+
     final headers = this.headers;
 
     try {
@@ -29,7 +31,7 @@ class OrderStatusPendingController extends GetxController {
         return;
       }
 
-      isLoading.value = true;
+      isLoading.value = true; // Set loading true saat memulai permintaan
 
       var response = await http.get(
         Uri.parse(url),
@@ -41,13 +43,21 @@ class OrderStatusPendingController extends GetxController {
 
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        print(decodedResponse);
-        pendingOrder.value = decodedResponse['data'];
+        if (decodedResponse is List) {
+          waitingOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse);
+        } else if (decodedResponse is Map &&
+            decodedResponse.containsKey('data')) {
+          waitingOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
+        } else {
+          Get.snackbar('Error', 'Unexpected response format');
+        }
       }
     } catch (e) {
       print(e);
     } finally {
-      isLoading.value = false; // Set loading false setelah permintaan selesai
+      isLoading.value = false;
     }
   }
 

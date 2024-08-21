@@ -13,6 +13,8 @@ class OrderStatusInprogressView
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -30,7 +32,7 @@ class OrderStatusInprogressView
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20,
+            fontSize: headingFontSize,
           ),
         ),
       ),

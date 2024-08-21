@@ -13,6 +13,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    final headingFontSize = screenWidth * 0.045;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -25,8 +26,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
           },
           child: Image.asset(
             'assets/img/angle-circle-right 1.png',
-            width:
-                screenWidth * 0.07,
+            width: screenWidth * 0.07,
           ),
         ),
         centerTitle: true,
@@ -35,7 +35,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: screenWidth * 0.05, 
+            fontSize: headingFontSize,
           ),
         ),
       ),
@@ -76,7 +76,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
               itemBuilder: (context, index) {
                 return Container(
                   width: double.infinity,
-                  height: screenHeight * 0.17,
+                  height: screenHeight * 0.19,
                   padding: EdgeInsets.all(screenWidth * 0.04),
                   margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
                   decoration: BoxDecoration(

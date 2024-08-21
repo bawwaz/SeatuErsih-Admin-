@@ -13,6 +13,9 @@ class AddShoesBrandView extends StatelessWidget {
     final AddShoesBrandController controller =
         Get.put(AddShoesBrandController());
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -32,7 +35,7 @@ class AddShoesBrandView extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               color: Colors.black,
-              fontSize: 20,
+              fontSize: headingFontSize,
             ),
           ),
           bottom: TabBar(
@@ -40,7 +43,7 @@ class AddShoesBrandView extends StatelessWidget {
             unselectedLabelColor: Color(0xff8a8a8a),
             indicatorColor: Color(0xff7EC1EB),
             tabs: [
-              Tab(text: 'Tambah Sepatu'),
+              Tab(text: 'Tambah Sepatu'), 
               Tab(text: 'Disimpan'),
             ],
           ),

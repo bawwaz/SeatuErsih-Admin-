@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class CardDeclinedOrders extends StatelessWidget {
+class CardWaitingPayment extends StatelessWidget {
   final String orderType;
   final DateTime date;
   final String totalPrice;
-  final String? decline_note;
 
-  const CardDeclinedOrders({
+  const CardWaitingPayment({
     super.key,
-    required this.decline_note,
     required this.orderType,
     required this.date,
     required this.totalPrice,
@@ -75,6 +73,20 @@ class CardDeclinedOrders extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              'Belum Bayar',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: screenWidth * 0.027,
+              ),
             ),
           ],
         ),

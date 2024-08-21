@@ -15,6 +15,8 @@ class AddCouponView extends GetView<AddCouponController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -34,7 +36,7 @@ class AddCouponView extends GetView<AddCouponController> {
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               color: Colors.black,
-              fontSize: 20,
+              fontSize: headingFontSize,
             ),
           ),
           bottom: TabBar(

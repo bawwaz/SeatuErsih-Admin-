@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
 
-class CardCompleted extends GetView<OrderManagementController> {
-  const CardCompleted({
+class CardWaitingForPayment extends GetView<OrderManagementController> {
+  const CardWaitingForPayment({
     super.key,
   });
 
@@ -16,11 +16,11 @@ class CardCompleted extends GetView<OrderManagementController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Completed Orders',
+          'Waiting For Payment',
           style: GoogleFonts.poppins(
             fontSize: screenWidth * 0.042,
             fontWeight: FontWeight.bold,
-            color: Color(0xff3AC430),
+            color: Color.fromARGB(255, 14, 167, 126),
           ),
         ),
         SizedBox(
@@ -29,7 +29,7 @@ class CardCompleted extends GetView<OrderManagementController> {
         Obx(
           () {
             return Text(
-              '${controller.completedOrder.length}',
+              '${controller.waitingOrder.length}',
               style: GoogleFonts.poppins(
                 fontSize: screenWidth * 0.045,
                 fontWeight: FontWeight.bold,

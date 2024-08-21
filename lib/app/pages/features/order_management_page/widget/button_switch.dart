@@ -14,6 +14,8 @@ class ButtonSwitch extends GetView<OrderManagementController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return Obx(
       () {
         return Row(
@@ -26,7 +28,7 @@ class ButtonSwitch extends GetView<OrderManagementController> {
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
-                fontSize: 16,
+                fontSize: screenWidth * 0.038,
               ),
             ),
             CupertinoSwitch(
