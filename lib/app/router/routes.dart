@@ -14,6 +14,7 @@ class Routes {
   static String ORDERMANAGEMENT = '/ordermanagement';
   static String ORDERREQUEST = '/orderrequest';
   static String ORDERSTATUSPENDING = '/orderstatuspending';
+  static String ORDERSTATUSWAITING = '/orderstatuswaiting';
   static String ORDERSTATUSINPROGRESS = '/orderstatusinprogress';
   static String ORDERSTATUSCOMPLETED = '/orderstatuscompleted';
   static String ORDERSTATUSDECLINED = '/orderstatusdeclined';

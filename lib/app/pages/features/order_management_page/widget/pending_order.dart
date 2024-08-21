@@ -10,13 +10,15 @@ class CardPending extends GetView<OrderManagementController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Pending Orders',
           style: GoogleFonts.poppins(
-            fontSize: 16,
+            fontSize: screenWidth * 0.042,
             fontWeight: FontWeight.bold,
             color: Color(0xffFE9705),
           ),
@@ -29,7 +31,7 @@ class CardPending extends GetView<OrderManagementController> {
             return Text(
               '${controller.pendingOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: screenWidth * 0.045,
                 fontWeight: FontWeight.bold,
               ),
             );

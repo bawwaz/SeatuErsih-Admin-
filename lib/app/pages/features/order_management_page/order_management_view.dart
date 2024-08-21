@@ -8,6 +8,7 @@ import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widge
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/declined_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/inprogress_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/pending_order.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/widget/waiting_for_payment.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class OrderManagementView extends GetView<OrderManagementController> {
@@ -15,6 +16,9 @@ class OrderManagementView extends GetView<OrderManagementController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: RefreshIndicator(
@@ -35,7 +39,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: headingFontSize,
                 ),
               ),
               SizedBox(
@@ -47,7 +51,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -69,11 +73,37 @@ class OrderManagementView extends GetView<OrderManagementController> {
               ),
               InkWell(
                 onTap: () {
+                  Get.toNamed(Routes.ORDERSTATUSWAITING);
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 90,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        spreadRadius: 0,
+                        blurRadius: 3,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: CardWaitingForPayment(),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              InkWell(
+                onTap: () {
                   Get.toNamed(Routes.ORDERSTATUSINPROGRESS);
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -99,7 +129,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -125,7 +155,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -148,7 +178,7 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: screenWidth * 0.040,
                 ),
               ),
               SizedBox(height: 10),

@@ -16,6 +16,8 @@ class CardCompletedOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -33,10 +35,12 @@ class CardCompletedOrders extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      orderType == 'deep_clean' ? "Deep Clean" : "Regular Clean",
+                      orderType == 'deep_clean'
+                          ? "Deep Clean"
+                          : "Regular Clean",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: screenWidth * 0.038,
                         color: Colors.black,
                       ),
                     ),
@@ -45,7 +49,7 @@ class CardCompletedOrders extends StatelessWidget {
                       'x1',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: screenWidth * 0.038,
                         color: Colors.black,
                       ),
                     ),
@@ -55,7 +59,7 @@ class CardCompletedOrders extends StatelessWidget {
                 Text(
                   DateFormat('dd MMMM yyyy').format(date),
                   style: GoogleFonts.poppins(
-                    fontSize: 14,
+                    fontSize: screenWidth * 0.032,
                     color: Color(0xFF8A8A8A),
                   ),
                 ),
@@ -64,7 +68,7 @@ class CardCompletedOrders extends StatelessWidget {
                   totalPrice,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontSize: screenWidth * 0.032,
                     color: Color(0xff7EC1EB),
                   ),
                 ),

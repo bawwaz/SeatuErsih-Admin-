@@ -17,12 +17,11 @@ class OrderRequestView extends GetView<OrderRequestController> {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width for responsiveness
     final screenWidth = MediaQuery.of(context).size.width;
 
-    final horizontalPadding = screenWidth * 0.05; // 5% of screen width
-    final headingFontSize = screenWidth * 0.045; // 4.5% of screen width
-    final subheadingFontSize = screenWidth * 0.035; // 3.5% of screen width
+    final horizontalPadding = screenWidth * 0.05; 
+    final headingFontSize = screenWidth * 0.045; 
+    final subheadingFontSize = screenWidth * 0.035; 
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
@@ -41,7 +40,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: headingFontSize, // Responsive font size
+            fontSize: headingFontSize, 
           ),
         ),
       ),
@@ -79,13 +78,13 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: headingFontSize,
+                    fontSize: screenWidth * 0.038,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.24,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -108,19 +107,19 @@ class OrderRequestView extends GetView<OrderRequestController> {
                         : DateTime.now(),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 10),
                 Text(
                   'Contact',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: headingFontSize,
+                    fontSize: screenWidth * 0.038,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.17,
+                  height: MediaQuery.of(context).size.height * 0.19,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -141,19 +140,19 @@ class OrderRequestView extends GetView<OrderRequestController> {
                     phone: controller.detailOrder["phone"] ?? 'No phone',
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 10),
                 Text(
                   'Customer',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: headingFontSize,
+                    fontSize: screenWidth * 0.038,
                   ),
                 ),
                 SizedBox(height: 5),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.24,
+                  height: MediaQuery.of(context).size.height * 0.26,
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -178,7 +177,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
                     profile: controller.detailOrder["user"]["profile"] ?? '',
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Text(

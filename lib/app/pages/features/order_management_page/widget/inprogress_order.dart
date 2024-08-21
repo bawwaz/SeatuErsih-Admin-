@@ -10,13 +10,15 @@ class CardInProgress extends GetView<OrderManagementController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'In-progress Orders',
           style: GoogleFonts.poppins(
-            fontSize: 16,
+            fontSize: screenWidth * 0.042,
             fontWeight: FontWeight.bold,
             color: Color(0xff7EC1EB),
           ),
@@ -29,7 +31,7 @@ class CardInProgress extends GetView<OrderManagementController> {
             return Text(
               '${controller.inprogressOrder.length}',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: screenWidth * 0.045,
                 fontWeight: FontWeight.bold,
               ),
             );

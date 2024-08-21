@@ -15,6 +15,8 @@ class CardPendingOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       width: double.infinity,
@@ -54,7 +56,7 @@ class CardPendingOrders extends StatelessWidget {
                             : "Regular Clean",
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: screenWidth * 0.038,
                           color: Colors.black,
                         ),
                       ),
@@ -63,7 +65,7 @@ class CardPendingOrders extends StatelessWidget {
                         'x1',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: screenWidth * 0.038,
                           color: Colors.black,
                         ),
                       ),
@@ -75,7 +77,7 @@ class CardPendingOrders extends StatelessWidget {
                   Text(
                     '${DateFormat('dd MMMM yyyy').format(date)}',
                     style: GoogleFonts.poppins(
-                      fontSize: 14,
+                      fontSize: screenWidth * 0.032,
                       color: Color(0xFF8A8A8A),
                     ),
                   ),
@@ -86,7 +88,7 @@ class CardPendingOrders extends StatelessWidget {
                     '${totalPrice}',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: screenWidth * 0.032,
                       color: Color(0xff7EC1EB),
                     ),
                   ),
@@ -97,9 +99,7 @@ class CardPendingOrders extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_forward_ios)
-            ],
+            children: [Icon(Icons.arrow_forward_ios)],
           ),
         ],
       ),

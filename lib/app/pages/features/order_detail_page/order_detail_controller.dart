@@ -10,6 +10,7 @@ class OrderDetailController extends GetxController {
   var token = ''.obs;
   var orderId = ''.obs;
   var orderDetail = <String, dynamic>{}.obs;
+  var customerItem = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
 
   @override
@@ -22,6 +23,7 @@ class OrderDetailController extends GetxController {
     orderId.value = Get.arguments;
     print(Get.arguments);
     getDetailOrder();
+    getCustomerItem();
   }
 
   Future<void> getDetailOrder() async {
@@ -47,6 +49,42 @@ class OrderDetailController extends GetxController {
         if (decodedResponse is Map && decodedResponse.containsKey('data')) {
           orderDetail.value =
               Map<String, dynamic>.from(decodedResponse['data']);
+        } else {
+          Get.snackbar('Error', 'Unexpected response format');
+        }
+      } else {
+        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'Exception occurred: $e');
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> getCustomerItem() async {
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/shoe/getall';
+    final headers = this.headers;
+
+    isLoading.value = true;
+
+    try {
+      if (headers.isEmpty) {
+        Get.snackbar('Error', 'No authentication token found.');
+        return;
+      }
+
+      var response = await http.get(Uri.parse(url), headers: headers);
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is Map && decodedResponse.containsKey('data')) {
+          customerItem.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }

@@ -12,6 +12,8 @@ class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final headingFontSize = screenWidth * 0.045;
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -29,7 +31,7 @@ class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20,
+            fontSize: headingFontSize,
           ),
         ),
       ),
@@ -37,18 +39,18 @@ class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
         backgroundColor: Colors.white,
         color: Color(0xff7EC1EB),
         onRefresh: () async {
-          return await controller.getPendingOrder();
+          await controller.getPendingOrder();
         },
         child: Obx(
           () {
             if (controller.isLoading.value) {
               return ListView.builder(
                 padding: EdgeInsets.all(20),
-                itemCount: 4, 
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: ShimmerCardPendingOrders(), 
+                    child: ShimmerCardPendingOrders(),
                   );
                 },
               );
@@ -83,11 +85,16 @@ class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
                 itemBuilder: (context, index) {
                   DateTime date = DateTime.parse(
                       controller.pendingOrder[index]["pickup_date"]);
-                  String formattedPrice = NumberFormat.currency(
-                    locale: 'id_ID',
-                    symbol: 'Rp ',
-                    decimalDigits: 0,
-                  ).format(controller.pendingOrder[index]["total_price"]);
+                  String formattedPrice =
+                      controller.pendingOrder[index]["total_price"] == null
+                          ? "Belum Ada Harga"
+                          : NumberFormat.currency(
+                              locale: 'id_ID',
+                              symbol: 'Rp. ',
+                              decimalDigits: 0,
+                            ).format(int.parse(controller.pendingOrder[index]
+                                  ["total_price"]
+                              .toString()));
                   return InkWell(
                     onTap: () {
                       Get.toNamed(Routes.ORDERREQUEST,
