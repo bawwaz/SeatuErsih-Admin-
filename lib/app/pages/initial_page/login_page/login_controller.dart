@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:seatu_ersih_admin/api/users/service/login_auth_service.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -28,10 +27,8 @@ class LoginController extends GetxController {
     try {
       final response = await loginAuthService.login(
           emailController.text, passwordController.text);
-      print(response.data['token'].toString());
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print(response.data['token']);
 
-      prefs.setString('token', response.data['token']);
       box.write('token', response.data['token']);
       box.write('username', response.data['user']['username']);
 

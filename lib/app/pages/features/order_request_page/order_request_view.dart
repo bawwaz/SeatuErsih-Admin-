@@ -19,9 +19,9 @@ class OrderRequestView extends GetView<OrderRequestController> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    final horizontalPadding = screenWidth * 0.05; 
-    final headingFontSize = screenWidth * 0.045; 
-    final subheadingFontSize = screenWidth * 0.035; 
+    final horizontalPadding = screenWidth * 0.05;
+    final headingFontSize = screenWidth * 0.045;
+    final subheadingFontSize = screenWidth * 0.035;
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
@@ -40,7 +40,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: headingFontSize, 
+            fontSize: headingFontSize,
           ),
         ),
       ),
@@ -207,7 +207,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   height: 85,
                   child: CardNote(),
                 ),
-                SizedBox(height: 90),
+                SizedBox(height: 110),
               ],
             ),
           );

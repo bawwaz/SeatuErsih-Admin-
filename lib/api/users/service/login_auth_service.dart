@@ -9,6 +9,7 @@ class LoginAuthService {
     try {
       final response = await dioInstance.postRequest(
           endpoint: ApiEndpoint.baseUrlLogin,
+          isAuthorize: false,
           data: {'email': email, 'password': password});
 
       return response;

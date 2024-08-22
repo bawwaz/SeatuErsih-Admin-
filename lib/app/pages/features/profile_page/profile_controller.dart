@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class ProfileController extends GetxController {
@@ -126,8 +125,8 @@ class ProfileController extends GetxController {
                 ),
               ),
               onTap: () {
-                Get.back(); 
-                pickImage(); 
+                Get.back();
+                pickImage();
               },
             ),
             ListTile(
@@ -140,8 +139,8 @@ class ProfileController extends GetxController {
                 ),
               ),
               onTap: () {
-                Get.back(); 
-                deleteImage(); 
+                Get.back();
+                deleteImage();
               },
             ),
           ],
@@ -171,8 +170,6 @@ class ProfileController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.remove('token');
         box.remove('token');
         Get.snackbar(
           'Logout',

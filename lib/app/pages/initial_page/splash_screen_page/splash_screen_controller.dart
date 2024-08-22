@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreenController extends GetxController {
   @override
@@ -10,8 +10,7 @@ class SplashScreenController extends GetxController {
   }
 
   Future<void> checkLoginStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
+    var token = GetStorage().read('token');
 
     if (token != null && token.isNotEmpty) {
       return Future.delayed(

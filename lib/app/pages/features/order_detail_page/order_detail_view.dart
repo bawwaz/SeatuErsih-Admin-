@@ -140,37 +140,44 @@ class OrderDetailView extends StatelessWidget {
                       fontSize: screenWidth * 0.038,
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.27,
-                    padding: EdgeInsets.all(16),
-                    margin: EdgeInsets.symmetric(vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          spreadRadius: 0,
-                          blurRadius: 3,
-                          offset: Offset(0, 0),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: cusItem.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(16),
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              spreadRadius: 0,
+                              blurRadius: 3,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: CardCustomerItem(
-                      brand: cusItem.isNotEmpty && cusItem[0]['brand'] != null
-                          ? cusItem[0]['brand'].toString()
-                          : 'No brand',
-                      addons: cusItem.isNotEmpty && cusItem[0]['addons'] != null
-                          ? cusItem[0]['addons'].toString()
-                          : 'No addons',
-                      notes: cusItem.isNotEmpty && cusItem[0]['notes'] != null
-                          ? cusItem[0]['notes'].toString()
-                          : 'No note',
-                    ),
+                        child: CardCustomerItem(
+                          brand: cusItem[index]['brand'] != null
+                              ? cusItem[index]['brand'].toString()
+                              : 'No brand',
+                          addons: cusItem[index]['addons'] != null
+                              ? cusItem[index]['addons'].toString()
+                              : 'No addons',
+                          notes: cusItem[index]['notes'] != null
+                              ? cusItem[index]['notes'].toString()
+                              : 'No note',
+                        ),
+                      );
+                    },
                   ),
                   SizedBox(
-                    height: 70,
+                    height: 90,
                   )
                 ],
               ),
