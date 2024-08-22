@@ -11,6 +11,7 @@ class OrderDetailController extends GetxController {
   var orderId = ''.obs;
   var orderDetail = <String, dynamic>{}.obs;
   var customerItem = <Map<String, dynamic>>[].obs;
+  
   var isLoading = false.obs;
 
   @override
@@ -64,7 +65,7 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> getCustomerItem() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/shoe/getall';
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/shoe/getshoe/${orderId.value}';
     final headers = this.headers;
 
     isLoading.value = true;

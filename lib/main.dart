@@ -1,18 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/btmnavcontroller.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_view.dart';
 import 'package:seatu_ersih_admin/firebase_options.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'app/router/app_pages.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await GetStorage.init();
   Get.put(BottomNavigationController());
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  print(prefs.getString('token').toString());
+
+  print(GetStorage().read('token'));
   runApp(MyApp());
 }
 

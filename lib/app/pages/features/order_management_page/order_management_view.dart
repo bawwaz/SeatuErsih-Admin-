@@ -51,7 +51,6 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -77,7 +76,6 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -103,7 +101,6 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -129,7 +126,6 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -155,7 +151,6 @@ class OrderManagementView extends GetView<OrderManagementController> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 90,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,

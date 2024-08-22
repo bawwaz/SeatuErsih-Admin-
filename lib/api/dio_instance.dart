@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:seatu_ersih_admin/api/api_endpoint.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DioInstance {
   //Declaration late variable
@@ -24,8 +24,7 @@ class DioInstance {
       bool? isAuthorize,
       Map<String, dynamic>? queryParameters}) async {
     Response response;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final token = GetStorage().read('token');
 
     try {
       response = await _dio.get(
@@ -49,8 +48,7 @@ class DioInstance {
       bool? isAuthorize,
       required Object data}) async {
     Response response;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final token = GetStorage().read('token');
     try {
       response = await _dio.post(endpoint,
           data: data,
@@ -71,8 +69,7 @@ class DioInstance {
       bool? isAuthorize,
       required Object data}) async {
     Response response;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final token = GetStorage().read('token');
 
     try {
       response = await _dio.put(endpoint,
@@ -92,8 +89,7 @@ class DioInstance {
   Future<Response> deleteRequest(
       {required String endpoint, bool? isAuthorize}) async {
     Response response;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final token = GetStorage().read('token');
 
     try {
       response = await _dio.delete(endpoint,
