@@ -82,11 +82,16 @@ class OrderStatusInprogressView
                 itemBuilder: (context, index) {
                   DateTime date = DateTime.parse(
                       controller.inprogressOrder[index]["pickup_date"]);
-                  String formattedPrice = NumberFormat.currency(
-                    locale: 'id_ID',
-                    symbol: 'Rp ',
-                    decimalDigits: 0,
-                  ).format(controller.inprogressOrder[index]["total_price"]);
+                  String formattedPrice =
+                      controller.inprogressOrder[index]["total_price"] == null
+                          ? "Belum Ada Harga"
+                          : NumberFormat.currency(
+                              locale: 'id_ID',
+                              symbol: 'Rp. ',
+                              decimalDigits: 0,
+                            ).format(int.parse(controller.inprogressOrder[index]
+                                  ["total_price"]
+                              .toString()));
                   return InkWell(
                     onTap: () {
                       Get.toNamed(

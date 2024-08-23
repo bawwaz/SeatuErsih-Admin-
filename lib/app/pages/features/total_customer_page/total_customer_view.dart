@@ -39,72 +39,80 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
           ),
         ),
       ),
-      body: Obx(
-        () {
-          if (controller.isLoading.value) {
-            return ListView.builder(
-              padding: EdgeInsets.all(screenWidth * 0.05),
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    child: ShimmerCardTotalCustomer(),
-                  ),
-                );
-              },
-            );
-          } else if (controller.customers.isEmpty) {
-            return Center(
-              child: Text(
-                "Tidak Ada Data Customer",
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: screenWidth * 0.035,
-                ),
-              ),
-            );
-          } else {
-            final totalCustomer = controller.customers.length;
-
-            return ListView.builder(
-              padding: EdgeInsets.all(screenWidth * 0.05),
-              itemCount: controller.customers.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: double.infinity,
-                  height: screenHeight * 0.19,
-                  padding: EdgeInsets.all(screenWidth * 0.04),
-                  margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: CardTotalCustomer(
-                    name: controller.customers[index]["username"],
-                    joinDate: DateTime.parse(
-                      controller.customers[index]["created_at"],
-                    ),
-                    profilePictureUrl: controller.customers[index]
-                        ["profile_picture"],
-                    totalCustomer: totalCustomer.toString(),
-                  ),
-                );
-              },
-            );
-          }
+      body: RefreshIndicator(
+        backgroundColor: Colors.white,
+        color: Color(0xff7EC1EB),
+        onRefresh: () async {
+          return await controller.getAllCustomers();
         },
+        child: Obx(
+          () {
+            if (controller.isLoading.value) {
+              return ListView.builder(
+                padding: EdgeInsets.all(screenWidth * 0.05),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child: ShimmerCardTotalCustomer(),
+                    ),
+                  );
+                },
+              );
+            } else if (controller.customers.isEmpty) {
+              return Center(
+                child: Text(
+                  "Tidak Ada Data Customer",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: screenWidth * 0.035,
+                  ),
+                ),
+              );
+            } else {
+              final totalCustomer = controller.customers.length;
+
+              return ListView.builder(
+                padding: EdgeInsets.all(screenWidth * 0.05),
+                itemCount: controller.customers.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: double.infinity,
+                    height: screenHeight * 0.19,
+                    padding: EdgeInsets.all(screenWidth * 0.04),
+                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          spreadRadius: 0,
+                          blurRadius: 3,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: CardTotalCustomer(
+                      name: controller.customers[index]["username"],
+                      joinDate: DateTime.parse(
+                        controller.customers[index]["created_at"],
+                      ),
+                      profilePictureUrl: controller.customers[index]
+                          ["profile_picture"],
+                      totalCustomer: totalCustomer.toString(),
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

@@ -19,6 +19,7 @@ class TotalCustomerController extends GetxController {
     getAllCustomers();
   }
 
+
   Future<void> getAllCustomers() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
     final headers = this.headers;

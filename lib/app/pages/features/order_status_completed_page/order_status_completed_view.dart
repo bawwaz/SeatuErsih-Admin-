@@ -83,11 +83,16 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
                 itemBuilder: (context, index) {
                   DateTime date = DateTime.parse(
                       controller.completedOrder[index]["pickup_date"]);
-                  String formattedPrice = NumberFormat.currency(
-                    locale: 'id_ID',
-                    symbol: 'Rp ',
-                    decimalDigits: 0,
-                  ).format(controller.completedOrder[index]["total_price"]);
+                  String formattedPrice =
+                      controller.completedOrder[index]["total_price"] == null
+                          ? "Belum Ada Harga"
+                          : NumberFormat.currency(
+                              locale: 'id_ID',
+                              symbol: 'Rp. ',
+                              decimalDigits: 0,
+                            ).format(int.parse(controller.completedOrder[index]
+                                  ["total_price"]
+                              .toString()));
                   return Container(
                     margin: EdgeInsets.only(bottom: 20),
                     width: double.infinity,
