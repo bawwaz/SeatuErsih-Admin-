@@ -68,147 +68,152 @@ class OrderRequestView extends GetView<OrderRequestController> {
             return Center(child: Text('No order details available'));
           }
 
-          return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Order',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: screenWidth * 0.038,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: CardOrder(
-                    product: controller.detailOrder["order_type"] ?? 'N/A',
-                    note: controller.detailOrder["notes"] ?? 'No notes',
-                    date: controller.detailOrder["pickup_date"] != null
-                        ? DateTime.parse(controller.detailOrder["pickup_date"])
-                        : DateTime.now(),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Contact',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: screenWidth * 0.038,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: CardContact(
-                    address: controller.detailOrder["detail_address"] ??
-                        'No address',
-                    phone: controller.detailOrder["phone"] ?? 'No phone',
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Customer',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: screenWidth * 0.038,
-                  ),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.26,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 3,
-                        offset: Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: CardCustomer(
-                    username: controller.detailOrder["user"]["username"] ??
-                        'No username',
-                    email:
-                        controller.detailOrder["user"]["email"] ?? 'No email',
-                    phone:
-                        controller.detailOrder["user"]["phone"] ?? 'No phone',
-                    profile: controller.detailOrder["user"]["profile"] ?? '',
-                  ),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      'Beri alasan',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                        fontSize: subheadingFontSize,
-                      ),
+          return RefreshIndicator(
+            backgroundColor: Colors.white,
+            color: Color(0xff7EC1EB),
+            onRefresh: () async {
+              return await controller.getDetailOrder();
+            },
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Order',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: screenWidth * 0.038,
                     ),
-                    SizedBox(width: 5),
-                    Flexible(
-                      child: Text(
-                        '(jika ingin membatalkan pesanan)',
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          spreadRadius: 0,
+                          blurRadius: 3,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: CardOrder(
+                      product: controller.detailOrder["order_type"] ?? 'N/A',
+                      note: controller.detailOrder["notes"] ?? 'No notes',
+                      date: controller.detailOrder["pickup_date"] != null
+                          ? DateTime.parse(
+                              controller.detailOrder["pickup_date"])
+                          : DateTime.now(),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Contact',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: screenWidth * 0.038,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          spreadRadius: 0,
+                          blurRadius: 3,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: CardContact(
+                      address: controller.detailOrder["detail_address"] ??
+                          'No address',
+                      phone: controller.detailOrder["phone"] ?? 'No phone',
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Customer',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: screenWidth * 0.038,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          spreadRadius: 0,
+                          blurRadius: 3,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: CardCustomer(
+                      username: controller.detailOrder["user"]["username"] ??
+                          'No username',
+                      email:
+                          controller.detailOrder["user"]["email"] ?? 'No email',
+                      phone:
+                          controller.detailOrder["user"]["phone"] ?? 'No phone',
+                      profile: controller.detailOrder["user"]["profile"] ?? '',
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        'Beri alasan',
                         style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff8a8a8a),
-                          fontSize: screenWidth * 0.030,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                          fontSize: subheadingFontSize,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  height: 85,
-                  child: CardNote(),
-                ),
-                SizedBox(height: 110),
-              ],
+                      SizedBox(width: 5),
+                      Flexible(
+                        child: Text(
+                          '(jika ingin membatalkan pesanan)',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff8a8a8a),
+                            fontSize: screenWidth * 0.030,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 85,
+                    child: CardNote(),
+                  ),
+                  SizedBox(height: 120),
+                ],
+              ),
             ),
           );
         },

@@ -83,11 +83,16 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
                 itemBuilder: (context, index) {
                   DateTime date = DateTime.parse(
                       controller.declinedOrder[index]["pickup_date"]);
-                  String formattedPrice = NumberFormat.currency(
-                    locale: 'id_ID',
-                    symbol: 'Rp ',
-                    decimalDigits: 0,
-                  ).format(controller.declinedOrder[index]["total_price"]);
+                  String formattedPrice =
+                      controller.declinedOrder[index]["total_price"] == null
+                          ? "Belum Ada Harga"
+                          : NumberFormat.currency(
+                              locale: 'id_ID',
+                              symbol: 'Rp. ',
+                              decimalDigits: 0,
+                            ).format(int.parse(controller.declinedOrder[index]
+                                  ["total_price"]
+                              .toString()));
                   return InkWell(
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
