@@ -45,13 +45,17 @@ class HomeBody extends GetView<homePageController> {
                           color: Colors.white,
                         ),
                       ),
-                      Text(
-                        "Page Admin",
-                        style: GoogleFonts.poppins(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Obx(
+                        () {
+                          return Text(
+                            '${controller.username.value}',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
