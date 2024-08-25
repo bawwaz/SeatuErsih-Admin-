@@ -18,106 +18,131 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        margin: EdgeInsets.all(18),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: LogoProduct(),
-              ),
-              SizedBox(
-                height: 29,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Login Admin ",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF000000),
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.055,
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.all(18),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LogoProduct(),
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Login Admin ",
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF000000),
+                        fontWeight: FontWeight.bold,
+                        fontSize: screenWidth * 0.055,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "SEATUERSIH",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF7EC1EB),
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.055,
+                    Text(
+                      "SEATUERSIH",
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF7EC1EB),
+                        fontWeight: FontWeight.bold,
+                        fontSize: screenWidth * 0.055,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(width: double.infinity, height: 53, child: InputName()),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                  width: double.infinity, height: 53, child: InputPassword()),
-              // Align(
-              //   alignment: Alignment.centerRight,
-              //   child: ForgetPassword(),
-              // ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: SizedBox(
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                    width: double.infinity, height: 53, child: InputName()),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                    width: double.infinity, height: 53, child: InputPassword()),
+                // Align(
+                //   alignment: Alignment.centerRight,
+                //   child: ForgetPassword(),
+                // ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
                   width: double.infinity,
                   height: 45,
                   child: SignIn(),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: 99,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF8A8A8A),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Pastikan sepatu pelanggan selalu bersih dan rapi.",
+                        style: GoogleFonts.poppins(
+                          color: Color(0xFF8A8A8A),
+                          fontWeight: FontWeight.w500,
+                          fontSize: screenWidth * 0.029,
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "or continue with",
-                      style: GoogleFonts.poppins(
-                        color: Color(0xFF8A8A8A),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
+                      Text(
+                        "Masuk sekarang untuk mulai mengelola pesanan!",
+                        style: GoogleFonts.poppins(
+                          color: Color(0xFF8A8A8A),
+                          fontWeight: FontWeight.w500,
+                          fontSize: screenWidth * 0.029,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    child: Container(
-                      width: 99,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF8A8A8A),
+                ),
+                // SizedBox(
+                //   height: 33,
+                // ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 53,
+                //   child: SignInGoogle(),
+                // ),
+                SizedBox(
+                  height: 60,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 37),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: 90,
+                        height: 90,
+                        child: Image.asset(
+                          "assets/img/wash-icon.png",
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 33,
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 53,
-                child: SignInGoogle(),
-              ),
-            ],
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 14),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       SizedBox(
+                //         width: 110,
+                //         height: 110,
+                //         child: Image.asset(
+                //           "assets/img/clean-icon.png",
+                //           fit: BoxFit.fill,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ],
+            ),
           ),
         ),
       ),
