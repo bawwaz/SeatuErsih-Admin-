@@ -9,10 +9,12 @@ class homePageController extends GetxController {
   var customers = <Map<String, dynamic>>[].obs;
   var token = ''.obs;
   var box = GetStorage();
+  var username = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
+    username.value = box.read('username') ?? '';
     token.value = box.read('token') ?? '';
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');

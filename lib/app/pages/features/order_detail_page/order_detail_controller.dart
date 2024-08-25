@@ -132,7 +132,7 @@ class OrderDetailController extends GetxController {
 
           String snackbarMessage = orderStatus == "decline"
               ? 'Data berhasil diupdate dan silahkan cek didecline'
-              : 'Data berhasil diupdate silahkan cek di in-progress';
+              : 'Data berhasil diupdate silahkan cek di Completed Orders';
 
           Get.snackbar(
             'Success',

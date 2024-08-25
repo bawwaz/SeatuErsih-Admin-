@@ -96,14 +96,14 @@ class OrderRequestController extends GetxController {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
 
-        if (orderStatus == "decline" || orderStatus == "in-progress") {
+        if (orderStatus == "decline" || orderStatus == "waiting_for_payment") {
           Get.offAll(() => BottomNavBar(), arguments: 2);
           final BottomNavigationController navController = Get.find();
           navController.currentIndex.value = 2;
 
           String snackbarMessage = orderStatus == "decline"
               ? 'Pesanan berhasil ditolak dan silahkan cek didecline'
-              : 'Pesanan berhasil diupdate silahkan cek di in-progress';
+              : 'Pesanan berhasil diupdate silahkan cek di Waiting For Payment';
 
           Get.snackbar(
             'Success',

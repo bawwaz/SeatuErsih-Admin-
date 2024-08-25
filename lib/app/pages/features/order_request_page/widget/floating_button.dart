@@ -34,7 +34,7 @@ class FloatingButton extends GetView<OrderRequestController> {
                 child: FloatingActionButton.extended(
                   heroTag: null,
                   onPressed: () {
-                    controller.postUpdateStatus('in-progress');
+                    controller.postUpdateStatus('waiting_for_payment');
                   },
                   backgroundColor: Color(0xff7EC1EB),
                   shape: RoundedRectangleBorder(
