@@ -15,14 +15,14 @@ class ButtonSwitch extends GetView<OrderManagementController> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final headingFontSize = screenWidth * 0.045;
+
     return Obx(
       () {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              controller.isStoreOpen.value
+              controller.isStoreOpen.value == true
                   ? 'Toko Sedang Buka'
                   : 'Toko Sedang Tutup',
               style: GoogleFonts.poppins(
@@ -32,7 +32,7 @@ class ButtonSwitch extends GetView<OrderManagementController> {
               ),
             ),
             CupertinoSwitch(
-              activeColor: Color(0xff7EC1EB),
+              activeColor: Colors.green,
               trackColor: Color(0xffEB4335),
               value: controller.isStoreOpen.value,
               onChanged: (value) {

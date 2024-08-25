@@ -151,7 +151,7 @@ class OrderRequestController extends GetxController {
 
         Get.snackbar(
           'Success',
-          'Order has been declined successfully',
+          'Pesanan berhasil ditolak dan silahkan cek didecline',
           snackPosition: SnackPosition.TOP,
         );
       } else {
