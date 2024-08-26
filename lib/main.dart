@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:seatu_ersih_admin/api/push_notification_service.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/btmnavcontroller.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/initial_page/splash_screen_page/splash_screen_view.dart';
@@ -14,6 +15,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
+  PushNotificationService.initNotification();
   Get.put(BottomNavigationController());
 
   print(GetStorage().read('token'));
