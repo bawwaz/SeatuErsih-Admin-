@@ -17,15 +17,17 @@ dependencies:
   get_storage: null
   google_fonts: any
   intl: ^0.19.0
-  another_flutter_splash_screen: 
+  another_flutter_splash_screen:
   shimmer:
   animated_text_kit:
   fl_chart:
-  excel: ^4.0.3 
+  excel:
   path_provider:
   smart_snackbars: ^1.0.0
   permission_handler:
-  image_picker: 
+  image_picker:
+  shared_preferences:
+  flutter_local_notifications: 
 
 dev_dependencies:
   flutter_test:

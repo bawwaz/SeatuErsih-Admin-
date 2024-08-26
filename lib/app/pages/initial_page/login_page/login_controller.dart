@@ -25,8 +25,12 @@ class LoginController extends GetxController {
   Future<void> login() async {
     isLoading.value = true;
     try {
+      var notificationToken = GetStorage().read('tokenFirebase');
       final response = await loginAuthService.login(
-          emailController.text, passwordController.text);
+        emailController.text,
+        passwordController.text,
+        notificationToken,
+      );
       print(response.data['token']);
 
       box.write('token', response.data['token']);
