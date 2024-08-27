@@ -32,7 +32,7 @@ class AddShoesBrandController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.', isError: true);
         return;
       }
 
@@ -62,7 +62,7 @@ class AddShoesBrandController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.', isError: true);
         return;
       }
 
@@ -83,14 +83,14 @@ class AddShoesBrandController extends GetxController {
           brand_name.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format', isError: true);
         }
       } else {
         showCustomSnackbar(
-            'Error', 'Failed to retrieve data: ${response.body}');
+            'Error', 'Failed to retrieve data: ${response.body}', isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
