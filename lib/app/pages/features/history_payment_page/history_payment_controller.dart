@@ -31,7 +31,8 @@ class HistoryPaymentController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -48,14 +49,15 @@ class HistoryPaymentController extends GetxController {
           history.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
       } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     } finally {
       isLoading.value = false;
@@ -99,7 +101,8 @@ class HistoryPaymentController extends GetxController {
     var dir =
         await getExternalStorageDirectory(); // Menggunakan direktori penyimpanan eksternal
     if (dir == null) {
-      showCustomSnackbar("Error", "Unable to access external storage.");
+      showCustomSnackbar("Error", "Unable to access external storage.",
+          isError: true);
       return;
     }
 
@@ -126,7 +129,8 @@ class HistoryPaymentController extends GetxController {
           "Data telah diekspor ke Excel! Periksa folder Download Anda.");
     } catch (e) {
       print('Error saving file: $e');
-      showCustomSnackbar("Error", "Gagal mengekspor data ke Excel.");
+      showCustomSnackbar("Error", "Gagal mengekspor data ke Excel.",
+          isError: true);
     }
   }
 

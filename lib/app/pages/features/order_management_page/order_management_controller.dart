@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,14 +30,7 @@ class OrderManagementController extends GetxController {
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');
     }
-    getPendingOrder();
-    getWaitingOrder();
-    getInprogressOrder();
-    getCompletedOrder();
-    getDeclinedOrder();
-    getChartReg();
-    getChartDeep();
-    getStatusOpen();
+    refreshOrders(); // Refresh all data on init
   }
 
   void toggleStoreStatus(bool value) async {
@@ -47,12 +41,11 @@ class OrderManagementController extends GetxController {
   Future<void> postStatusOpen() async {
     final url =
         'http://seatuersih.pradiptaahmad.tech/api/store-status/status-toko/1?_method=put';
-
     final headers = this.headers;
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -66,13 +59,27 @@ class OrderManagementController extends GetxController {
 
       if (response.statusCode == 200) {
         await getStatusOpen();
-
-        Get.snackbar('Success',
-            isStoreOpen == true ? 'Status Toko : Buka' : 'Status Toko : Tutup');
+        showCustomSnackbar('Success',
+            isStoreOpen.value ? 'Status Toko: Buka' : 'Status Toko: Tutup');
+      } else {
+        showCustomSnackbar(
+            'Error', 'Failed to update store status: ${response.body}');
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
+  }
+
+  Future<void> refreshOrders() async {
+    await Future.wait([
+      getPendingOrder(),
+      getWaitingOrder(),
+      getInprogressOrder(),
+      getCompletedOrder(),
+      getDeclinedOrder(),
+      getStatusOpen()
+    ]);
   }
 
   Future<void> getPendingOrder() async {
@@ -81,7 +88,7 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -101,9 +108,12 @@ class OrderManagementController extends GetxController {
             decodedResponse.containsKey('data')) {
           pendingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
-        } else {}
+        } else {
+          showCustomSnackbar('Error', 'Unexpected response format');
+        }
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
   }
@@ -115,7 +125,7 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -136,10 +146,14 @@ class OrderManagementController extends GetxController {
           waitingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          Get.snackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
+      } else {
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve waiting orders: ${response.body}');
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
   }
@@ -151,7 +165,7 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -172,9 +186,15 @@ class OrderManagementController extends GetxController {
             decodedResponse.containsKey('data')) {
           inprogressOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
+        } else {
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
+      } else {
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve in-progress orders: ${response.body}');
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
   }
@@ -182,12 +202,11 @@ class OrderManagementController extends GetxController {
   Future<void> getCompletedOrder() async {
     final url =
         'http://seatuersih.pradiptaahmad.tech/api/order/status/completed';
-
     final headers = this.headers;
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -209,22 +228,25 @@ class OrderManagementController extends GetxController {
           completedOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          Get.snackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
+      } else {
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve completed orders: ${response.body}');
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
   }
 
   Future<void> getDeclinedOrder() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/decline';
-
     final headers = this.headers;
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -246,94 +268,16 @@ class OrderManagementController extends GetxController {
           declinedOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          Get.snackbar('Error', 'Unexpected response format');
-        }
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> refreshOrders() async {
-    await getPendingOrder();
-    await getWaitingOrder();
-    await getInprogressOrder();
-    await getCompletedOrder();
-    await getDeclinedOrder();
-    await getChartReg();
-    await getChartDeep();
-    await getStatusOpen();
-  }
-
-  Future<void> getChartReg() async {
-    isLoading.value = true;
-    final url = 'http://seatuersih.pradiptaahmad.tech/api';
-    final token = box.read('token');
-    var headers = {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    };
-
-    try {
-      final response = await http
-          .get(Uri.parse('$url/order/chart/regular_clean'), headers: headers);
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        if (data != null && data is List) {
-          chartReg.assignAll(data);
-          calculateOrderDifference(data);
-        } else {
-          print('no data found');
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
       } else {
-        print('Failed to fetch data: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        throw Exception('Failed to fetch data');
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve declined orders: ${response.body}');
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
-    isLoading.value = false;
-  }
-
-  Future<void> getChartDeep() async {
-    isLoading.value = true;
-    final url = 'http://seatuersih.pradiptaahmad.tech/api';
-    final token = box.read('token');
-    var headers = {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    };
-
-    try {
-      final response = await http.get(Uri.parse('$url/order/chart/deep_clean'),
-          headers: headers);
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        if (data != null && data is List) {
-          if (data.isEmpty) {
-            Get.snackbar(
-              'No Data',
-              'No deep clean data found.',
-              snackPosition: SnackPosition.BOTTOM,
-            );
-          }
-          chartDeep.assignAll(data);
-          calculateOrderDifference(data);
-        } else {
-          print('no data found');
-        }
-      } else {
-        print('Failed to fetch data: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        throw Exception('Failed to fetch data');
-      }
-    } catch (e) {
-      print(e);
-    }
-    isLoading.value = false;
   }
 
   void calculateOrderDifference(List data) {
@@ -353,7 +297,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -367,17 +312,42 @@ class OrderManagementController extends GetxController {
         if (decodedResponse is Map && decodedResponse.containsKey('data')) {
           statusOpen.value = Map<String, dynamic>.from(decodedResponse['data']);
           isStoreOpen.value = statusOpen['is_open'];
-          print('tetstgghdsdhsd : ${isStoreOpen.value.toString()}');
-        } else {}
+        } else {
+          showCustomSnackbar('Error', 'Unexpected response format');
+        }
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve store status: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      colorText: Colors.white,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      animationDuration: Duration(milliseconds: 800),
+      duration: Duration(seconds: 3),
+      icon: Icon(
+        isError ? Icons.error : Icons.check_circle,
+        color: Colors.white,
+      ),
+      shouldIconPulse: true,
+      barBlur: 20,
+      overlayBlur: 0.3,
+      snackStyle: SnackStyle.FLOATING,
+    );
   }
 
   Map<String, String> get headers {

@@ -42,7 +42,8 @@ class OrderDetailController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -57,14 +58,15 @@ class OrderDetailController extends GetxController {
           orderDetail.value =
               Map<String, dynamic>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
       } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     } finally {
       isLoading.value = false;
@@ -80,7 +82,8 @@ class OrderDetailController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -96,11 +99,11 @@ class OrderDetailController extends GetxController {
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         }
       } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     } finally {
       isLoading.value = false;
@@ -142,13 +145,15 @@ class OrderDetailController extends GetxController {
             snackbarMessage,
           );
         } else {
-          showCustomSnackbar('Error', 'Unexpected order status: $orderStatus');
+          showCustomSnackbar('Error', 'Unexpected order status: $orderStatus',
+              isError: true);
         }
       } else {
-        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
