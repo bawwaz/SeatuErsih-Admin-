@@ -55,12 +55,16 @@ class LoginPage extends StatelessWidget {
                   height: 20,
                 ),
                 SizedBox(
-                    width: double.infinity, height: 53, child: InputName()),
+                  width: double.infinity,
+                  child: InputName(),
+                ),
                 SizedBox(
                   height: 20,
                 ),
                 SizedBox(
-                    width: double.infinity, height: 53, child: InputPassword()),
+                  width: double.infinity,
+                  child: InputPassword(),
+                ),
                 // Align(
                 //   alignment: Alignment.centerRight,
                 //   child: ForgetPassword(),

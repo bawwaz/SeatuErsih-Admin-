@@ -32,7 +32,7 @@ class AddShoesBrandController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -48,7 +48,7 @@ class AddShoesBrandController extends GetxController {
       if (response.statusCode == 201) {
         await getAllBrand();
         brandController.clear();
-        Get.snackbar('Success', 'Sepatu berhasil ditambahkan');
+        showCustomSnackbar('Success', 'Sepatu berhasil ditambahkan');
       }
     } catch (e) {
       print(e);
@@ -62,7 +62,7 @@ class AddShoesBrandController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -83,15 +83,39 @@ class AddShoesBrandController extends GetxController {
           brand_name.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          Get.snackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
+  }
+
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      colorText: Colors.white,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      animationDuration: Duration(milliseconds: 800),
+      duration: Duration(seconds: 3),
+      icon: Icon(
+        isError ? Icons.error : Icons.check_circle,
+        color: Colors.white,
+      ),
+      shouldIconPulse: true,
+      barBlur: 20,
+      overlayBlur: 0.3,
+      snackStyle: SnackStyle.FLOATING,
+    );
   }
 
   Map<String, String> get headers {

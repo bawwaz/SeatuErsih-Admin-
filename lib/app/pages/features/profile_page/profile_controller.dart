@@ -154,6 +154,29 @@ class ProfileController extends GetxController {
     box.remove('profileImagePath');
   }
 
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      colorText: Colors.white,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      animationDuration: Duration(milliseconds: 800),
+      duration: Duration(seconds: 3),
+      icon: Icon(
+        isError ? Icons.error : Icons.check_circle,
+        color: Colors.white,
+      ),
+      shouldIconPulse: true,
+      barBlur: 20,
+      overlayBlur: 0.3,
+      snackStyle: SnackStyle.FLOATING,
+    );
+  }
+
   Future<void> logout() async {
     isLoading.value = true;
     final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout';
@@ -171,25 +194,14 @@ class ProfileController extends GetxController {
 
       if (response.statusCode == 200) {
         box.remove('token');
-        Get.snackbar(
-          'Logout',
-          'Anda sudah logout',
-          snackPosition: SnackPosition.TOP,
-        );
+        showCustomSnackbar('Success', 'Anda berhasil logout');
         Get.offAllNamed('/login');
       } else {
-        Get.snackbar(
-          'Error',
-          'Gagal logout: ${response.body}',
-          snackPosition: SnackPosition.TOP,
-        );
+        showCustomSnackbar('Error', 'Gagal logout: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Exception occurred: $e',
-        snackPosition: SnackPosition.TOP,
-      );
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
     } finally {
       isLoading.value = false;
     }

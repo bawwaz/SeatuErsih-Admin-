@@ -10,7 +10,7 @@ class AddLocationController extends GetxController {
   var kabupaten_name = <Map<String, dynamic>>[].obs;
   var kecamatan_name = <Map<String, dynamic>>[].obs;
   var selectedKabupatenId = 0.obs;
-    var savedLocations = <Map<String, dynamic>>[].obs;
+  var savedLocations = <Map<String, dynamic>>[].obs;
 
   final box = GetStorage();
   var token = ''.obs;
@@ -18,7 +18,7 @@ class AddLocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    token.value = box.read('token');
+    token.value = box.read('token') ?? '';
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');
     }
@@ -37,7 +37,8 @@ class AddLocationController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -53,9 +54,13 @@ class AddLocationController extends GetxController {
       if (response.statusCode == 201) {
         await getAllKabupaten();
         kabupatenController.clear();
-        Get.snackbar('Success', 'Kabupaten berhasil ditambahkan');
+        showCustomSnackbar('Success', 'Kabupaten berhasil ditambahkan');
+      } else {
+        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -65,14 +70,15 @@ class AddLocationController extends GetxController {
 
     var data = {
       'kecamatan': kecamatanController.text,
-      'kabupaten_id': selectedKabupatenId.value, 
+      'kabupaten_id': selectedKabupatenId.value,
     };
 
     final headers = this.headers;
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -89,12 +95,14 @@ class AddLocationController extends GetxController {
         await getAllKecamatan();
         kecamatanController.clear();
         selectedKabupatenId.value = 0;
-        Get.snackbar('Success', 'Kecamatan berhasil ditambahkan');
+        showCustomSnackbar('Success', 'Kecamatan berhasil ditambahkan');
       } else {
-        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
+      print(e);
     }
   }
 
@@ -106,13 +114,14 @@ class AddLocationController extends GetxController {
       var response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        kabupaten_name.value = List<Map<String, dynamic>>.from(decodedResponse['data']);
+        kabupaten_name.value =
+            List<Map<String, dynamic>>.from(decodedResponse['data']);
         mergeLocations();
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data');
+        showCustomSnackbar('Error', 'Failed to retrieve data', isError: true);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
     }
   }
 
@@ -124,13 +133,14 @@ class AddLocationController extends GetxController {
       var response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        kecamatan_name.value = List<Map<String, dynamic>>.from(decodedResponse['data']);
+        kecamatan_name.value =
+            List<Map<String, dynamic>>.from(decodedResponse['data']);
         mergeLocations();
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data');
+        showCustomSnackbar('Error', 'Failed to retrieve data', isError: true);
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
     }
   }
 
@@ -138,7 +148,8 @@ class AddLocationController extends GetxController {
     savedLocations.clear();
     for (var kabupaten in kabupaten_name) {
       var matchedKecamatan = kecamatan_name
-          .where((kec) => kec['kabupaten_id'].toString() == kabupaten['id'].toString())
+          .where((kec) =>
+              kec['kabupaten_id'].toString() == kabupaten['id'].toString())
           .map((kec) => kec['kecamatan'])
           .toList();
       if (matchedKecamatan.isNotEmpty) {
@@ -148,6 +159,29 @@ class AddLocationController extends GetxController {
         });
       }
     }
+  }
+
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      colorText: Colors.white,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      animationDuration: Duration(milliseconds: 800),
+      duration: Duration(seconds: 3),
+      icon: Icon(
+        isError ? Icons.error : Icons.check_circle,
+        color: Colors.white,
+      ),
+      shouldIconPulse: true,
+      barBlur: 20,
+      overlayBlur: 0.3,
+      snackStyle: SnackStyle.FLOATING,
+    );
   }
 
   Map<String, String> get headers {
