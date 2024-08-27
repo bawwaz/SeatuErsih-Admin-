@@ -9,32 +9,40 @@ class InputPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => TextField(
-        controller: loginController.passwordController,
-        obscureText: loginController.isPasswordHidden.value,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          labelText: "Password",
-          labelStyle: GoogleFonts.poppins(),
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Color(0xFF8A8A8A),
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(
-              loginController.isPasswordHidden.value
-                  ? Icons.visibility
-                  : Icons.visibility_off,
-              color: Color(0xFF8A8A8A),
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: loginController.passwordController,
+            obscureText: loginController.isPasswordHidden.value,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              labelText: "Password",
+              labelStyle: GoogleFonts.poppins(),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Color(0xFF8A8A8A),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  loginController.isPasswordHidden.value
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: Color(0xFF8A8A8A),
+                ),
+                onPressed: () {
+                  loginController.isPasswordHidden.value =
+                      !loginController.isPasswordHidden.value;
+                },
+              ),
+              errorText: loginController.passwordError.value.isEmpty
+                  ? null
+                  : loginController.passwordError.value,
             ),
-            onPressed: () {
-              loginController.isPasswordHidden.value =
-                  !loginController.isPasswordHidden.value;
-            },
           ),
-        ),
+        ],
       ),
     );
   }

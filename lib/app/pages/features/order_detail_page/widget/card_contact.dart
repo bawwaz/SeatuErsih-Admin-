@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart'; // Import untuk Clipboard
 
 class CardContactDetail extends StatelessWidget {
-  String address;
-  String phone;
+  final String address;
+  final String phone;
+
   CardContactDetail({
     super.key,
     required this.address,
@@ -13,11 +15,6 @@ class CardContactDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    final titleFontSize = screenWidth * 0.04; // 4% of screen width
-    final contentFontSize = screenWidth * 0.035; // 3.5% of screen width
-    final dividerHeight = screenWidth * 0.03; // 3% of screen width
-    final verticalSpacing = screenWidth * 0.015; // 1.5% of screen width
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +29,7 @@ class CardContactDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          '${address}',
+          address,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -48,13 +45,45 @@ class CardContactDetail extends StatelessWidget {
             fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: 7),
+        Row(
+          children: [
+            Text(
+              phone,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+            SizedBox(width: 13), // Mengurangi jarak antara teks dan ikon
+            GestureDetector(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: phone));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Nomor telepon telah disalin ke clipboard!',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        fontSize: screenWidth * 0.030,
+                      ),
+                    ),
+                    backgroundColor: Color(0xff7EC1EB),
+                  ),
+                );
+              },
+              child: Icon(Icons.copy, color: Color(0xff8a8a8a)),
+            ),
+          ],
+        ),
+        SizedBox(height: 6),
         Text(
-          '${phone}',
+          '*Sebaiknya hubungi customer sebelum ke lokasi',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
-            color: Color(0xff8A8A8A),
-            fontSize: screenWidth * 0.032,
+            color: Color.fromARGB(255, 255, 96, 84),
+            fontSize: screenWidth * 0.028,
           ),
         ),
       ],

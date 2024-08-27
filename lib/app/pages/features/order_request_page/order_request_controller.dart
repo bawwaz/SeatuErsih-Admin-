@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -47,7 +48,7 @@ class OrderRequestController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        Get.snackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.');
         return;
       }
 
@@ -62,13 +63,14 @@ class OrderRequestController extends GetxController {
           detailOrder.value =
               Map<String, dynamic>.from(decodedResponse['data']);
         } else {
-          Get.snackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format');
         }
       } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+        showCustomSnackbar(
+            'Error', 'Failed to retrieve data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     } finally {
       isLoading.value = false;
@@ -105,19 +107,18 @@ class OrderRequestController extends GetxController {
               ? 'Pesanan berhasil ditolak dan silahkan cek didecline'
               : 'Pesanan berhasil diupdate silahkan cek di Waiting For Payment';
 
-          Get.snackbar(
+          showCustomSnackbar(
             'Success',
             snackbarMessage,
-            snackPosition: SnackPosition.TOP,
           );
         } else {
-          Get.snackbar('Error', 'Unexpected order status: $orderStatus');
+          showCustomSnackbar('Error', 'Unexpected order status: $orderStatus');
         }
       } else {
-        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
   }
@@ -149,18 +150,40 @@ class OrderRequestController extends GetxController {
         final BottomNavigationController navController = Get.find();
         navController.currentIndex.value = 2;
 
-        Get.snackbar(
+        showCustomSnackbar(
           'Success',
           'Pesanan berhasil ditolak dan silahkan cek didecline',
-          snackPosition: SnackPosition.TOP,
         );
       } else {
-        Get.snackbar('Error', 'Failed to submit data: ${response.body}');
+        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}');
       }
     } catch (e) {
-      Get.snackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e');
       print(e);
     }
+  }
+
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      colorText: Colors.white,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      animationDuration: Duration(milliseconds: 800),
+      duration: Duration(seconds: 3),
+      icon: Icon(
+        isError ? Icons.error : Icons.check_circle,
+        color: Colors.white,
+      ),
+      shouldIconPulse: true,
+      barBlur: 20,
+      overlayBlur: 0.3,
+      snackStyle: SnackStyle.FLOATING,
+    );
   }
 
   Map<String, String> get headers {
