@@ -24,11 +24,11 @@ class ChartRegCleanM extends StatelessWidget {
         return double.parse(data['total'].toString()) > 0;
       }).toList();
 
-      // Debugging print to check filtered data
-      print("Filtered Month Data (non-zero totals): $filteredMonthData");
-
       // Ensure maxY is assigned a value before being used
       double maxY = 1; // Initialize maxY with a default value
+      double highestTotal = 0;
+      String bestSellingDay = '';
+
       List<BarChartGroupData> barGroups =
           filteredMonthData.asMap().entries.map((entry) {
         int index = entry.key;
@@ -40,18 +40,25 @@ class ChartRegCleanM extends StatelessWidget {
           maxY = total + 10; // Add a little padding
         }
 
+        // Find the highest total and corresponding date
+        if (total > highestTotal) {
+          highestTotal = total;
+          DateTime date = DateTime.parse(data['date']);
+          bestSellingDay = DateFormat('d MMMM').format(date);
+        }
+
         return BarChartGroupData(
           x: index,
           barRods: [
             BarChartRodData(
               toY: total,
               width: 16,
-              color: Color(0xFF7EC1EB),
+              color: const Color(0xFF7EC1EB),
               borderRadius: BorderRadius.circular(4),
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY: maxY,
-                color: Color(0xFF7EC1EB).withOpacity(0.4),
+                color: const Color(0xFF7EC1EB).withOpacity(0.4),
               ),
             ),
           ],
@@ -147,6 +154,26 @@ class ChartRegCleanM extends StatelessWidget {
                 ),
               ),
             ),
+            if (bestSellingDay.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Text(
+                  'On $bestSellingDay, Regular Clean was the best selling,',
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            Text(
+              'with a total of $highestTotal orders!',
+              style: GoogleFonts.poppins(
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+              ),
+            )
           ],
         ),
       );

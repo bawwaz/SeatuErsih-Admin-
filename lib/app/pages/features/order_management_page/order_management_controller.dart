@@ -101,9 +101,7 @@ class OrderManagementController extends GetxController {
             decodedResponse.containsKey('data')) {
           pendingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
-        } else {
-          Get.snackbar('Error', 'Unexpected response format');
-        }
+        } else {}
       }
     } catch (e) {
       print(e);
@@ -174,8 +172,6 @@ class OrderManagementController extends GetxController {
             decodedResponse.containsKey('data')) {
           inprogressOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
-        } else {
-          Get.snackbar('Error', 'Unexpected response format');
         }
       }
     } catch (e) {
@@ -372,9 +368,7 @@ class OrderManagementController extends GetxController {
           statusOpen.value = Map<String, dynamic>.from(decodedResponse['data']);
           isStoreOpen.value = statusOpen['is_open'];
           print('tetstgghdsdhsd : ${isStoreOpen.value.toString()}');
-        } else {
-          Get.snackbar('Error', 'Unexpected response format');
-        }
+        } else {}
       } else {
         Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
       }

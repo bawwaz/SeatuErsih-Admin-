@@ -145,31 +145,31 @@ class HomeBody extends GetView<homePageController> {
                 child: CardAddBrand(),
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
-            InkWell(
-              onTap: () {
-                Get.toNamed(Routes.ADDCOUPON);
-              },
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.25),
-                      blurRadius: 2,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                ),
-                child: CardAddCoupon(),
-              ),
-            ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // InkWell(
+            //   onTap: () {
+            //     Get.toNamed(Routes.ADDCOUPON);
+            //   },
+            //   child: Container(
+            //     width: double.infinity,
+            //     margin: const EdgeInsets.symmetric(horizontal: 16.0),
+            //     padding: const EdgeInsets.all(16.0),
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(10),
+            //       boxShadow: [
+            //         BoxShadow(
+            //           color: Colors.black.withOpacity(0.25),
+            //           blurRadius: 2,
+            //           offset: Offset(0, 0),
+            //         ),
+            //       ],
+            //     ),
+            //     child: CardAddCoupon(),
+            //   ),
+            // ),
             SizedBox(
               height: 15,
             ),

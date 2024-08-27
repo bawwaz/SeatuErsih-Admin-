@@ -23,9 +23,9 @@ class CardTotalCustomer extends GetView<homePageController> {
         ),
         SizedBox(height: 4),
         Text(
-          'All - time',
+          'Memakai Aplikasi',
           style: GoogleFonts.poppins(
-            fontSize: 15,
+            fontSize: 13,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
