@@ -16,7 +16,7 @@ class SplashScreenController extends GetxController {
       return Future.delayed(
         Duration(seconds: 3),
         () {
-          Get.offNamed(Routes.BTMNAVBAR);
+          Get.offNamed(Routes.LOGIN);
         },
       );
     } else {
