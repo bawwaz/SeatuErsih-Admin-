@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class AddShoesBrandController extends GetxController {
   TextEditingController brandController = TextEditingController();
+  final GlobalKey<FormState> brandKey = GlobalKey<FormState>();
   var brand_name = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
 
@@ -31,32 +32,34 @@ class AddShoesBrandController extends GetxController {
 
     final headers = this.headers;
 
-    try {
-      isLoading(true);
+    if (brandKey.currentState!.validate()) {
+      try {
+        isLoading(true);
 
-      if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.',
-            isError: true);
-        return;
+        if (headers.isEmpty) {
+          showCustomSnackbar('Error', 'No authentication token found.',
+              isError: true);
+          return;
+        }
+
+        var response = await http.post(
+          Uri.parse(url),
+          headers: headers,
+          body: json.encode(data),
+        );
+
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+
+        if (response.statusCode == 201) {
+          await getAllBrand();
+          brandController.clear();
+          isLoading(false);
+          showCustomSnackbar('Success', 'Sepatu berhasil ditambahkan');
+        }
+      } catch (e) {
+        print(e);
       }
-
-      var response = await http.post(
-        Uri.parse(url),
-        headers: headers,
-        body: json.encode(data),
-      );
-
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
-      if (response.statusCode == 201) {
-        await getAllBrand();
-        brandController.clear();
-        isLoading(false);
-        showCustomSnackbar('Success', 'Sepatu berhasil ditambahkan');
-      }
-    } catch (e) {
-      print(e);
     }
   }
 

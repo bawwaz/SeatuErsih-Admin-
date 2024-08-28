@@ -7,6 +7,8 @@ import 'package:get_storage/get_storage.dart';
 class AddLocationController extends GetxController {
   TextEditingController kabupatenController = TextEditingController();
   TextEditingController kecamatanController = TextEditingController();
+  final GlobalKey<FormState> kabupatenKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> KecamatanKey = GlobalKey<FormState>();
   var kabupaten_name = <Map<String, dynamic>>[].obs;
   var kecamatan_name = <Map<String, dynamic>>[].obs;
   var selectedKabupatenId = 0.obs;
@@ -36,37 +38,39 @@ class AddLocationController extends GetxController {
 
     final headers = this.headers;
 
-    try {
-      isLoading(true);
-      if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.',
-            isError: true);
-        return;
-      }
+    if (kabupatenKey.currentState!.validate()) {
+      try {
+        isLoading(true);
+        if (headers.isEmpty) {
+          showCustomSnackbar('Error', 'No authentication token found.',
+              isError: true);
+          return;
+        }
 
-      var response = await http.post(
-        Uri.parse(url),
-        headers: headers,
-        body: json.encode(data),
-      );
+        var response = await http.post(
+          Uri.parse(url),
+          headers: headers,
+          body: json.encode(data),
+        );
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
 
-      if (response.statusCode == 201) {
-        await getAllKabupaten();
-        kabupatenController.clear();
+        if (response.statusCode == 201) {
+          await getAllKabupaten();
+          kabupatenController.clear();
+          isLoading(false);
+          showCustomSnackbar('Success', 'Kabupaten berhasil ditambahkan');
+        } else {
+          isLoading(false);
+          showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+              isError: true);
+        }
+      } catch (e) {
         isLoading(false);
-        showCustomSnackbar('Success', 'Kabupaten berhasil ditambahkan');
-      } else {
-        isLoading(false);
-        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
-            isError: true);
+        showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
+        print(e);
       }
-    } catch (e) {
-      isLoading(false);
-      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
-      print(e);
     }
   }
 
@@ -80,38 +84,40 @@ class AddLocationController extends GetxController {
 
     final headers = this.headers;
 
-    try {
-      isLoading(true);
-      if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.',
-            isError: true);
-        return;
-      }
+    if (KecamatanKey.currentState!.validate()) {
+      try {
+        isLoading(true);
+        if (headers.isEmpty) {
+          showCustomSnackbar('Error', 'No authentication token found.',
+              isError: true);
+          return;
+        }
 
-      var response = await http.post(
-        Uri.parse(url),
-        headers: headers,
-        body: json.encode(data),
-      );
+        var response = await http.post(
+          Uri.parse(url),
+          headers: headers,
+          body: json.encode(data),
+        );
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
 
-      if (response.statusCode == 201) {
-        await getAllKecamatan();
-        kecamatanController.clear();
-        selectedKabupatenId.value = 0;
+        if (response.statusCode == 201) {
+          await getAllKecamatan();
+          kecamatanController.clear();
+          selectedKabupatenId.value = 0;
+          isLoading(false);
+          showCustomSnackbar('Success', 'Kecamatan berhasil ditambahkan');
+        } else {
+          isLoading(false);
+          showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+              isError: true);
+        }
+      } catch (e) {
         isLoading(false);
-        showCustomSnackbar('Success', 'Kecamatan berhasil ditambahkan');
-      } else {
-        isLoading(false);
-        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
-            isError: true);
+        showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
+        print(e);
       }
-    } catch (e) {
-      isLoading(false);
-      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
-      print(e);
     }
   }
 
