@@ -20,7 +20,6 @@ class FloatingButtonKab extends StatelessWidget {
           onPressed: controller.isLoading.value
               ? null
               : () async {
-                  controller.isLoading.value = true;
                   await controller.postKabupaten();
                   controller.isLoading.value = false;
                 },

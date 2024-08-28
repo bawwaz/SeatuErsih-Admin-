@@ -12,16 +12,31 @@ class TextFieldAddKabupaten extends StatelessWidget {
   Widget build(BuildContext context) {
     final AddLocationController controller = Get.put(AddLocationController());
 
-    return TextField(
-      controller: controller.kabupatenController,
-      decoration: InputDecoration(
-        hintText: 'Tambahkan disini...',
-        hintStyle: GoogleFonts.poppins(
-          color: Color(0xff8a8a8a),
-          fontSize: 14,
+    return Form(
+      key: controller.kabupatenKey,
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Nama kabupaten tidak boleh kosong';
+          }
+          bool exists = controller.kabupaten_name.any((element) =>
+              element['kabupaten'].toString().toLowerCase() ==
+              value.toLowerCase());
+          if (exists) {
+            return 'Nama kabupaten sudah ada';
+          }
+          return null;
+        },
+        controller: controller.kabupatenController,
+        decoration: InputDecoration(
+          hintText: 'Tambahkan disini...',
+          hintStyle: GoogleFonts.poppins(
+            color: Color(0xff8a8a8a),
+            fontSize: 14,
+          ),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
-        border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
     );
   }
