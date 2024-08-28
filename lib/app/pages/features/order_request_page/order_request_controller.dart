@@ -15,6 +15,8 @@ class OrderRequestController extends GetxController {
 
   var noteText = ''.obs;
   var isDeclineButtonEnabled = false.obs;
+  var isAcceptButtonLoading = false.obs; // New variable
+  var isDeclineButtonLoading = false.obs; // New variable
 
   @override
   void onInit() {
@@ -83,6 +85,8 @@ class OrderRequestController extends GetxController {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/order/update';
     var data = {'id': Get.arguments, 'order_status': orderStatus};
 
+    isAcceptButtonLoading.value = true; // Set loading to true
+
     try {
       var response = await http.post(
         Uri.parse(url),
@@ -124,6 +128,8 @@ class OrderRequestController extends GetxController {
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
+    } finally {
+      isAcceptButtonLoading.value = false; // Set loading to false
     }
   }
 
@@ -135,8 +141,7 @@ class OrderRequestController extends GetxController {
       'decline_note': noteText.value
     };
 
-    // print(
-    //     'Data dikirim: $data'); // Debug print untuk memastikan data dikirim dengan benar
+    isDeclineButtonLoading.value = true; // Set loading to true
 
     try {
       var response = await http.post(
@@ -158,13 +163,15 @@ class OrderRequestController extends GetxController {
           'Success',
           'Pesanan berhasil ditolak dan silahkan cek didecline',
         );
-      } // else {
+      } //else {
       //   showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
       //       isError: true);
       // }
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
+    } finally {
+      isDeclineButtonLoading.value = false; // Set loading to false
     }
   }
 
@@ -174,12 +181,13 @@ class OrderRequestController extends GetxController {
       title,
       message,
       snackPosition: SnackPosition.TOP,
-      backgroundColor: isError ? Color(0xffff3333) : Color(0xff17B169),
+      backgroundColor:
+          isError ? const Color(0xffff3333) : const Color(0xff17B169),
       colorText: Colors.white,
       borderRadius: 20,
-      margin: EdgeInsets.all(15),
-      animationDuration: Duration(milliseconds: 800),
-      duration: Duration(seconds: 3),
+      margin: const EdgeInsets.all(15),
+      animationDuration: const Duration(milliseconds: 800),
+      duration: const Duration(seconds: 3),
       icon: Icon(
         isError ? Icons.error : Icons.check_circle,
         color: Colors.white,

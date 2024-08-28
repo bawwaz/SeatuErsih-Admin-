@@ -56,7 +56,7 @@ class CardContactDetail extends StatelessWidget {
                 fontSize: screenWidth * 0.032,
               ),
             ),
-            SizedBox(width: 13), // Mengurangi jarak antara teks dan ikon
+            SizedBox(width: 13), 
             GestureDetector(
               onTap: () {
                 Clipboard.setData(ClipboardData(text: phone));
