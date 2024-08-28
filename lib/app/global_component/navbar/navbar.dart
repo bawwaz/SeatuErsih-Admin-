@@ -7,8 +7,7 @@ import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageControlle
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_view.dart';
-import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product_review_controller.dart';
-import 'package:seatu_ersih_admin/app/pages/features/product_review_page/product_review_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBar extends StatelessWidget {
   @override
@@ -16,23 +15,13 @@ class BottomNavBar extends StatelessWidget {
     return Scaffold(
       body: Obx(() {
         final BottomNavigationController navController = Get.find();
-        switch (navController.currentIndex.value) {
-          case 0:
-            Get.lazyPut<homePageController>(() => homePageController());
-
-            return HomePage();
-          case 1:
-            Get.lazyPut<HistoryPaymentController>(
-                () => HistoryPaymentController());
-
-            return HistoryPaymentView();
-          case 2:
-            Get.lazyPut<OrderManagementController>(
-                () => OrderManagementController());
-            return OrderManagementView();
-          default:
-            return HomePage();
-        }
+        return AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: _buildPage(navController.currentIndex.value),
+        );
       }),
       bottomNavigationBar: Obx(() {
         final BottomNavigationController navController = Get.find();
@@ -40,29 +29,61 @@ class BottomNavBar extends StatelessWidget {
           currentIndex: navController.currentIndex.value,
           onTap: (index) {
             navController.currentIndex.value = index;
-            if (index == 2) {
-              Get.put(HistoryPaymentController());
-            }
           },
           backgroundColor: Colors.white,
           selectedItemColor: Color(0xFF7EC1EB),
-          unselectedItemColor: Colors.blueGrey,
+          unselectedItemColor: Color(0xFF607D8B),
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: SvgPicture.asset(
+                'assets/svg/home.svg',
+                height: navController.currentIndex.value == 0 ? 28.0 : 24.0,
+                color: navController.currentIndex.value == 0
+                    ? Color(0xFF7EC1EB)
+                    : Color(0xFF607D8B),
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.payment),
+              icon: SvgPicture.asset(
+                'assets/svg/history.svg',
+                height: navController.currentIndex.value == 1 ? 28.0 : 24.0,
+                color: navController.currentIndex.value == 1
+                    ? Color(0xFF7EC1EB)
+                    : Color(0xFF607D8B),
+              ),
               label: 'History',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.local_laundry_service),
+              icon: SvgPicture.asset(
+                'assets/svg/manage.svg',
+                height: navController.currentIndex.value == 2 ? 28.0 : 24.0,
+                color: navController.currentIndex.value == 2
+                    ? Color(0xFF7EC1EB)
+                    : Color(0xFF607D8B),
+              ),
               label: 'Manage Order',
             ),
           ],
         );
       }),
     );
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        Get.put(homePageController(), permanent: true);
+        return HomePage();
+      case 1:
+        Get.put(HistoryPaymentController(), permanent: true);
+        return HistoryPaymentView();
+      case 2:
+        Get.put(OrderManagementController(), permanent: true);
+        return OrderManagementView();
+      default:
+        return HomePage();
+    }
   }
 }

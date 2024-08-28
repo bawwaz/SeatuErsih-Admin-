@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardManageLocation extends StatelessWidget {
@@ -24,14 +25,14 @@ class CardManageLocation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Customer',
+              'Toko',
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),
             ),
-            Image.asset("assets/img/map-pin.png")
+            SvgPicture.asset("assets/svg/location.svg")
           ],
         ),
       ],

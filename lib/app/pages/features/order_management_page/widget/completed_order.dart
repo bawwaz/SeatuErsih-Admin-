@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
@@ -18,7 +19,7 @@ class CardCompleted extends GetView<OrderManagementController> {
         Text(
           'Completed Orders',
           style: GoogleFonts.poppins(
-            fontSize: screenWidth * 0.042,
+            fontSize: screenWidth * 0.040,
             fontWeight: FontWeight.bold,
             color: Color(0xff3AC430),
           ),
@@ -26,16 +27,22 @@ class CardCompleted extends GetView<OrderManagementController> {
         SizedBox(
           height: 10,
         ),
-        Obx(
-          () {
-            return Text(
-              '${controller.completedOrder.length}',
-              style: GoogleFonts.poppins(
-                fontSize: screenWidth * 0.045,
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(
+              () {
+                return Text(
+                  '${controller.completedOrder.length}',
+                  style: GoogleFonts.poppins(
+                    fontSize: screenWidth * 0.045,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+            SvgPicture.asset("assets/svg/completed.svg")
+          ],
         ),
       ],
     );

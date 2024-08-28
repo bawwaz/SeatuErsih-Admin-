@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
@@ -18,7 +19,7 @@ class CardDeclined extends GetView<OrderManagementController> {
         Text(
           'Declined Orders',
           style: GoogleFonts.poppins(
-            fontSize: screenWidth * 0.042,
+            fontSize: screenWidth * 0.040,
             fontWeight: FontWeight.bold,
             color: Color(0xffE75060),
           ),
@@ -26,16 +27,22 @@ class CardDeclined extends GetView<OrderManagementController> {
         SizedBox(
           height: 10,
         ),
-        Obx(
-          () {
-            return Text(
-              '${controller.declinedOrder.length}',
-              style: GoogleFonts.poppins(
-                fontSize: screenWidth * 0.045,
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(
+              () {
+                return Text(
+                  '${controller.declinedOrder.length}',
+                  style: GoogleFonts.poppins(
+                    fontSize: screenWidth * 0.045,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+            SvgPicture.asset("assets/svg/decline.svg")
+          ],
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/HomepageBody.dart';
@@ -30,12 +31,9 @@ class HomePage extends GetView<homePageController> {
                       Get.toNamed(Routes.PROFILE);
                     },
                     child: SizedBox(
-                      width: 27,
-                      height: 27,
-                      child: Image(
-                        image: AssetImage('assets/img/user-icon.png'),
-                      ),
-                    ),
+                        width: 33,
+                        height: 33,
+                        child: SvgPicture.asset("assets/svg/user.svg")),
                   ),
                 ),
               ],

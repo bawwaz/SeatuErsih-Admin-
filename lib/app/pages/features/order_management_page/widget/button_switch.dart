@@ -26,9 +26,9 @@ class ButtonSwitch extends GetView<OrderManagementController> {
                   ? 'Toko Sedang Buka'
                   : 'Toko Sedang Tutup',
               style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
                 color: Colors.black,
-                fontSize: screenWidth * 0.038,
+                fontSize: screenWidth * 0.036,
               ),
             ),
             CupertinoSwitch(
