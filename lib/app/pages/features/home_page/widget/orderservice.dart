@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
@@ -29,17 +30,17 @@ class OrderService extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 55,
-              height: 55,
-              child: Image.asset('assets/img/feedback-review.png'),
+              width: 70,
+              height: 70,
+              child: SvgPicture.asset("assets/svg/riview.svg"),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 7),
               child: Text(
                 'Product Review',
                 style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),

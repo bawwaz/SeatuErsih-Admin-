@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardAddBrand extends StatelessWidget {
@@ -31,7 +32,7 @@ class CardAddBrand extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Image.asset("assets/img/shoe-print.png")
+            SvgPicture.asset("assets/svg/shoes.svg")
           ],
         ),
       ],

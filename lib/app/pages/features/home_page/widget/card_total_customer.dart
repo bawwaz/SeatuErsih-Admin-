@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageController.dart';
@@ -46,7 +47,7 @@ class CardTotalCustomer extends GetView<homePageController> {
                 );
               },
             ),
-            Image.asset("assets/img/customer-care.png")
+            SvgPicture.asset("assets/svg/people.svg")
           ],
         ),
       ],

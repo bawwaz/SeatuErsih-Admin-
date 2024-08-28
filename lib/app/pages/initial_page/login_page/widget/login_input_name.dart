@@ -9,28 +9,29 @@ class InputName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              controller: loginController.emailController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                labelText: "Email",
-                labelStyle: GoogleFonts.poppins(),
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Color(0xFF8A8A8A),
-                ),
-                errorText: loginController.emailError.value.isEmpty
-                    ? null
-                    : loginController.emailError.value,
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: loginController.emailController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
+              labelText: "Email",
+              labelStyle: GoogleFonts.poppins(),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Color(0xFF8A8A8A),
+              ),
+              errorText: loginController.emailError.value.isEmpty
+                  ? null
+                  : loginController.emailError.value,
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
-
