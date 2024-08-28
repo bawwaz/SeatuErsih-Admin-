@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:seatu_ersih_admin/app/global_component/navbar/btmnavcontroller.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
 
 class OrderDetailController extends GetxController {
   final box = GetStorage();
@@ -136,7 +137,13 @@ class OrderDetailController extends GetxController {
         if (orderStatus == "completed") {
           Get.offAll(() => BottomNavBar(), arguments: 2);
           final BottomNavigationController navController = Get.find();
+          final OrderManagementController orderController = Get.find();
           navController.currentIndex.value = 2;
+          orderController.getPendingOrder();
+          orderController.getWaitingOrder();
+          orderController.getInprogressOrder();
+          orderController.getCompletedOrder();
+          orderController.getDeclinedOrder();
 
           String snackbarMessage = orderStatus == "decline"
               ? 'Data berhasil diupdate dan silahkan cek didecline'
