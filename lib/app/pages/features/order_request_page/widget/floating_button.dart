@@ -70,9 +70,7 @@ class FloatingButton extends GetView<OrderRequestController> {
                           !controller.isDeclineButtonEnabled.value
                       ? null
                       : () async {
-                          controller.isDeclineButtonLoading.value = true;
-                          await controller.postDeclineNote();
-                          controller.isDeclineButtonLoading.value = false;
+                          _showDeclineConfirmationDialog(context);
                         },
                   backgroundColor: controller.isDeclineButtonEnabled.value
                       ? const Color(0xffEB4335)
@@ -99,6 +97,81 @@ class FloatingButton extends GetView<OrderRequestController> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showDeclineConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Text(
+            'Konfirmasi',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+          content: Text(
+            'Apakah Anda yakin ingin menolak permintaan ini?',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Colors.black54,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.grey[400],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'Batal',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: const Color(0xffEB4335),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'Ya',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
+              onPressed: () async {
+                controller.isDeclineButtonLoading.value = true;
+                Navigator.of(context).pop(); // Close the dialog first
+                await controller.postDeclineNote();
+                controller.isDeclineButtonLoading.value = false;
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
