@@ -11,6 +11,7 @@ class AddLocationController extends GetxController {
   var kecamatan_name = <Map<String, dynamic>>[].obs;
   var selectedKabupatenId = 0.obs;
   var savedLocations = <Map<String, dynamic>>[].obs;
+  var isLoading = false.obs;
 
   final box = GetStorage();
   var token = ''.obs;
@@ -36,6 +37,7 @@ class AddLocationController extends GetxController {
     final headers = this.headers;
 
     try {
+      isLoading(true);
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
@@ -54,12 +56,15 @@ class AddLocationController extends GetxController {
       if (response.statusCode == 201) {
         await getAllKabupaten();
         kabupatenController.clear();
+        isLoading(false);
         showCustomSnackbar('Success', 'Kabupaten berhasil ditambahkan');
       } else {
+        isLoading(false);
         showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
             isError: true);
       }
     } catch (e) {
+      isLoading(false);
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
@@ -76,6 +81,7 @@ class AddLocationController extends GetxController {
     final headers = this.headers;
 
     try {
+      isLoading(true);
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
@@ -95,12 +101,15 @@ class AddLocationController extends GetxController {
         await getAllKecamatan();
         kecamatanController.clear();
         selectedKabupatenId.value = 0;
+        isLoading(false);
         showCustomSnackbar('Success', 'Kecamatan berhasil ditambahkan');
       } else {
+        isLoading(false);
         showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
             isError: true);
       }
     } catch (e) {
+      isLoading(false);
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }

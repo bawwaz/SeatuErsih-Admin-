@@ -68,8 +68,11 @@ class OrderManagementController extends GetxController {
 
       if (response.statusCode == 200) {
         await getStatusOpen();
-        showCustomSnackbar('Success',
-            isStoreOpen.value ? 'Status Toko: Buka' : 'Status Toko: Tutup');
+        if (isStoreOpen.value) {
+          showCustomSnackbar('Success', 'Status Toko: Buka');
+        } else {
+          showCustomSnackbar('Success', 'Status Toko: Tutup', isError: true);
+        }
       } else {
         showCustomSnackbar(
             'Error', 'Failed to update store status: ${response.body}',

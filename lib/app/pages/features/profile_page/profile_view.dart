@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/profile_page/profile_controller.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -17,7 +18,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: const Color(0xFFFFFFFF),
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () {
@@ -36,8 +37,8 @@ class ProfileView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        padding: EdgeInsets.all(20),
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,21 +51,21 @@ class ProfileView extends StatelessWidget {
                       backgroundImage: controller
                               .profileImagePath.value.isNotEmpty
                           ? FileImage(File(controller.profileImagePath.value))
-                          : AssetImage("assets/img/profile-icon.png")
+                          : const AssetImage("assets/img/profile-icon.png")
                               as ImageProvider,
                       backgroundColor: Colors.grey[200],
                     );
                   }),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: controller.showImageOptions,
                     style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      backgroundColor: Color(0xff7EC1EB),
+                      backgroundColor: const Color(0xff7EC1EB),
                     ),
                     child: Text(
                       'Edit Image',
@@ -78,7 +79,7 @@ class ProfileView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Nama Penjual',
               style: GoogleFonts.poppins(
@@ -87,9 +88,9 @@ class ProfileView extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -98,7 +99,7 @@ class ProfileView extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
                     blurRadius: 2,
-                    offset: Offset(0, 0),
+                    offset: const Offset(0, 0),
                   ),
                 ],
               ),
@@ -109,7 +110,7 @@ class ProfileView extends StatelessWidget {
                     '${controller.username.value}',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff8a8a8a),
+                      color: const Color(0xff8a8a8a),
                       fontSize: 14,
                     ),
                   );
@@ -122,12 +123,13 @@ class ProfileView extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Obx(
           () => ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xffEB4335),
-              padding: EdgeInsets.symmetric(vertical: 15),
+              disabledBackgroundColor: Color(0xffEB4335),
+              padding: const EdgeInsets.symmetric(vertical: 15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -135,8 +137,9 @@ class ProfileView extends StatelessWidget {
             onPressed:
                 controller.isLoading.value ? null : () => controller.logout(),
             child: controller.isLoading.value
-                ? CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ? LoadingAnimationWidget.horizontalRotatingDots(
+                    color: Colors.white,
+                    size: 30,
                   )
                 : Text(
                     'Logout',

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 class AddShoesBrandController extends GetxController {
   TextEditingController brandController = TextEditingController();
   var brand_name = <Map<String, dynamic>>[].obs;
+  var isLoading = false.obs;
 
   final box = GetStorage();
   var token = ''.obs;
@@ -31,8 +32,11 @@ class AddShoesBrandController extends GetxController {
     final headers = this.headers;
 
     try {
+      isLoading(true);
+
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.', isError: true);
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -48,6 +52,7 @@ class AddShoesBrandController extends GetxController {
       if (response.statusCode == 201) {
         await getAllBrand();
         brandController.clear();
+        isLoading(false);
         showCustomSnackbar('Success', 'Sepatu berhasil ditambahkan');
       }
     } catch (e) {
@@ -62,7 +67,8 @@ class AddShoesBrandController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.', isError: true);
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -83,11 +89,12 @@ class AddShoesBrandController extends GetxController {
           brand_name.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format', isError: true);
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
       } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve data: ${response.body}', isError: true);
+        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+            isError: true);
       }
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);

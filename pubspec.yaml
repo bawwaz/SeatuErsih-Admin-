@@ -27,11 +27,20 @@ dependencies:
   permission_handler:
   image_picker:
   shared_preferences:
-  flutter_local_notifications: 
+  flutter_local_notifications:
+  loading_animation_widget:
+  flutter_launcher_icons:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/logo-splash.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
 flutter:
   assets:
     - assets/img/

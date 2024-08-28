@@ -12,6 +12,7 @@ class OrderDetailController extends GetxController {
   var orderId = ''.obs;
   var orderDetail = <String, dynamic>{}.obs;
   var customerItem = <Map<String, dynamic>>[].obs;
+  var isCompleteButtonLoading = false.obs;
 
   var isLoading = false.obs;
 
@@ -115,6 +116,7 @@ class OrderDetailController extends GetxController {
     var data = {'id': Get.arguments, 'order_status': orderStatus};
 
     try {
+      isCompleteButtonLoading(true);
       var response = await http.post(
         Uri.parse(url),
         headers: {
@@ -139,12 +141,15 @@ class OrderDetailController extends GetxController {
           String snackbarMessage = orderStatus == "decline"
               ? 'Data berhasil diupdate dan silahkan cek didecline'
               : 'Data berhasil diupdate silahkan cek di Completed Orders';
+          isCompleteButtonLoading(false);
 
           showCustomSnackbar(
             'Success',
             snackbarMessage,
           );
         } else {
+          isCompleteButtonLoading(false);
+
           showCustomSnackbar('Error', 'Unexpected order status: $orderStatus',
               isError: true);
         }
@@ -153,6 +158,8 @@ class OrderDetailController extends GetxController {
       //       isError: true);
       // }
     } catch (e) {
+      isCompleteButtonLoading(false);
+
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
