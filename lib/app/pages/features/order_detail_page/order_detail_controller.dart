@@ -148,10 +148,10 @@ class OrderDetailController extends GetxController {
           showCustomSnackbar('Error', 'Unexpected order status: $orderStatus',
               isError: true);
         }
-      } else {
-        showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
-            isError: true);
-      }
+      } //else {
+      //   showCustomSnackbar('Error', 'Failed to submit data: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);

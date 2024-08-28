@@ -30,6 +30,14 @@ class OrderManagementController extends GetxController {
     if (token.value.isEmpty) {
       print('Token is not saved in GetStorage.');
     }
+    getPendingOrder();
+    getWaitingOrder();
+    getInprogressOrder();
+    getCompletedOrder();
+    getDeclinedOrder();
+    getChartReg();
+    getChartDeep();
+    getStatusOpen();
     refreshOrders(); // Refresh all data on init
   }
 
@@ -45,7 +53,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -63,10 +72,11 @@ class OrderManagementController extends GetxController {
             isStoreOpen.value ? 'Status Toko: Buka' : 'Status Toko: Tutup');
       } else {
         showCustomSnackbar(
-            'Error', 'Failed to update store status: ${response.body}');
+            'Error', 'Failed to update store status: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -78,6 +88,8 @@ class OrderManagementController extends GetxController {
       getInprogressOrder(),
       getCompletedOrder(),
       getDeclinedOrder(),
+      getChartReg(),
+      getChartDeep(),
       getStatusOpen()
     ]);
   }
@@ -88,7 +100,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -109,11 +122,16 @@ class OrderManagementController extends GetxController {
           pendingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
-      }
+      } // else {
+      //   showCustomSnackbar(
+      //       'Error', 'Failed to retrieve pending orders: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -125,7 +143,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -146,14 +165,16 @@ class OrderManagementController extends GetxController {
           waitingOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
-      } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve waiting orders: ${response.body}');
-      }
+      } // else {
+      //   showCustomSnackbar(
+      //       'Error', 'Failed to retrieve waiting orders: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -165,7 +186,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -187,14 +209,16 @@ class OrderManagementController extends GetxController {
           inprogressOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
-      } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve in-progress orders: ${response.body}');
-      }
+      } //else {
+      //   showCustomSnackbar(
+      //       'Error', 'Failed to retrieve in-progress orders: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -206,7 +230,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -228,14 +253,16 @@ class OrderManagementController extends GetxController {
           completedOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
-      } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve completed orders: ${response.body}');
-      }
+      } //else {
+      //   showCustomSnackbar(
+      //       'Error', 'Failed to retrieve completed orders: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -246,7 +273,8 @@ class OrderManagementController extends GetxController {
 
     try {
       if (headers.isEmpty) {
-        showCustomSnackbar('Error', 'No authentication token found.');
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
         return;
       }
 
@@ -268,14 +296,16 @@ class OrderManagementController extends GetxController {
           declinedOrder.value =
               List<Map<String, dynamic>>.from(decodedResponse['data']);
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
-      } else {
-        showCustomSnackbar(
-            'Error', 'Failed to retrieve declined orders: ${response.body}');
-      }
+      } // else {
+      //   showCustomSnackbar(
+      //       'Error', 'Failed to retrieve declined orders: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     }
   }
@@ -286,6 +316,79 @@ class OrderManagementController extends GetxController {
       lastWeekOrders.value = data[data.length - 2]['total'];
       orderDifference.value = currentWeekOrders.value - lastWeekOrders.value;
     }
+  }
+
+  Future<void> getChartReg() async {
+    isLoading.value = true;
+    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final token = box.read('token');
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    try {
+      final response = await http
+          .get(Uri.parse('$url/order/chart/regular_clean'), headers: headers);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data != null && data is List) {
+          chartReg.assignAll(data);
+          calculateOrderDifference(data);
+        } else {
+          print('no data found');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
+        }
+      } else {
+        print('Failed to fetch data: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        throw Exception('Failed to fetch data');
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading.value = false;
+  }
+
+  Future<void> getChartDeep() async {
+    isLoading.value = true;
+    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final token = box.read('token');
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    try {
+      final response = await http.get(Uri.parse('$url/order/chart/deep_clean'),
+          headers: headers);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data != null && data is List) {
+          if (data.isEmpty) {
+            Get.snackbar(
+              'No Data',
+              'No deep clean data found.',
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          }
+          chartDeep.assignAll(data);
+          calculateOrderDifference(data);
+        } else {
+          print('no data found');
+        }
+      } else {
+        print('Failed to fetch data: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        throw Exception('Failed to fetch data');
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading.value = false;
   }
 
   Future<void> getStatusOpen() async {
@@ -313,14 +416,16 @@ class OrderManagementController extends GetxController {
           statusOpen.value = Map<String, dynamic>.from(decodedResponse['data']);
           isStoreOpen.value = statusOpen['is_open'];
         } else {
-          showCustomSnackbar('Error', 'Unexpected response format');
+          showCustomSnackbar('Error', 'Unexpected response format',
+              isError: true);
         }
       } else {
         showCustomSnackbar(
-            'Error', 'Failed to retrieve store status: ${response.body}');
+            'Error', 'Failed to retrieve store status: ${response.body}',
+            isError: true);
       }
     } catch (e) {
-      showCustomSnackbar('Error', 'Exception occurred: $e');
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
     } finally {
       isLoading.value = false;
