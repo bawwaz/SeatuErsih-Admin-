@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_controller.dart';
@@ -53,19 +54,45 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                       fontSize: 13,
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.find<HistoryPaymentController>().exportToExcel();
-                    },
-                    child: Text(
-                      'Export to Excel',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff7EC1EB),
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
+                  Obx(() {
+                    return InkWell(
+                        onTap: controller.history.isEmpty
+                            ? () {
+                                controller.showCustomSnackbar("Gagal",
+                                    "Data kosong. Tidak bisa diekspor.",
+                                    isError: true);
+                              }
+                            : () {
+                                controller.exportToExcel();
+                              },
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green[50],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Export to Excel',
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600,
+                                  color: controller.history.isEmpty
+                                      ? Colors.grey
+                                      : Colors.green[700],
+                                  fontSize: 14,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              SvgPicture.asset(
+                                "assets/svg/excel.svg",
+                              ),
+                            ],
+                          ),
+                        ));
+                  }),
                 ],
               ),
               Obx(

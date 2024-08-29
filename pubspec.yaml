@@ -32,6 +32,7 @@ dependencies:
   flutter_launcher_icons:
   iconsax:
   flutter_svg:
+  connectivity_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:
