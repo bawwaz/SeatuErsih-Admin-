@@ -39,7 +39,7 @@ class OrderManagementController extends GetxController {
     getChartReg();
     getChartDeep();
     getStatusOpen();
-    refreshOrders(); 
+    refreshOrders();
   }
 
   void toggleStoreStatus(bool value) async {
@@ -101,7 +101,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
-      declinedOrder.clear();
+      pendingOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
