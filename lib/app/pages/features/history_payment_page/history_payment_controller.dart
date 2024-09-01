@@ -89,13 +89,13 @@ class HistoryPaymentController extends GetxController {
       var item = history[i];
       sheetObject
         ..cell(CellIndex.indexByString("A${i + 2}")).value =
-            TextCellValue(item['user']['username'])
+            TextCellValue(item['payment_channel'])
         ..cell(CellIndex.indexByString("B${i + 2}")).value =
-            TextCellValue(item['order_date'])
+            TextCellValue(item['paid_at'])
         ..cell(CellIndex.indexByString("C${i + 2}")).value =
-            TextCellValue(item['order_type'])
+            TextCellValue(item['description'])
         ..cell(CellIndex.indexByString("D${i + 2}")).value =
-            TextCellValue(item['total_price'].toString());
+            TextCellValue(item['amount'].toString());
     }
 
     // Simpan file di direktori Downloads
