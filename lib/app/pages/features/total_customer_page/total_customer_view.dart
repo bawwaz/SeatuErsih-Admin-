@@ -31,7 +31,7 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
         ),
         centerTitle: true,
         title: Text(
-          'All - time Customer',
+          'Total Customer',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -83,7 +83,6 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
                 itemBuilder: (context, index) {
                   return Container(
                     width: double.infinity,
-                    height: screenHeight * 0.19,
                     padding: EdgeInsets.all(screenWidth * 0.04),
                     margin: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
                     decoration: BoxDecoration(
@@ -106,6 +105,14 @@ class TotalCustomerView extends GetView<TotalCustomerController> {
                       profilePictureUrl: controller.customers[index]
                           ["profile_picture"],
                       totalCustomer: totalCustomer.toString(),
+                      totalRegularClean: controller.customers[index]
+                              ['total_orders']['regular_clean'] ??
+                          0,
+                      totalDeepClean: controller.customers[index]
+                              ['total_orders']['deep_clean'] ??
+                          0,
+                      email: controller.customers[index]["email"],
+                      phone: controller.customers[index]["phone"],
                     ),
                   );
                 },

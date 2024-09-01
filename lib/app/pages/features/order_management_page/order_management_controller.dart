@@ -11,6 +11,7 @@ class OrderManagementController extends GetxController {
   var declinedOrder = <Map<String, dynamic>>[].obs;
   var waitingOrder = <Map<String, dynamic>>[].obs;
   var statusOpen = <String, dynamic>{}.obs;
+  RxString waitingLength = ''.obs;
 
   var isStoreOpen = true.obs;
   var isLoading = true.obs;
@@ -38,7 +39,7 @@ class OrderManagementController extends GetxController {
     getChartReg();
     getChartDeep();
     getStatusOpen();
-    refreshOrders(); // Refresh all data on init
+    refreshOrders(); 
   }
 
   void toggleStoreStatus(bool value) async {
@@ -71,7 +72,7 @@ class OrderManagementController extends GetxController {
         if (isStoreOpen.value) {
           showCustomSnackbar('Success', 'Status Toko: Buka');
         } else {
-          showCustomSnackbar('Success', 'Status Toko: Tutup', isError: true);
+          showCustomSnackbar('Success', 'Status Toko: Tutup', isError: false);
         }
       } else {
         showCustomSnackbar(
@@ -85,16 +86,14 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> refreshOrders() async {
-    await Future.wait([
-      getPendingOrder(),
-      getWaitingOrder(),
-      getInprogressOrder(),
-      getCompletedOrder(),
-      getDeclinedOrder(),
-      getChartReg(),
-      getChartDeep(),
-      getStatusOpen()
-    ]);
+    await getPendingOrder();
+    await getWaitingOrder();
+    await getInprogressOrder();
+    await getCompletedOrder();
+    await getDeclinedOrder();
+    await getChartReg();
+    await getChartDeep();
+    await getStatusOpen();
   }
 
   Future<void> getPendingOrder() async {
@@ -102,6 +101,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
+      declinedOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
@@ -145,6 +145,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
+      waitingOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
@@ -171,11 +172,8 @@ class OrderManagementController extends GetxController {
           showCustomSnackbar('Error', 'Unexpected response format',
               isError: true);
         }
-      } // else {
-      //   showCustomSnackbar(
-      //       'Error', 'Failed to retrieve waiting orders: ${response.body}',
-      //       isError: true);
-      // }
+      }
+      waitingLength.value = waitingOrder.length.toString();
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
@@ -188,6 +186,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
+      inprogressOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);

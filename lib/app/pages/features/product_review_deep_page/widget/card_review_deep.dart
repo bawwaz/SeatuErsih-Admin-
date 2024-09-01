@@ -22,6 +22,8 @@ class CardReviewDeep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,8 +49,8 @@ class CardReviewDeep extends StatelessWidget {
                 Text(
                   '${name}',
                   style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontSize: screenWidth * 0.033,
                     color: Colors.black,
                   ),
                 ),
@@ -56,7 +58,7 @@ class CardReviewDeep extends StatelessWidget {
                   DateFormat('dd MMMM yyyy').format(date),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12,
+                    fontSize: screenWidth * 0.029,
                     color: Color(0xff8A8A8A),
                   ),
                 ),
@@ -71,7 +73,7 @@ class CardReviewDeep extends StatelessWidget {
                   '${rating}',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontSize: screenWidth * 0.032,
                     color: Colors.black,
                   ),
                 ),
@@ -86,24 +88,23 @@ class CardReviewDeep extends StatelessWidget {
           '${orderType}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: screenWidth * 0.033,
             color: Colors.black,
           ),
         ),
-        SizedBox(height: 4),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Text(
                 '${review}',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
-                  fontSize: 14,
+                  fontSize: screenWidth * 0.029,
                   color: Color(0xff8A8A8A),
                 ),
               ),
             ),
-            SizedBox(width: 8),
             Image.asset(
               'assets/img/cleaning.png',
               height: 40,
