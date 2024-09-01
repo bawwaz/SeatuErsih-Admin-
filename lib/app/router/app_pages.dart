@@ -21,6 +21,8 @@ import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/o
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/order_status_waiting_payment_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/order_status_waiting_payment_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/payment_detail_page/payment_detail_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/payment_detail_page/payment_detail_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_deep_page/product_review_deep_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/product_review_reg_page/product_review_reg_binding.dart';
@@ -167,6 +169,11 @@ class AppPages {
       name: Routes.HISTORYPAYEMENT,
       page: () => HistoryPaymentView(),
       binding: HistoryPaymentBinding(),
+    ),
+    GetPage(
+      name: Routes.PAYMENTDETAIL,
+      page: () => PaymentDetailView(),
+      binding: PaymentDetailBinding(),
     ),
     GetPage(
       name: Routes.CHARTORDER,

@@ -33,7 +33,7 @@ class CardWaitingForPayment extends GetView<OrderManagementController> {
             Obx(
               () {
                 return Text(
-                  '${controller.waitingOrder.length}',
+                  '${controller.waitingLength.value}',
                   style: GoogleFonts.poppins(
                     fontSize: screenWidth * 0.045,
                     fontWeight: FontWeight.bold,

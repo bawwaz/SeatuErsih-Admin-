@@ -25,8 +25,7 @@ class HistoryPaymentController extends GetxController {
   }
 
   Future<void> getAllHistory() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/payment/all-payment-histories';
+    final url = 'http://seatuersih.pradiptaahmad.tech/api/transactions/all';
     final headers = this.headers;
 
     try {
@@ -45,9 +44,10 @@ class HistoryPaymentController extends GetxController {
 
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
-        if (decodedResponse is Map && decodedResponse.containsKey('data')) {
+        if (decodedResponse is Map &&
+            decodedResponse.containsKey('transactions')) {
           history.value =
-              List<Map<String, dynamic>>.from(decodedResponse['data']);
+              List<Map<String, dynamic>>.from(decodedResponse['transactions']);
         } else {
           showCustomSnackbar('Error', 'Unexpected response format',
               isError: true);
@@ -77,9 +77,10 @@ class HistoryPaymentController extends GetxController {
 
     // Menambahkan header
     sheetObject
-      ..cell(CellIndex.indexByString('A1')).value = TextCellValue('Username')
+      ..cell(CellIndex.indexByString('A1')).value =
+          TextCellValue('Payment Method')
       ..cell(CellIndex.indexByString('B1')).value = TextCellValue('Order Date')
-      ..cell(CellIndex.indexByString('C1')).value = TextCellValue('Order Type')
+      ..cell(CellIndex.indexByString('C1')).value = TextCellValue('Description')
       ..cell(CellIndex.indexByString('D1')).value =
           TextCellValue('Total Price');
 

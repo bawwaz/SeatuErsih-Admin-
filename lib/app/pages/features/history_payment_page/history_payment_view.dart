@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/widget/card_payment_history.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/widget/shimmer_payment_history.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HistoryPaymentView extends GetView<HistoryPaymentController> {
@@ -143,12 +144,17 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                         final historyItem = controller.history[index];
                         final user = historyItem['user'];
 
-                        return PaymentHistory(
-                          name: user['username'],
-                          orderDate: DateTime.parse(historyItem['order_date']),
-                          orderType: historyItem['order_type'],
-                          price: historyItem['total_price'].toString(),
-                          profilePictureUrl: user['profile_picture'],
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.PAYMENTDETAIL, arguments: historyItem['order_id']);
+                          },
+                          child: PaymentHistory(
+                            paymentChannel: historyItem['payment_channel'],
+                            orderDate: DateTime.parse(historyItem['paid_at']),
+                            desc: historyItem['description'],
+                            price: historyItem['amount'].toString(),
+                            // profilePictureUrl: user['profile_picture'],
+                          ),
                         );
                       },
                     );

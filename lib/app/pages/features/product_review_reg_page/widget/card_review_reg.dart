@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class CardReviewReg extends StatelessWidget {
-   String name;
+  String name;
   DateTime date;
   final String? profilePictureUrl;
   String rating;
@@ -22,6 +22,8 @@ class CardReviewReg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,8 +49,8 @@ class CardReviewReg extends StatelessWidget {
                 Text(
                   '${name}',
                   style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontSize: screenWidth * 0.033,
                     color: Colors.black,
                   ),
                 ),
@@ -56,7 +58,7 @@ class CardReviewReg extends StatelessWidget {
                   DateFormat('dd MMMM yyyy').format(date),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12,
+                    fontSize: screenWidth * 0.029,
                     color: Color(0xff8A8A8A),
                   ),
                 ),
@@ -71,7 +73,7 @@ class CardReviewReg extends StatelessWidget {
                   '${rating}',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontSize: screenWidth * 0.032,
                     color: Colors.black,
                   ),
                 ),
@@ -86,24 +88,23 @@ class CardReviewReg extends StatelessWidget {
           '${orderType}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: screenWidth * 0.033,
             color: Colors.black,
           ),
         ),
-        SizedBox(height: 4),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Text(
                 '${review}',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
-                  fontSize: 14,
+                  fontSize: screenWidth * 0.029,
                   color: Color(0xff8A8A8A),
                 ),
               ),
             ),
-            SizedBox(width: 8),
             Image.asset(
               'assets/img/cleaning.png',
               height: 40,

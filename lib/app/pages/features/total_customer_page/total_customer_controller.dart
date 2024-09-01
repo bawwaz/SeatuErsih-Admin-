@@ -19,7 +19,6 @@ class TotalCustomerController extends GetxController {
     getAllCustomers();
   }
 
-
   Future<void> getAllCustomers() async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
     final headers = this.headers;
@@ -30,7 +29,7 @@ class TotalCustomerController extends GetxController {
         return;
       }
 
-      isLoading.value = true; // Set loading true saat memulai permintaan
+      isLoading.value = true;
 
       var response = await http.get(
         Uri.parse(url),
@@ -55,7 +54,7 @@ class TotalCustomerController extends GetxController {
       Get.snackbar('Error', 'Exception occurred: $e');
       print(e);
     } finally {
-      isLoading.value = false; // Set loading false setelah permintaan selesai
+      isLoading.value = false;
     }
   }
 

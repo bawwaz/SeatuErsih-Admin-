@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class PaymentHistory extends StatelessWidget {
-  String name;
+  String paymentChannel;
   final DateTime orderDate;
-  String orderType;
+  String desc;
   String price;
   final String? profilePictureUrl;
 
   PaymentHistory({
     super.key,
-    required this.name,
+    required this.paymentChannel,
     required this.orderDate,
-    required this.orderType,
+    required this.desc,
     required this.price,
     this.profilePictureUrl,
   });
@@ -46,7 +48,7 @@ class PaymentHistory extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${name}',
+                        '${paymentChannel}',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
@@ -66,7 +68,7 @@ class PaymentHistory extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    '${orderType}',
+                    '${desc}',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w500,
                       color: Color(0xff8A8A8A),
@@ -86,7 +88,13 @@ class PaymentHistory extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(
+          height: 7,
+        ),
         Divider(thickness: 1, color: Colors.black12),
+        SizedBox(
+          height: 7,
+        ),
       ],
     );
   }
