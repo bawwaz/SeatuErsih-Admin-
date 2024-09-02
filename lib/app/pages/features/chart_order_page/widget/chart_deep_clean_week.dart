@@ -19,31 +19,43 @@ class ChartDeepClean extends StatelessWidget {
       }
 
       DateTime now = DateTime.now();
-      DateTime sevenDaysAgo = now.subtract(Duration(days: 7));
+      DateTime sevenDaysAgo = now.subtract(Duration(days: 6));
 
-      List<dynamic> filteredData = chartOrderController.chartDeep.where((data) {
+      // Group data by date and sum totals
+      Map<String, double> groupedData = {};
+      for (var data in chartOrderController.chartDeep) {
         DateTime date = DateTime.parse(data['date']);
-        return date.isAfter(sevenDaysAgo) &&
-            date.isBefore(now.add(Duration(days: 1)));
-      }).toList();
+        if (date.isAfter(sevenDaysAgo) &&
+            date.isBefore(now.add(Duration(days: 1)))) {
+          String day = DateFormat('E').format(date); // e.g., "Mon", "Tue"
+          double total = double.parse(data['total'].toString());
+          groupedData.update(day, (value) => value + total,
+              ifAbsent: () => total);
+        }
+      }
 
-      // Debugging print
-      print("Filtered Data: $filteredData");
-
-      List<FlSpot> spots = filteredData.asMap().entries.map((entry) {
-        int index = entry.key;
-        var data = entry.value;
-        double total = double.parse(data['total'].toString());
-        return FlSpot(index.toDouble(), total);
-      }).toList();
-
-      print("Spots: $spots");
+      // Create spots based on unique days
+      List<String> daysOfWeek = [
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+        'Sun'
+      ];
+      List<FlSpot> spots = [];
+      for (int i = 0; i < daysOfWeek.length; i++) {
+        if (groupedData.containsKey(daysOfWeek[i])) {
+          spots.add(FlSpot(i.toDouble(), groupedData[daysOfWeek[i]]!));
+        } else {
+          spots.add(FlSpot(i.toDouble(), 0.0));
+        }
+      }
 
       double maxY = spots.isNotEmpty && spots.any((spot) => spot.y > 0)
           ? spots.map((spot) => spot.y).reduce((a, b) => a > b ? a : b) + 1
           : 1;
-
-      double maxX = spots.isNotEmpty ? spots.length.toDouble() - 1 : 1;
 
       return Container(
         decoration: BoxDecoration(
@@ -90,7 +102,7 @@ class ChartDeepClean extends StatelessWidget {
                     ),
                   ],
                   minX: 0,
-                  maxX: maxX,
+                  maxX: 6, // 7 days in a week
                   minY: 0,
                   maxY: maxY,
                   titlesData: FlTitlesData(
@@ -104,15 +116,13 @@ class ChartDeepClean extends StatelessWidget {
                         reservedSize: 30,
                         getTitlesWidget: (value, meta) {
                           int index = value.toInt();
-                          if (index >= 0 && index < filteredData.length) {
-                            DateTime date =
-                                DateTime.parse(filteredData[index]['date']);
+                          if (index >= 0 && index < daysOfWeek.length) {
                             return Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: SideTitleWidget(
                                 axisSide: meta.axisSide,
                                 child: Text(
-                                  DateFormat('E').format(date),
+                                  daysOfWeek[index],
                                   style: const TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
