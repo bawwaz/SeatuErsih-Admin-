@@ -85,6 +85,8 @@ class PaymentDetailView extends GetView<PaymentDetailController> {
                             controller.transactionDetail['status'].toString(),
                         orderDate: DateTime.parse(
                             controller.transactionDetail['paid_at']),
+                        profilePictureUrl: controller
+                            .transactionDetail['payment_method_image'],
                       ),
                     ),
                   ),
@@ -115,6 +117,8 @@ class PaymentDetailView extends GetView<PaymentDetailController> {
                       ],
                     ),
                     child: CardDetail(
+                      orderType: controller.transactionDetail['order_type'] ??
+                          'No product',
                       desc: controller.transactionDetail['description']
                           .toString(),
                       paymethod: controller.transactionDetail['payment_channel']

@@ -7,6 +7,7 @@ import 'package:excel/excel.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPaymentController extends GetxController {
   var history = <Map<String, dynamic>>[].obs;
@@ -80,22 +81,35 @@ class HistoryPaymentController extends GetxController {
       ..cell(CellIndex.indexByString('A1')).value =
           TextCellValue('Payment Method')
       ..cell(CellIndex.indexByString('B1')).value = TextCellValue('Order Date')
-      ..cell(CellIndex.indexByString('C1')).value = TextCellValue('Description')
+      ..cell(CellIndex.indexByString('C1')).value = TextCellValue('Order Type')
       ..cell(CellIndex.indexByString('D1')).value =
           TextCellValue('Total Price');
 
     // Menambahkan data dari payment history
     for (var i = 0; i < history.length; i++) {
       var item = history[i];
+
+      // Parsing and formatting the paid_at date
+      DateTime paidAtDate = DateTime.parse(item['paid_at']);
+      String formattedDate = DateFormat('dd MMMM yyyy').format(paidAtDate);
+
+      // Formatting the order_type
+      var orderType = item['order_type'];
+      var orderTypeText =
+          orderType == 'regular_clean' ? 'Regular Clean' : 'Deep Clean';
+
+      // Formatting the amount with "Rp."
+      String formattedAmount = 'Rp.${item['amount']}';
+
       sheetObject
         ..cell(CellIndex.indexByString("A${i + 2}")).value =
             TextCellValue(item['payment_channel'])
         ..cell(CellIndex.indexByString("B${i + 2}")).value =
-            TextCellValue(item['paid_at'])
+            TextCellValue(formattedDate)
         ..cell(CellIndex.indexByString("C${i + 2}")).value =
-            TextCellValue(item['description'])
+            TextCellValue(orderTypeText)
         ..cell(CellIndex.indexByString("D${i + 2}")).value =
-            TextCellValue(item['amount'].toString());
+            TextCellValue(formattedAmount);
     }
 
     // Simpan file di direktori Downloads

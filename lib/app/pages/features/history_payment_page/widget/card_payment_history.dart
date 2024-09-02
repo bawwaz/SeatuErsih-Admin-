@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:seatu_ersih_admin/app/router/app_pages.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentHistory extends StatelessWidget {
   String paymentChannel;
   final DateTime orderDate;
-  String desc;
+  String orderType;
   String price;
   final String? profilePictureUrl;
 
@@ -15,7 +14,7 @@ class PaymentHistory extends StatelessWidget {
     super.key,
     required this.paymentChannel,
     required this.orderDate,
-    required this.desc,
+    required this.orderType,
     required this.price,
     this.profilePictureUrl,
   });
@@ -26,21 +25,26 @@ class PaymentHistory extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(height: 50),
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: profilePictureUrl != null
-                  ? NetworkImage(profilePictureUrl!)
-                  : null,
-              backgroundColor: Colors.grey.shade400,
-              child: profilePictureUrl == null
-                  ? Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    )
-                  : null,
-            ),
-            SizedBox(width: 10),
+            if (profilePictureUrl != null)
+              SvgPicture.network(
+                profilePictureUrl!,
+                height: 18,
+                width: 18,
+                placeholderBuilder: (BuildContext context) => CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.grey.shade200,
+                ),
+              )
+            else
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.grey.shade200,
+                child: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+              ),
+            SizedBox(width: 13),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +52,7 @@ class PaymentHistory extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${paymentChannel}',
+                        paymentChannel,
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
@@ -68,7 +72,9 @@ class PaymentHistory extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    '${desc}',
+                    orderType == 'regular_clean'
+                        ? 'Regular Clean'
+                        : 'Deep Clean',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w500,
                       color: Color(0xff8A8A8A),
@@ -79,7 +85,7 @@ class PaymentHistory extends StatelessWidget {
               ),
             ),
             Text(
-              '+ Rp.${price}',
+              '+ Rp.$price',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.green,

@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardDetail extends StatelessWidget {
+  final String orderType;
   final String desc;
   final String paymethod;
 
-  const CardDetail({
+  CardDetail({
     super.key,
     required this.desc,
     required this.paymethod,
+    required this.orderType,
   });
 
   @override
@@ -30,7 +32,7 @@ class CardDetail extends StatelessWidget {
         ),
         SizedBox(height: verticalSpacing),
         Text(
-          'Deep Clean',
+          orderType == 'regular_clean' ? 'Regular Clean' : 'Deep Clean',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

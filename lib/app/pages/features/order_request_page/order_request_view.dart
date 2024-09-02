@@ -183,7 +183,8 @@ class OrderRequestView extends GetView<OrderRequestController> {
                       phone:
                           controller.detailOrder["user"]["phone"] ?? 'No phone',
                       profile: controller.detailOrder["user"]
-                          ["profile_picture"],
+                              ["profile_picture"] ??
+                          'No Photo',
                     ),
                   ),
                   SizedBox(height: 10),

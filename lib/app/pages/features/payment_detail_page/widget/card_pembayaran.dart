@@ -7,12 +7,14 @@ class CardPembayaran extends StatelessWidget {
   final String totalPay;
   final String status;
   final DateTime orderDate;
+  final String? profilePictureUrl;
 
   CardPembayaran({
     super.key,
     required this.totalPay,
     required this.status,
     required this.orderDate,
+    this.profilePictureUrl,
   });
 
   @override
@@ -27,10 +29,29 @@ class CardPembayaran extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/svg/payment.svg',
-                  height: 24,
-                ),
+                if (profilePictureUrl != null)
+                  SvgPicture.network(
+                    profilePictureUrl!,
+                    height: 25,
+                    width: 25,
+                    placeholderBuilder: (BuildContext context) => CircleAvatar(
+                      radius: 20,
+                      backgroundColor: Colors.grey.shade400,
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                else
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.grey.shade400,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                  ),
                 SizedBox(width: 15),
                 Text(
                   'Rp.${totalPay}',
