@@ -146,14 +146,16 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
 
                         return InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.PAYMENTDETAIL, arguments: historyItem['order_id']);
+                            Get.toNamed(Routes.PAYMENTDETAIL,
+                                arguments: historyItem['order_id']);
                           },
                           child: PaymentHistory(
                             paymentChannel: historyItem['payment_channel'],
                             orderDate: DateTime.parse(historyItem['paid_at']),
-                            desc: historyItem['description'],
+                            orderType: historyItem['order_type'],
                             price: historyItem['amount'].toString(),
-                            // profilePictureUrl: user['profile_picture'],
+                            profilePictureUrl:
+                                historyItem['payment_method_image'],
                           ),
                         );
                       },
