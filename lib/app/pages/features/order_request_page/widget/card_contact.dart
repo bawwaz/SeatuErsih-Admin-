@@ -3,10 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CardContact extends StatelessWidget {
   String address;
+  final String kabName;
+  final String kecName;
   // String phone;
   CardContact({
     super.key,
     required this.address,
+    required this.kabName,
+    required this.kecName,
     // required this.phone,
   });
 
@@ -31,13 +35,49 @@ class CardContact extends StatelessWidget {
           ),
         ),
         SizedBox(height: 4),
-        Text(
-          '${address}',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w400,
-            color: Color(0xff8A8A8A),
-            fontSize: screenWidth * 0.032,
-          ),
+        Row(
+          children: [
+            Text(
+              kecName,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+            Text(
+              ', ',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+            Text(
+              kabName,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+            Text(
+              ', ',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+            Text(
+              address,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                color: Color(0xff8A8A8A),
+                fontSize: screenWidth * 0.032,
+              ),
+            ),
+          ],
         ),
         // Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
         // Text(

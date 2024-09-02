@@ -59,8 +59,7 @@ class OrderDetailView extends StatelessWidget {
           } else {
             final order = controller.orderDetail;
             final cusItem = controller.customerItem;
-            final userPhone = order['user']?['phone']?.toString() ??
-                'No phone'; 
+            final userPhone = order['user']?['phone']?.toString() ?? 'No phone';
 
             return RefreshIndicator(
               backgroundColor: Colors.white,
@@ -107,7 +106,7 @@ class OrderDetailView extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Contact',
+                      'Address',
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,

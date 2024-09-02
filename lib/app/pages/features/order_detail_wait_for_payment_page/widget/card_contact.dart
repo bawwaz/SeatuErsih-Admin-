@@ -34,7 +34,7 @@ class CardContactWait extends StatelessWidget {
         Row(
           children: [
             Text(
-              kabName,
+              kecName,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Color(0xff8A8A8A),
@@ -50,7 +50,7 @@ class CardContactWait extends StatelessWidget {
               ),
             ),
             Text(
-              kecName,
+              kabName,
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: Color(0xff8A8A8A),
