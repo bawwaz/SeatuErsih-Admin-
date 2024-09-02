@@ -15,6 +15,8 @@ import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageBinding.d
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageView.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_detail_page/order_detail_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_wait_for_payment_page/order_detail_wait_for_payment_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_detail_wait_for_payment_page/order_detail_wait_for_payment_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_binding.dart';
@@ -104,6 +106,11 @@ class AppPages {
       name: Routes.ORDERDETAIL,
       page: () => OrderDetailView(),
       binding: OrderDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.ORDERDETAILWAITFORPAY,
+      page: () => OrderDetailWaitForPaymentView(),
+      binding: OrderDetailWaitForPaymentBinding(),
     ),
     GetPage(
       name: Routes.PRODUCTREVIEW,

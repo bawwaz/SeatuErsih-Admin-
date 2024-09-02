@@ -12,12 +12,13 @@ class OrderRequestController extends GetxController {
   var token = ''.obs;
   var orderId = ''.obs;
   var detailOrder = <String, dynamic>{}.obs;
+  var customerItem = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
 
   var noteText = ''.obs;
   var isDeclineButtonEnabled = false.obs;
-  var isAcceptButtonLoading = false.obs; // New variable
-  var isDeclineButtonLoading = false.obs; // New variable
+  var isAcceptButtonLoading = false.obs;
+  var isDeclineButtonLoading = false.obs;
 
   @override
   void onInit() {
@@ -35,11 +36,17 @@ class OrderRequestController extends GetxController {
     orderId.value = Get.arguments;
     print(Get.arguments);
     getDetailOrder();
+    getCustomerItem();
   }
 
   void updateNoteText(String value) {
     noteText.value = value;
     isDeclineButtonEnabled.value = value.trim().isNotEmpty;
+  }
+
+  Future<void> refreshOrders() async {
+    await getDetailOrder();
+    await getCustomerItem();
   }
 
   Future<void> getDetailOrder() async {
@@ -82,11 +89,49 @@ class OrderRequestController extends GetxController {
     }
   }
 
+  Future<void> getCustomerItem() async {
+    final url =
+        'http://seatuersih.pradiptaahmad.tech/api/shoe/getshoe/${orderId.value}';
+    final headers = this.headers;
+
+    isLoading.value = true;
+
+    try {
+      customerItem.clear();
+      if (headers.isEmpty) {
+        showCustomSnackbar('Error', 'No authentication token found.',
+            isError: true);
+        return;
+      }
+
+      var response = await http.get(Uri.parse(url), headers: headers);
+
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is Map && decodedResponse.containsKey('data')) {
+          customerItem.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
+        }
+      } else {
+        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+            isError: true);
+      }
+    } catch (e) {
+      showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   Future<void> postUpdateStatus(String orderStatus) async {
     final url = 'http://seatuersih.pradiptaahmad.tech/api/order/update';
     var data = {'id': Get.arguments, 'order_status': orderStatus};
 
-    isAcceptButtonLoading.value = true; // Set loading to true
+    isAcceptButtonLoading.value = true;
 
     try {
       var response = await http.post(

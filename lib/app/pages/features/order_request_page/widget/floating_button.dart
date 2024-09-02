@@ -38,7 +38,8 @@ class FloatingButton extends GetView<OrderRequestController> {
                       ? null
                       : () async {
                           controller.isAcceptButtonLoading.value = true;
-                          await controller.postUpdateStatus('waiting_for_payment');
+                          await controller
+                              .postUpdateStatus('waiting_for_payment');
                           controller.isAcceptButtonLoading.value = false;
                         },
                   backgroundColor: const Color(0xff7EC1EB),
@@ -109,16 +110,24 @@ class FloatingButton extends GetView<OrderRequestController> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          title: Text(
-            'Konfirmasi',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-              fontSize: 16,
-            ),
+          title: Row(
+            children: [
+              Icon(Icons.warning_amber_rounded),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                'Konfirmasi',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+              ),
+            ],
           ),
           content: Text(
-            'Apakah Anda yakin ingin menolak permintaan ini?',
+            'Apakah Anda yakin ingin menolak pesanan ini?',
             style: GoogleFonts.poppins(
               fontSize: 14,
               fontWeight: FontWeight.w400,

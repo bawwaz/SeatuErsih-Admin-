@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/order_status_waiting_payment_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/widget/card_waiting_payment.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/widget/shimmer_card_waiting_payment.dart'; // Import the shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_status_waiting_payment_page/widget/shimmer_card_waiting_payment.dart';
+import 'package:seatu_ersih_admin/app/router/app_pages.dart'; // Import the shimmer widget
 
 class OrderStatusWaitingPaymentView
     extends GetView<OrderStatusWaitingPaymentController> {
@@ -94,27 +95,33 @@ class OrderStatusWaitingPaymentView
                             ).format(int.parse(controller.waitingOrder[index]
                                   ["total_price"]
                               .toString()));
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    width: double.infinity,
-                    height: 85,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          spreadRadius: 0,
-                          blurRadius: 3,
-                          offset: Offset(0, 0),
-                        ),
-                      ],
-                    ),
-                    child: CardWaitingPayment(
-                      orderType: controller.waitingOrder[index]["order_type"],
-                      date: date,
-                      totalPrice: formattedPrice,
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.ORDERDETAILWAITFORPAY,
+                          arguments: controller.waitingOrder[index]["id"]);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      width: double.infinity,
+                      height: 85,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            spreadRadius: 0,
+                            blurRadius: 3,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                      child: CardWaitingPayment(
+                        orderType: controller.waitingOrder[index]["order_type"],
+                        date: date,
+                        totalPrice: formattedPrice,
+                      ),
                     ),
                   );
                 },

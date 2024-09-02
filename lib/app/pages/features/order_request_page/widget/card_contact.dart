@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CardContact extends StatelessWidget {
   String address;
-  String phone;
+  // String phone;
   CardContact({
     super.key,
     required this.address,
-    required this.phone,
+    // required this.phone,
   });
 
   @override
@@ -39,24 +39,24 @@ class CardContact extends StatelessWidget {
             fontSize: screenWidth * 0.032,
           ),
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
-        Text(
-          'Nomor Telepon',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: screenWidth * 0.038,
-          ),
-        ),
-        SizedBox(height: 4),
-        Text(
-          '${phone}',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w400,
-            color: Color(0xff8A8A8A),
-            fontSize: screenWidth * 0.032,
-          ),
-        ),
+        // Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
+        // Text(
+        //   'Nomor Telepon',
+        //   style: GoogleFonts.poppins(
+        //     fontWeight: FontWeight.w600,
+        //     color: Colors.black,
+        //     fontSize: screenWidth * 0.038,
+        //   ),
+        // ),
+        // SizedBox(height: 4),
+        // Text(
+        //   '${phone}',
+        //   style: GoogleFonts.poppins(
+        //     fontWeight: FontWeight.w400,
+        //     color: Color(0xff8A8A8A),
+        //     fontSize: screenWidth * 0.032,
+        //   ),
+        // ),
       ],
     );
   }

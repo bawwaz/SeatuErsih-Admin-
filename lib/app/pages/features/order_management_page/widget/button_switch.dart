@@ -51,13 +51,21 @@ class ButtonSwitch extends GetView<OrderManagementController> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          title: Text(
-            'Konfirmasi',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-              fontSize: 16,
-            ),
+          title: Row(
+            children: [
+              Icon(Icons.warning_amber_rounded),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                'Konfirmasi',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+              ),
+            ],
           ),
           content: Text(
             value

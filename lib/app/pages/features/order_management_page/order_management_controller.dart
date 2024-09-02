@@ -231,6 +231,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
+      completedOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);
@@ -274,6 +275,7 @@ class OrderManagementController extends GetxController {
     final headers = this.headers;
 
     try {
+      declinedOrder.clear();
       if (headers.isEmpty) {
         showCustomSnackbar('Error', 'No authentication token found.',
             isError: true);

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class CardOrderDetail extends StatelessWidget {
+class CardOrderWait extends StatelessWidget {
   String product;
   String note;
   DateTime date;
 
-  CardOrderDetail({
+  CardOrderWait({
     super.key,
     required this.product,
     required this.note,
@@ -17,6 +17,8 @@ class CardOrderDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final dividerHeight = screenWidth * 0.03;
+    final verticalSpacing = screenWidth * 0.015;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +31,7 @@ class CardOrderDetail extends StatelessWidget {
             fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
           product == 'regular_clean' ? 'Regular Clean' : 'Deep Clean',
           style: GoogleFonts.poppins(
@@ -38,7 +40,11 @@ class CardOrderDetail extends StatelessWidget {
             fontSize: screenWidth * 0.032,
           ),
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
+        Divider(
+          color: Color(0xffF1F1F1),
+          height: dividerHeight,
+          thickness: 1,
+        ),
         Text(
           'Tanggal',
           style: GoogleFonts.poppins(
@@ -47,7 +53,7 @@ class CardOrderDetail extends StatelessWidget {
             fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
           '${DateFormat('dd MMMM yyyy').format(date)}',
           style: GoogleFonts.poppins(
@@ -56,7 +62,11 @@ class CardOrderDetail extends StatelessWidget {
             fontSize: screenWidth * 0.032,
           ),
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
+        Divider(
+          color: Color(0xffF1F1F1),
+          height: dividerHeight,
+          thickness: 1,
+        ),
         Text(
           'Note',
           style: GoogleFonts.poppins(
@@ -65,7 +75,7 @@ class CardOrderDetail extends StatelessWidget {
             fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Text(
           '${note}',
           style: GoogleFonts.poppins(
