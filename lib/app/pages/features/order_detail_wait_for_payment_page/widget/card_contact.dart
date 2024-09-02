@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/services.dart'; // Import untuk Clipboard
 
-class CardContactDetail extends StatelessWidget {
+class CardContactWait extends StatelessWidget {
   final String kabName;
   final String kecName;
   final String address;
-  final String phone;
 
-  CardContactDetail({
+  CardContactWait({
     super.key,
-    required this.address,
-    required this.phone,
     required this.kabName,
     required this.kecName,
+    required this.address,
   });
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final dividerHeight = screenWidth * 0.03;
+    final verticalSpacing = screenWidth * 0.015;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +30,7 @@ class CardContactDetail extends StatelessWidget {
             fontSize: screenWidth * 0.038,
           ),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: verticalSpacing),
         Row(
           children: [
             Text(
@@ -76,55 +75,40 @@ class CardContactDetail extends StatelessWidget {
             ),
           ],
         ),
-        Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
-        Text(
-          'Nomor Telepon',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: screenWidth * 0.038,
-          ),
+        Divider(
+          color: Color(0xffF1F1F1),
+          height: dividerHeight,
+          thickness: 1,
         ),
-        SizedBox(height: 7),
+        SizedBox(
+          height: 5,
+        ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              phone,
+              'Status',
               style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: screenWidth * 0.038,
               ),
             ),
-            SizedBox(width: 13),
-            GestureDetector(
-              onTap: () {
-                Clipboard.setData(ClipboardData(text: phone));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Nomor telepon telah disalin ke clipboard!',
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500,
-                        fontSize: screenWidth * 0.030,
-                      ),
-                    ),
-                    backgroundColor: Color(0xff7EC1EB),
-                  ),
-                );
-              },
-              child: Icon(Icons.copy, color: Color(0xff8a8a8a)),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.red[50],
+              ),
+              child: Text(
+                'Belum bayar',
+                style: GoogleFonts.poppins(
+                  fontSize: screenWidth * 0.029,
+                  color: Color(0xFF922F28),
+                ),
+              ),
             ),
           ],
-        ),
-        SizedBox(height: 6),
-        Text(
-          '*Sebaiknya hubungi customer sebelum ke lokasi',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w400,
-            color: Color.fromARGB(255, 255, 96, 84),
-            fontSize: screenWidth * 0.028,
-          ),
         ),
       ],
     );

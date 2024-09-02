@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
-class CardOrderDetail extends StatelessWidget {
-  String product;
-  String note;
-  DateTime date;
-
-  CardOrderDetail({
+class CardCustomerItemPending extends StatelessWidget {
+  String brand;
+  String addons;
+  String notes;
+  CardCustomerItemPending({
     super.key,
-    required this.product,
-    required this.note,
-    required this.date,
+    required this.brand,
+    required this.addons,
+    required this.notes,
   });
 
   @override
@@ -22,7 +20,7 @@ class CardOrderDetail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Product',
+          'Brand Sepatu',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -31,7 +29,7 @@ class CardOrderDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          product == 'regular_clean' ? 'Regular Clean' : 'Deep Clean',
+          '${brand}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -40,7 +38,7 @@ class CardOrderDetail extends StatelessWidget {
         ),
         Divider(color: Color(0xffF1F1F1), height: 20, thickness: 1),
         Text(
-          'Tanggal',
+          'AddOns',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -49,7 +47,7 @@ class CardOrderDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          '${DateFormat('dd MMMM yyyy').format(date)}',
+          '${addons}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),
@@ -67,7 +65,7 @@ class CardOrderDetail extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          '${note}',
+          '${notes}',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w400,
             color: Color(0xff8A8A8A),

@@ -18,12 +18,7 @@ class CardCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    final titleFontSize = screenWidth * 0.04; // 4% of screen width
-    final contentFontSize = screenWidth * 0.035; // 3.5% of screen width
-    final dividerHeight = screenWidth * 0.03; // 3% of screen width
-    final verticalSpacing = screenWidth * 0.015; // 1.5% of screen width
-
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

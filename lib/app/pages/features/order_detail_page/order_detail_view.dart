@@ -59,6 +59,8 @@ class OrderDetailView extends StatelessWidget {
           } else {
             final order = controller.orderDetail;
             final cusItem = controller.customerItem;
+            final userPhone = order['user']?['phone']?.toString() ??
+                'No phone'; 
 
             return RefreshIndicator(
               backgroundColor: Colors.white,
@@ -130,9 +132,10 @@ class OrderDetailView extends StatelessWidget {
                         ],
                       ),
                       child: CardContactDetail(
-                        address:
-                            order['detail_address']?.toString() ?? 'No address',
-                        phone: order['phone']?.toString() ?? 'No phone',
+                        kabName: order['kabupaten'] ?? 'No Kabupaten',
+                        kecName: order['kecamatan'] ?? 'No Kecamatan',
+                        address: order['detail_address'] ?? 'No address',
+                        phone: userPhone,
                       ),
                     ),
                     SizedBox(height: 10),

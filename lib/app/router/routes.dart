@@ -11,6 +11,7 @@ class Routes {
   static String editcard = '/editcard';
   static String ORDERLIST = '/orderlist';
   static String ORDERDETAIL = '/orderdetail';
+  static String ORDERDETAILWAITFORPAY = '/orderdetailwaitforpay';
   static String ORDERMANAGEMENT = '/ordermanagement';
   static String ORDERREQUEST = '/orderrequest';
   static String ORDERSTATUSPENDING = '/orderstatuspending';

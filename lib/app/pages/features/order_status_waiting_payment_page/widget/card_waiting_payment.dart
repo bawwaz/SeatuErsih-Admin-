@@ -80,12 +80,18 @@ class CardWaitingPayment extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              'Belum Bayar',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                fontSize: screenWidth * 0.027,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.red[50],
+              ),
+              child: Text(
+                'Belum bayar',
+                style: GoogleFonts.poppins(
+                  fontSize: screenWidth * 0.029,
+                  color: Color(0xFF922F28),
+                ),
               ),
             ),
           ],

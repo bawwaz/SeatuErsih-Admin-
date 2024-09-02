@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/order_request_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_contact.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_customer.dart';
+import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_customer_item.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_note.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/card_order.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_request_page/widget/floating_button.dart';
@@ -71,10 +72,9 @@ class OrderRequestView extends GetView<OrderRequestController> {
           return RefreshIndicator(
             backgroundColor: Colors.white,
             color: Color(0xff7EC1EB),
-            onRefresh: () async {
-              return await controller.getDetailOrder();
-            },
+            onRefresh: controller.refreshOrders,
             child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +142,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
                     child: CardContact(
                       address: controller.detailOrder["detail_address"] ??
                           'No address',
-                      phone: controller.detailOrder["phone"] ?? 'No phone',
+                      // phone: controller.detailOrder["phone"] ?? 'No phone',
                     ),
                   ),
                   SizedBox(height: 10),
@@ -178,9 +178,90 @@ class OrderRequestView extends GetView<OrderRequestController> {
                           controller.detailOrder["user"]["email"] ?? 'No email',
                       phone:
                           controller.detailOrder["user"]["phone"] ?? 'No phone',
-                      profile: controller.detailOrder["user"]["profile"] ?? '',
+                      profile: controller.detailOrder["user"]
+                          ["profile_picture"],
                     ),
                   ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Customer Item',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: screenWidth * 0.038,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  controller.customerItem.isEmpty
+                      ? Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(16),
+                          margin: EdgeInsets.symmetric(vertical: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                spreadRadius: 0,
+                                blurRadius: 3,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            'Customer Belum Menambahkan Sepatu',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff8a8a8a),
+                              fontSize: screenWidth * 0.033,
+                            ),
+                          ),
+                        )
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: controller.customerItem.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.all(16),
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    spreadRadius: 0,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                              child: CardCustomerItemPending(
+                                brand: controller.customerItem[index]
+                                            ['brand'] !=
+                                        null
+                                    ? controller.customerItem[index]['brand']
+                                        .toString()
+                                    : 'No brand',
+                                addons: controller.customerItem[index]
+                                            ['addons'] !=
+                                        null
+                                    ? controller.customerItem[index]['addons']
+                                        .toString()
+                                    : 'No addons',
+                                notes: controller.customerItem[index]
+                                            ['notes'] !=
+                                        null
+                                    ? controller.customerItem[index]['notes']
+                                        .toString()
+                                    : 'No note',
+                              ),
+                            );
+                          },
+                        ),
                   SizedBox(height: 10),
                   Row(
                     children: [
