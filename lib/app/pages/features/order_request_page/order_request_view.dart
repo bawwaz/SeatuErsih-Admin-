@@ -115,7 +115,7 @@ class OrderRequestView extends GetView<OrderRequestController> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Contact',
+                    'Address',
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -140,6 +140,10 @@ class OrderRequestView extends GetView<OrderRequestController> {
                       ],
                     ),
                     child: CardContact(
+                      kabName:
+                          controller.detailOrder['kabupaten'] ?? 'No Kabupaten',
+                      kecName:
+                          controller.detailOrder['kecamatan'] ?? 'No Kecamatan',
                       address: controller.detailOrder["detail_address"] ??
                           'No address',
                       // phone: controller.detailOrder["phone"] ?? 'No phone',

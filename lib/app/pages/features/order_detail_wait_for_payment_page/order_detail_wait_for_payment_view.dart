@@ -89,7 +89,7 @@ class OrderDetailWaitForPaymentView
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Contact',
+                  'Address',
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,

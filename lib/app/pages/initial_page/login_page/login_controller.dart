@@ -17,8 +17,8 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    emailController.text = "dapin@gmail.com";
-    passwordController.text = "DapinGeming";
+    // emailController.text = "dapin@gmail.com";
+    // passwordController.text = "DapinGeming";
 
     loginAuthService = LoginAuthService();
     super.onInit();
@@ -67,14 +67,16 @@ class LoginController extends GetxController {
 
       if (e.toString().contains("Invalid password")) {
         passwordError.value = "Password Anda salah";
-        showCustomSnackbar("Login Failed", "Password Anda salah", isError: true);
+        showCustomSnackbar("Login Failed", "Password Anda salah",
+            isError: true);
       } else if (e.toString().contains("Invalid email")) {
         emailError.value = "Email Anda salah";
         showCustomSnackbar("Login Failed", "Email Anda salah", isError: true);
       } else {
         emailError.value = "Email atau password Anda salah";
         passwordError.value = "Email atau password Anda salah";
-        showCustomSnackbar("Login Failed", "Email atau password Anda salah", isError: true);
+        showCustomSnackbar("Login Failed", "Email atau password Anda salah",
+            isError: true);
       }
 
       print(e);
@@ -83,7 +85,8 @@ class LoginController extends GetxController {
     }
   }
 
-  void showCustomSnackbar(String title, String message, {bool isError = false}) {
+  void showCustomSnackbar(String title, String message,
+      {bool isError = false}) {
     Get.snackbar(
       title,
       message,
