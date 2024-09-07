@@ -31,49 +31,13 @@ class CardContactWait extends StatelessWidget {
           ),
         ),
         SizedBox(height: verticalSpacing),
-        Row(
-          children: [
-            Text(
-              kecName,
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
-              ),
-            ),
-            Text(
-              ', ',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
-              ),
-            ),
-            Text(
-              kabName,
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
-              ),
-            ),
-            Text(
-              ', ',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
-              ),
-            ),
-            Text(
-              address,
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400,
-                color: Color(0xff8A8A8A),
-                fontSize: screenWidth * 0.032,
-              ),
-            ),
-          ],
+        Text(
+          '${kecName}, ${kabName}, ${address}',
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w400,
+            color: Color(0xff8A8A8A),
+            fontSize: screenWidth * 0.032,
+          ),
         ),
         Divider(
           color: Color(0xffF1F1F1),

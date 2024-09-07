@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_controller.dart';
+import 'package:seatu_ersih_admin/app/pages/features/edit_product_page/edit_product_controller.dart';
 
-class FloatingButtonAddBrand extends StatelessWidget {
-  const FloatingButtonAddBrand({
+class FLoatingButton extends GetView<EditProductController> {
+  const FLoatingButton({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final AddShoesBrandController controller = Get.find();
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      width: double.infinity,
+      width: screenWidth * 0.9,
       child: Obx(
         () => FloatingActionButton.extended(
           onPressed: controller.isLoading.value
               ? null
               : () async {
-                  controller.isLoading.value = true;
-                  await controller.postBrand();
-                  controller.isLoading.value = false;
+                  await controller.postEditProduct();
                 },
           label: controller.isLoading.value
               ? LoadingAnimationWidget.horizontalRotatingDots(

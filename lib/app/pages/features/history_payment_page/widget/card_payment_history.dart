@@ -25,7 +25,7 @@ class PaymentHistory extends StatelessWidget {
       children: [
         Row(
           children: [
-            if (profilePictureUrl != null)
+            if (profilePictureUrl != null && profilePictureUrl!.isNotEmpty)
               SvgPicture.network(
                 profilePictureUrl!,
                 height: 18,
@@ -40,7 +40,7 @@ class PaymentHistory extends StatelessWidget {
                 radius: 20,
                 backgroundColor: Colors.grey.shade200,
                 child: Icon(
-                  Icons.person,
+                  Icons.credit_card,
                   color: Colors.white,
                 ),
               ),
@@ -94,13 +94,9 @@ class PaymentHistory extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: 7,
-        ),
+        SizedBox(height: 7),
         Divider(thickness: 1, color: Colors.black12),
-        SizedBox(
-          height: 7,
-        ),
+        SizedBox(height: 7),
       ],
     );
   }

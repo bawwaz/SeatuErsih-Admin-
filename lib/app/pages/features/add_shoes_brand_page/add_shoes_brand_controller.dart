@@ -6,8 +6,12 @@ import 'package:http/http.dart' as http;
 
 class AddShoesBrandController extends GetxController {
   TextEditingController brandController = TextEditingController();
+  TextEditingController searchController = TextEditingController(); // Search controller
   final GlobalKey<FormState> brandKey = GlobalKey<FormState>();
+
   var brand_name = <Map<String, dynamic>>[].obs;
+  var filteredBrands = <Map<String, dynamic>>[].obs; // For filtered search
+  var searchQuery = ''.obs; // Search query observable
   var isLoading = false.obs;
 
   final box = GetStorage();
@@ -21,6 +25,12 @@ class AddShoesBrandController extends GetxController {
       print('Token is not saved in GetStorage.');
     }
     getAllBrand();
+
+    // Listen to search query changes
+    searchController.addListener(() {
+      searchQuery.value = searchController.text;
+      filterBrands(); // Call filter function when search query changes
+    });
   }
 
   Future<void> postBrand() async {
@@ -95,6 +105,8 @@ class AddShoesBrandController extends GetxController {
           showCustomSnackbar('Error', 'Unexpected response format',
               isError: true);
         }
+        // Update filteredBrands initially with all brands
+        filteredBrands.value = brand_name;
       } else {
         showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
             isError: true);
@@ -102,6 +114,20 @@ class AddShoesBrandController extends GetxController {
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);
+    }
+  }
+
+  // Function to filter brands based on search query
+  void filterBrands() {
+    if (searchQuery.value.isEmpty) {
+      filteredBrands.value = brand_name; // Show all if search is empty
+    } else {
+      filteredBrands.value = brand_name.where((brand) {
+        return brand['brand']
+            .toString()
+            .toLowerCase()
+            .contains(searchQuery.value.toLowerCase());
+      }).toList();
     }
   }
 

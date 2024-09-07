@@ -47,16 +47,24 @@ class HistoryPaymentController extends GetxController {
         var decodedResponse = jsonDecode(response.body);
         if (decodedResponse is Map &&
             decodedResponse.containsKey('transactions')) {
-          history.value =
+          // Mengurutkan transaksi baru ke paling atas
+          List<Map<String, dynamic>> transactions =
               List<Map<String, dynamic>>.from(decodedResponse['transactions']);
+          transactions.sort((a, b) {
+            DateTime dateA = DateTime.parse(a['paid_at']);
+            DateTime dateB = DateTime.parse(b['paid_at']);
+            return dateB.compareTo(dateA); // Transaksi terbaru di paling atas
+          });
+
+          history.value = transactions;
         } else {
           showCustomSnackbar('Error', 'Unexpected response format',
               isError: true);
         }
-      } else {
-        showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
-            isError: true);
-      }
+      } //else {
+      //   showCustomSnackbar('Error', 'Failed to retrieve data: ${response.body}',
+      //       isError: true);
+      // }
     } catch (e) {
       showCustomSnackbar('Error', 'Exception occurred: $e', isError: true);
       print(e);

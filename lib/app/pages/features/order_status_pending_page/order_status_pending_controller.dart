@@ -47,7 +47,7 @@ class OrderStatusPendingController extends GetxController {
     } catch (e) {
       print(e);
     } finally {
-      isLoading.value = false; // Set loading false setelah permintaan selesai
+      isLoading.value = false; 
     }
   }
 

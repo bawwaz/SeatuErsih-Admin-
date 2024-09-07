@@ -9,6 +9,8 @@ import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_sh
 import 'package:seatu_ersih_admin/app/pages/features/add_shoes_brand_page/add_shoes_brand_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/chart_order_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/chart_order_page/chart_order_view.dart';
+import 'package:seatu_ersih_admin/app/pages/features/edit_product_page/edit_product_binding.dart';
+import 'package:seatu_ersih_admin/app/pages/features/edit_product_page/edit_product_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_binding.dart';
 import 'package:seatu_ersih_admin/app/pages/features/history_payment_page/history_payment_view.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageBinding.dart';
@@ -191,6 +193,11 @@ class AppPages {
       name: Routes.ADDCOUPON,
       page: () => AddCouponView(),
       binding: AddCouponBinding(),
+    ),
+    GetPage(
+      name: Routes.EDITPRODUCT,
+      page: () => EditProductView(),
+      binding: EditProductBinding(),
     ),
   ];
 }
