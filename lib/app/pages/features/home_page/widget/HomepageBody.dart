@@ -5,6 +5,7 @@ import 'package:seatu_ersih_admin/app/pages/features/home_page/HomepageControlle
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_brand.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_add_coupon.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_chart.dart';
+import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_edit_product.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_total_customer.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/card_manage_location.dart';
 import 'package:seatu_ersih_admin/app/pages/features/home_page/widget/orderservice.dart';
@@ -93,6 +94,31 @@ class HomeBody extends GetView<homePageController> {
                   ],
                 ),
                 child: CardTotalCustomer(),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            InkWell(
+              onTap: () {
+                Get.toNamed(Routes.EDITPRODUCT);
+              },
+              child: Container(
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 2,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                ),
+                child: CardEditProduk(),
               ),
             ),
             SizedBox(

@@ -29,6 +29,7 @@ class Routes {
   static String PAYMENTDETAIL = '/paymentdetail';
   static String CHARTORDER = '/chartorder';
   static String ADDCOUPON = '/addcoupon';
+  static String EDITPRODUCT = '/editproduct';
 }
 
 // class Routes {

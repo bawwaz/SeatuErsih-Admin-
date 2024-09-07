@@ -79,22 +79,28 @@ class OrderStatusWaitingPaymentView
                 ],
               );
             } else {
+              var sortedOrders = controller.waitingOrder
+                ..sort((a, b) {
+                  DateTime dateA = DateTime.parse(a["pickup_date"]);
+                  DateTime dateB = DateTime.parse(b["pickup_date"]);
+                  return dateB.compareTo(dateA);
+                });
+
               return ListView.builder(
                 padding: EdgeInsets.all(20),
-                itemCount: controller.waitingOrder.length,
+                itemCount: sortedOrders.length,
                 itemBuilder: (context, index) {
-                  DateTime date = DateTime.parse(
-                      controller.waitingOrder[index]["pickup_date"]);
+                  DateTime date =
+                      DateTime.parse(sortedOrders[index]["pickup_date"]);
                   String formattedPrice =
-                      controller.waitingOrder[index]["total_price"] == null
+                      sortedOrders[index]["total_price"] == null
                           ? "Belum Ada Harga"
                           : NumberFormat.currency(
                               locale: 'id_ID',
                               symbol: 'Rp. ',
                               decimalDigits: 0,
-                            ).format(int.parse(controller.waitingOrder[index]
-                                  ["total_price"]
-                              .toString()));
+                            ).format(int.parse(
+                              sortedOrders[index]["total_price"].toString()));
                   return InkWell(
                     onTap: () {
                       Get.toNamed(Routes.ORDERDETAILWAITFORPAY,

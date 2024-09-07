@@ -31,7 +31,7 @@ class AddShoesBrandView extends StatelessWidget {
           ),
           centerTitle: true,
           title: Text(
-            'Add Brand Shoes',
+            'Tambah Sepatu',
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -43,7 +43,7 @@ class AddShoesBrandView extends StatelessWidget {
             unselectedLabelColor: Color(0xff8a8a8a),
             indicatorColor: Color(0xff7EC1EB),
             tabs: [
-              Tab(text: 'Tambah Sepatu'), 
+              Tab(text: 'Tambah Sepatu'),
               Tab(text: 'Disimpan'),
             ],
           ),
@@ -108,41 +108,67 @@ class AddShoesBrandView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 8),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 16),
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            blurRadius: 3,
-                            offset: Offset(0, 0),
+                    TextField(
+                      controller: controller.searchController,
+                      decoration: InputDecoration(
+                        hintText: 'Cari Sepatu...',
+                        hintStyle: GoogleFonts.poppins(
+                            color: Color(0xff8a8a8a8),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Color(0xff8a8a8a),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF8a8a8a),
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff7EC1EB),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                      child: Obx(
-                        () {
-                          return Wrap(
-                            spacing: 8.0,
-                            runSpacing: 4.0,
-                            children: controller.brand_name.map(
-                              (brand) {
-                                return Text(
-                                  '${brand['brand']},',
+                    ),
+                    SizedBox(height: 16),
+                    Obx(
+                      () {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: controller.filteredBrands.map(
+                            (brand) {
+                              return Container(
+                                width: double.infinity,
+                                margin: EdgeInsets.only(bottom: 16),
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.25),
+                                      blurRadius: 3,
+                                      offset: Offset(0, 0),
+                                    ),
+                                  ],
+                                ),
+                                child: Text(
+                                  '${brand['brand']}',
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black,
                                     fontSize: 14,
                                   ),
-                                );
-                              },
-                            ).toList(),
-                          );
-                        },
-                      ),
+                                ),
+                              );
+                            },
+                          ).toList(),
+                        );
+                      },
                     ),
                   ],
                 ),

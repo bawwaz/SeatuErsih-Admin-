@@ -142,7 +142,6 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                       itemCount: controller.history.length,
                       itemBuilder: (context, index) {
                         final historyItem = controller.history[index];
-                        final user = historyItem['user'];
 
                         return InkWell(
                           onTap: () {
@@ -150,10 +149,10 @@ class HistoryPaymentView extends GetView<HistoryPaymentController> {
                                 arguments: historyItem['order_id']);
                           },
                           child: PaymentHistory(
-                            paymentChannel: historyItem['payment_channel'],
+                            paymentChannel: historyItem['payment_channel']?? 'Unknown',
                             orderDate: DateTime.parse(historyItem['paid_at']),
-                            orderType: historyItem['order_type'],
-                            price: historyItem['amount'].toString(),
+                            orderType: historyItem['order_type'] ?? 'Unknown',
+                            price: historyItem['amount']?.toString() ?? '0',
                             profilePictureUrl:
                                 historyItem['payment_method_image'],
                           ),

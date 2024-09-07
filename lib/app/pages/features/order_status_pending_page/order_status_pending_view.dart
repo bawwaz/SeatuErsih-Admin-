@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/order_status_pending_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/card_pending_orders.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/shimmer_card_pending_orders.dart'; // Import the shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_status_pending_page/widget/shimmer_card_pending_orders.dart';
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
 
 class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
@@ -78,31 +78,36 @@ class OrderStatusPendingView extends GetView<OrderStatusPendingController> {
                 ],
               );
             } else {
+              var sortedOrders = controller.pendingOrder
+                ..sort((a, b) {
+                  DateTime dateA = DateTime.parse(a["pickup_date"]);
+                  DateTime dateB = DateTime.parse(b["pickup_date"]);
+                  return dateB.compareTo(dateA);
+                });
+
               return ListView.builder(
                 padding: EdgeInsets.all(20),
-                itemCount: controller.pendingOrder.length,
+                itemCount: sortedOrders.length,
                 physics: AlwaysScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  DateTime date = DateTime.parse(
-                      controller.pendingOrder[index]["pickup_date"]);
+                  DateTime date =
+                      DateTime.parse(sortedOrders[index]["pickup_date"]);
                   String formattedPrice =
-                      controller.pendingOrder[index]["total_price"] == null
+                      sortedOrders[index]["total_price"] == null
                           ? "Belum Ada Harga"
                           : NumberFormat.currency(
                               locale: 'id_ID',
                               symbol: 'Rp. ',
                               decimalDigits: 0,
-                            ).format(int.parse(controller.pendingOrder[index]
-                                  ["total_price"]
-                              .toString()));
+                            ).format(int.parse(
+                              sortedOrders[index]["total_price"].toString()));
                   return InkWell(
                     onTap: () {
                       Get.toNamed(Routes.ORDERREQUEST,
-                          arguments:
-                              controller.pendingOrder[index]["id"].toString());
+                          arguments: sortedOrders[index]["id"].toString());
                     },
                     child: CardPendingOrders(
-                      orderType: controller.pendingOrder[index]["order_type"],
+                      orderType: sortedOrders[index]["order_type"],
                       date: date,
                       totalPrice: formattedPrice,
                     ),
