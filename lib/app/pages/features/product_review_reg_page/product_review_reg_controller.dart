@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class ProductReviewRegController extends GetxController {
   final box = GetStorage();
@@ -27,8 +28,9 @@ class ProductReviewRegController extends GetxController {
   }
 
   Future<void> getDetailOrder() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/review/all/${laundryId.value}';
+    final url = ApiEndpoint.baseUrl;
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/review/all/${laundryId.value}';
     final headers = this.headers;
 
     isLoading.value = true;
@@ -39,7 +41,7 @@ class ProductReviewRegController extends GetxController {
         return;
       }
 
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response = await http.get(Uri.parse('$url/review/all/${laundryId.value}'), headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');

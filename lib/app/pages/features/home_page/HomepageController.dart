@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 import 'dart:convert';
 
 import 'package:seatu_ersih_admin/app/router/app_pages.dart';
@@ -23,7 +24,8 @@ class homePageController extends GetxController {
   }
 
   Future<void> getAllCustomers() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -33,7 +35,7 @@ class homePageController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/users/all'),
         headers: headers,
       );
 

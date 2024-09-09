@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class PaymentDetailController extends GetxController {
   final box = GetStorage();
@@ -24,14 +25,15 @@ class PaymentDetailController extends GetxController {
   }
 
   Future<void> getTransactionDetail() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/transactions/get-transaction?id=${orderId.value}';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/transactions/get-transaction?id=${orderId.value}';
+    final url = ApiEndpoint.baseUrl;
 
     isLoading.value = true;
 
     try {
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/transactions/get-transaction?id=${orderId.value}'),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${token.value}",

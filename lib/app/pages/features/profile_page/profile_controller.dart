@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class ProfileController extends GetxController {
   final box = GetStorage();
@@ -179,7 +180,8 @@ class ProfileController extends GetxController {
 
   Future<void> logout() async {
     isLoading.value = true;
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout';
+    final url = ApiEndpoint.baseUrl;
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/admins/logout';
     final headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${token.value}',
@@ -188,7 +190,7 @@ class ProfileController extends GetxController {
 
     try {
       var response = await http.delete(
-        Uri.parse(url),
+        Uri.parse('$url/admins/logout'),
         headers: headers,
       );
 

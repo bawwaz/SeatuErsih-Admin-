@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class TotalCustomerController extends GetxController {
   var customers = <Map<String, dynamic>>[].obs;
@@ -20,7 +21,8 @@ class TotalCustomerController extends GetxController {
   }
 
   Future<void> getAllCustomers() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/users/all';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -32,7 +34,7 @@ class TotalCustomerController extends GetxController {
       isLoading.value = true;
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/users/all'),
         headers: headers,
       );
 
