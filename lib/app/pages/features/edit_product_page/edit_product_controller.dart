@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class EditProductController extends GetxController {
   var isLoading = false.obs;
@@ -34,8 +35,9 @@ class EditProductController extends GetxController {
   }
 
   Future<void> postEditProduct() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/laundry/update/${idProduct.value}?_method=put';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/laundry/update/${idProduct.value}?_method=put';
+    final url = ApiEndpoint.baseUrl;
 
     var data = {
       'name': selectedProduct.value,
@@ -54,7 +56,7 @@ class EditProductController extends GetxController {
       }
 
       var response = await http.post(
-        Uri.parse(url),
+        Uri.parse('$url/laundry/update/${idProduct.value}?_method=put'),
         headers: headers,
         body: json.encode(data),
       );

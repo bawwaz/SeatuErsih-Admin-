@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class OrderStatusDeclinedController extends GetxController {
   var declinedOrder = <Map<String, dynamic>>[].obs;
@@ -20,7 +21,8 @@ class OrderStatusDeclinedController extends GetxController {
   }
 
   Future<void> getDeclinedOrder() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/decline';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/decline';
+    final url = ApiEndpoint.baseUrl;
 
     final headers = this.headers;
 
@@ -33,7 +35,7 @@ class OrderStatusDeclinedController extends GetxController {
       isLoading.value = true; // Set loading true saat memulai permintaan
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/decline'),
         headers: headers,
       );
 

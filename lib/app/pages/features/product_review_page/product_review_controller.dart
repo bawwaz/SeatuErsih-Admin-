@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class ProductReviewController extends GetxController {
   var laundries = <Map<String, dynamic>>[].obs;
@@ -20,7 +21,8 @@ class ProductReviewController extends GetxController {
   }
 
   Future<void> getAllLaundries() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/laundry/getall';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/laundry/getall';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -32,7 +34,7 @@ class ProductReviewController extends GetxController {
       isLoading.value = true;
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/laundry/getall'),
         headers: headers,
       );
 

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class AddLocationController extends GetxController {
   TextEditingController kabupatenController = TextEditingController();
@@ -30,7 +31,8 @@ class AddLocationController extends GetxController {
   }
 
   Future<void> postKabupaten() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/kabupaten/add';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/kabupaten/add';
+    final url = ApiEndpoint.baseUrl;
 
     var data = {
       'kabupaten': kabupatenController.text,
@@ -48,7 +50,7 @@ class AddLocationController extends GetxController {
         }
 
         var response = await http.post(
-          Uri.parse(url),
+          Uri.parse('$url/kabupaten/add'),
           headers: headers,
           body: json.encode(data),
         );
@@ -75,7 +77,8 @@ class AddLocationController extends GetxController {
   }
 
   Future<void> postKecamatan() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/kecamatan/add';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/kecamatan/add';
+    final url = ApiEndpoint.baseUrl;
 
     var data = {
       'kecamatan': kecamatanController.text,
@@ -94,7 +97,7 @@ class AddLocationController extends GetxController {
         }
 
         var response = await http.post(
-          Uri.parse(url),
+          Uri.parse('$url/kecamatan/add'),
           headers: headers,
           body: json.encode(data),
         );
@@ -122,11 +125,13 @@ class AddLocationController extends GetxController {
   }
 
   Future<void> getAllKabupaten() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/kabupaten/getall';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/kabupaten/getall';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response =
+          await http.get(Uri.parse('$url/kabupaten/getall'), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
         kabupaten_name.value =
@@ -141,11 +146,12 @@ class AddLocationController extends GetxController {
   }
 
   Future<void> getAllKecamatan() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/kecamatan/getall';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/kecamatan/getall';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response = await http.get(Uri.parse('$url/kecamatan/getall'), headers: headers);
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
         kecamatan_name.value =

@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class HistoryPaymentController extends GetxController {
   var history = <Map<String, dynamic>>[].obs;
@@ -26,7 +27,8 @@ class HistoryPaymentController extends GetxController {
   }
 
   Future<void> getAllHistory() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/transactions/all';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/transactions/all';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -39,7 +41,7 @@ class HistoryPaymentController extends GetxController {
       isLoading.value = true;
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/transactions/all'),
         headers: headers,
       );
 

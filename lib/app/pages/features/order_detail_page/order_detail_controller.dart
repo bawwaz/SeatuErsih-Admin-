@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/btmnavcontroller.dart';
 import 'package:seatu_ersih_admin/app/global_component/navbar/navbar.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_management_page/order_management_controller.dart';
@@ -36,8 +37,9 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> getDetailOrder() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/order/get/${orderId.value}';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/order/get/${orderId.value}';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     isLoading.value = true;
@@ -49,7 +51,8 @@ class OrderDetailController extends GetxController {
         return;
       }
 
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response = await http
+          .get(Uri.parse('$url/order/get/${orderId.value}'), headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -76,8 +79,9 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> getCustomerItem() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/shoe/getshoe/${orderId.value}';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/shoe/getshoe/${orderId.value}';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     isLoading.value = true;
@@ -89,7 +93,9 @@ class OrderDetailController extends GetxController {
         return;
       }
 
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response = await http.get(
+          Uri.parse('$url/shoe/getshoe/${orderId.value}'),
+          headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -113,13 +119,14 @@ class OrderDetailController extends GetxController {
   }
 
   Future<void> postUpdateStatus(String orderStatus) async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/update';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/order/update';
+    final url = ApiEndpoint.baseUrl;
     var data = {'id': Get.arguments, 'order_status': orderStatus};
 
     try {
       isCompleteButtonLoading(true);
       var response = await http.post(
-        Uri.parse(url),
+        Uri.parse('$url/order/update'),
         headers: {
           "Accept": "application/json",
           "Authorization": "Bearer ${box.read('token')}",

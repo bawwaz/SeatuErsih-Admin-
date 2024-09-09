@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class OrderManagementController extends GetxController {
   var pendingOrder = <Map<String, dynamic>>[].obs;
@@ -48,8 +49,9 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> postStatusOpen() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/store-status/status-toko/1?_method=put';
+    final url = ApiEndpoint.baseUrl;
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/store-status/status-toko/1?_method=put';
     final headers = this.headers;
 
     try {
@@ -60,7 +62,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.post(
-        Uri.parse(url),
+        Uri.parse('$url/store-status/status-toko/1?_method=put'),
         headers: headers,
       );
 
@@ -97,7 +99,8 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getPendingOrder() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/pending';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/pending';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -109,7 +112,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/pending'),
         headers: headers,
       );
 
@@ -140,8 +143,9 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getWaitingOrder() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -153,7 +157,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/waiting_for_payment'),
         headers: headers,
       );
 
@@ -181,8 +185,9 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getInprogressOrder() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/order/status/in-progress';
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/order/status/in-progress';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -194,7 +199,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/in-progress'),
         headers: headers,
       );
 
@@ -226,8 +231,9 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getCompletedOrder() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/order/status/completed';
+    final url = ApiEndpoint.baseUrl;
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/order/status/completed';
     final headers = this.headers;
 
     try {
@@ -239,7 +245,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/completed'),
         headers: headers,
       );
 
@@ -271,7 +277,8 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getDeclinedOrder() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/decline';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/order/status/decline';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -283,7 +290,7 @@ class OrderManagementController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/decline'),
         headers: headers,
       );
 
@@ -324,7 +331,8 @@ class OrderManagementController extends GetxController {
 
   Future<void> getChartReg() async {
     isLoading.value = true;
-    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final url = ApiEndpoint.baseUrl;
     final token = box.read('token');
     var headers = {
       'Accept': 'application/json',
@@ -358,7 +366,8 @@ class OrderManagementController extends GetxController {
 
   Future<void> getChartDeep() async {
     isLoading.value = true;
-    final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api';
+    final url = ApiEndpoint.baseUrl;
     final token = box.read('token');
     var headers = {
       'Accept': 'application/json',
@@ -396,8 +405,9 @@ class OrderManagementController extends GetxController {
   }
 
   Future<void> getStatusOpen() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/store-status/status-toko/1';
+    final url = ApiEndpoint.baseUrl;
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/store-status/status-toko/1';
     final headers = this.headers;
 
     isLoading.value = true;
@@ -409,7 +419,7 @@ class OrderManagementController extends GetxController {
         return;
       }
 
-      var response = await http.get(Uri.parse(url), headers: headers);
+      var response = await http.get(Uri.parse('$url/store-status/status-toko/1'), headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');

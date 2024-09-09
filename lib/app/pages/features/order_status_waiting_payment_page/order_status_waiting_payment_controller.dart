@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class OrderStatusWaitingPaymentController extends GetxController {
   var waitingOrder = <Map<String, dynamic>>[].obs;
@@ -20,9 +21,9 @@ class OrderStatusWaitingPaymentController extends GetxController {
   }
 
   Future<void> getWaitingPayment() async {
-    final url =
-        'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
-
+    // final url =
+    //     'http://seatuersih.pradiptaahmad.tech/api/order/status/waiting_for_payment';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -34,7 +35,7 @@ class OrderStatusWaitingPaymentController extends GetxController {
       isLoading.value = true; // Set loading true saat memulai permintaan
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse('$url/order/status/waiting_for_payment'),
         headers: headers,
       );
 
@@ -44,8 +45,7 @@ class OrderStatusWaitingPaymentController extends GetxController {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(response.body);
         if (decodedResponse is List) {
-          waitingOrder.value =
-              List<Map<String, dynamic>>.from(decodedResponse);
+          waitingOrder.value = List<Map<String, dynamic>>.from(decodedResponse);
         } else if (decodedResponse is Map &&
             decodedResponse.containsKey('data')) {
           waitingOrder.value =

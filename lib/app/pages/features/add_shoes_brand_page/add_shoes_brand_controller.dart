@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class AddShoesBrandController extends GetxController {
   TextEditingController brandController = TextEditingController();
-  TextEditingController searchController = TextEditingController(); // Search controller
+  TextEditingController searchController =
+      TextEditingController(); // Search controller
   final GlobalKey<FormState> brandKey = GlobalKey<FormState>();
 
   var brand_name = <Map<String, dynamic>>[].obs;
@@ -34,7 +36,8 @@ class AddShoesBrandController extends GetxController {
   }
 
   Future<void> postBrand() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/brand/add';
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/brand/add';
+    final url = ApiEndpoint.baseUrl;
 
     var data = {
       'brand': brandController.text,
@@ -53,7 +56,7 @@ class AddShoesBrandController extends GetxController {
         }
 
         var response = await http.post(
-          Uri.parse(url),
+          Uri.parse('$url/brand/add'),
           headers: headers,
           body: json.encode(data),
         );
@@ -74,8 +77,8 @@ class AddShoesBrandController extends GetxController {
   }
 
   Future<void> getAllBrand() async {
-    final url = 'http://seatuersih.pradiptaahmad.tech/api/brand/getall';
-
+    // final url = 'http://seatuersih.pradiptaahmad.tech/api/brand/getall';
+    final url = ApiEndpoint.baseUrl;
     final headers = this.headers;
 
     try {
@@ -86,7 +89,7 @@ class AddShoesBrandController extends GetxController {
       }
 
       var response = await http.get(
-        Uri.parse(url),
+        Uri.parse("$url/brand/getall"),
         headers: headers,
       );
 
