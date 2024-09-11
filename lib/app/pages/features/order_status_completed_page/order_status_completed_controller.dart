@@ -6,7 +6,7 @@ import 'package:seatu_ersih_admin/api/api_endpoint.dart';
 
 class OrderStatusCompletedController extends GetxController {
   var completedOrder = <Map<String, dynamic>>[].obs;
-  var isLoading = true.obs; // Menambahkan state loading
+  var isLoading = true.obs;
   final box = GetStorage();
   var token = ''.obs;
 
@@ -18,13 +18,46 @@ class OrderStatusCompletedController extends GetxController {
       print('Token is not saved in GetStorage.');
     }
     getCompletedOrder();
+    getCompletedOrderFiltered();
+  }
+
+  Future<void> getCompletedOrderFiltered() async {
+    final url = ApiEndpoint.baseUrl;
+    final headers = this.headers;
+    try {
+      if (headers.isEmpty) {
+        Get.snackbar('Error', 'No authentication token found.');
+        return;
+      }
+      isLoading.value = true;
+
+      var response = await http.get(
+        Uri.parse('$url/order/count/completed'),
+        headers: headers,
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is List) {
+          completedOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse);
+        } else if (decodedResponse is Map &&
+            decodedResponse.containsKey('data')) {
+          completedOrder.value =
+              List<Map<String, dynamic>>.from(decodedResponse['data']);
+        } else {
+          Get.snackbar('Error', 'Unexpected response format');
+        }
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> getCompletedOrder() async {
-    // final url =
-    //     'http://seatuersih.pradiptaahmad.tech/api/order/status/completed';
     final url = ApiEndpoint.baseUrl;
-
     final headers = this.headers;
 
     try {
@@ -33,7 +66,7 @@ class OrderStatusCompletedController extends GetxController {
         return;
       }
 
-      isLoading.value = true; // Set loading true saat memulai permintaan
+      isLoading.value = true;
 
       var response = await http.get(
         Uri.parse('$url/order/status/completed'),
@@ -70,5 +103,38 @@ class OrderStatusCompletedController extends GetxController {
       "Authorization": "Bearer ${token.value}",
       "Content-Type": "application/json"
     };
+  }
+
+  // Filter completed orders for today
+  void filterCompletedOrdersByDay() {
+    var today = DateTime.now();
+    completedOrder.value = completedOrder.where((order) {
+      DateTime orderDate = DateTime.parse(order["pickup_date"]);
+      return orderDate.year == today.year &&
+          orderDate.month == today.month &&
+          orderDate.day == today.day;
+    }).toList();
+  }
+
+  void filterCompletedOrdersByWeek() {
+    var startOfWeek =
+        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
+    var endOfWeek = startOfWeek.add(Duration(days: 6));
+
+    completedOrder.value = completedOrder.where((order) {
+      DateTime orderDate = DateTime.parse(order["pickup_date"]);
+      return orderDate.isAfter(startOfWeek) && orderDate.isBefore(endOfWeek);
+    }).toList();
+  }
+
+  void filterCompletedOrdersByMonth() {
+    var startOfMonth = DateTime(DateTime.now().year, DateTime.now().month, 1);
+    var endOfMonth = DateTime(DateTime.now().year, DateTime.now().month + 1, 1)
+        .subtract(Duration(days: 1));
+
+    completedOrder.value = completedOrder.where((order) {
+      DateTime orderDate = DateTime.parse(order["pickup_date"]);
+      return orderDate.isAfter(startOfMonth) && orderDate.isBefore(endOfMonth);
+    }).toList();
   }
 }
