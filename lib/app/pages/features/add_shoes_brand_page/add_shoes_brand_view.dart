@@ -156,13 +156,27 @@ class AddShoesBrandView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                child: Text(
-                                  '${brand['brand']}',
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '${brand['brand']}',
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Di order: ${brand['count']}x',
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                             },

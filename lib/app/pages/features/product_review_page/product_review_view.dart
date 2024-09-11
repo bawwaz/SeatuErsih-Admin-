@@ -91,14 +91,14 @@ class ProductReviewView extends GetView<ProductReviewController> {
                                 ? CardProductReviewRegular(
                                     name: controller.laundries[index]['name'],
                                     description: controller.laundries[index]
-                                        ['Description'],
+                                        ['description'],
                                     rating: controller.laundries[index]
                                         ["average_rating"],
                                   )
                                 : CardProductReviewDeep(
                                     name: controller.laundries[index]['name'],
                                     description: controller.laundries[index]
-                                        ['Description'],
+                                        ['description'],
                                     rating: controller.laundries[index]
                                         ["average_rating"],
                                   ),

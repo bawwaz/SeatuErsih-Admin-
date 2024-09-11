@@ -54,9 +54,9 @@ class ProductReviewRegController extends GetxController {
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }
-      } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
-      }
+       } //else {
+      //   Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+      // }
     } catch (e) {
       Get.snackbar('Error', 'Exception occurred: $e');
       print(e);

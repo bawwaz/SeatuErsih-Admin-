@@ -41,7 +41,9 @@ class ProductReviewDeepController extends GetxController {
         return;
       }
 
-      var response = await http.get(Uri.parse('$url/review/all/${laundryId.value}'), headers: headers);
+      var response = await http.get(
+          Uri.parse('$url/review/all/${laundryId.value}'),
+          headers: headers);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -54,9 +56,9 @@ class ProductReviewDeepController extends GetxController {
         } else {
           Get.snackbar('Error', 'Unexpected response format');
         }
-      } else {
-        Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
-      }
+      } //else {
+      //   Get.snackbar('Error', 'Failed to retrieve data: ${response.body}');
+      // }
     } catch (e) {
       Get.snackbar('Error', 'Exception occurred: $e');
       print(e);
