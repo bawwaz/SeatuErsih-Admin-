@@ -41,7 +41,7 @@ class EditProductController extends GetxController {
 
     var data = {
       'name': selectedProduct.value,
-      'Description': descController.text,
+      'description': descController.text,
       'price': priceController.text,
     };
 
