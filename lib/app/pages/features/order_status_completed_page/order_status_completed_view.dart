@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/order_status_completed_controller.dart';
 import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/card_completed_orders.dart';
-import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/shimmer_card_completed_orders.dart'; // Import the shimmer widget
+import 'package:seatu_ersih_admin/app/pages/features/order_status_completed_page/widget/shimmer_card_completed_orders.dart';
 
 class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
   const OrderStatusCompletedView({super.key});
@@ -33,6 +33,14 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
             fontSize: headingFontSize,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () {
+              _showFilterOptions(context);
+            },
+          ),
+        ],
       ),
       body: RefreshIndicator(
         backgroundColor: Colors.white,
@@ -128,6 +136,48 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
           },
         ),
       ),
+    );
+  }
+
+  void _showFilterOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Filter by:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              ListTile(
+                title: Text('This Day'),
+                onTap: () {
+                  Navigator.pop(context);
+                  controller.filterCompletedOrdersByDay();
+                },
+              ),
+              ListTile(
+                title: Text('This Week'),
+                onTap: () {
+                  Navigator.pop(context);
+                  controller.filterCompletedOrdersByWeek();
+                },
+              ),
+              ListTile(
+                title: Text('This Month'),
+                onTap: () {
+                  Navigator.pop(context);
+                  controller.filterCompletedOrdersByMonth();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
