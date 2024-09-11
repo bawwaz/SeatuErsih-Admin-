@@ -89,7 +89,7 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
                 ..sort((a, b) {
                   DateTime dateA = DateTime.parse(a["pickup_date"]);
                   DateTime dateB = DateTime.parse(b["pickup_date"]);
-                  return dateB.compareTo(dateA);
+                  return dateA.compareTo(dateB);
                 });
 
               return ListView.builder(
@@ -145,33 +145,58 @@ class OrderStatusCompletedView extends GetView<OrderStatusCompletedController> {
       builder: (BuildContext context) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Filter by:',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                'Filter:',
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14),
               ),
               ListTile(
-                title: Text('This Day'),
+                title: Text(
+                  'Hari Ini',
+                  style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   controller.filterCompletedOrdersByDay();
                 },
               ),
               ListTile(
-                title: Text('This Week'),
-                onTap: () {
-                  Navigator.pop(context);
-                  controller.filterCompletedOrdersByWeek();
-                },
-              ),
-              ListTile(
-                title: Text('This Month'),
+                title: Text(
+                  'Bulan',
+                  style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   controller.filterCompletedOrdersByMonth();
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'All',
+                  style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  controller.fetchAllCompletedOrders();
                 },
               ),
             ],

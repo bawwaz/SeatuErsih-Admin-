@@ -81,7 +81,7 @@ class OrderStatusDeclinedView extends GetView<OrderStatusDeclinedController> {
                 ..sort((a, b) {
                   DateTime dateA = DateTime.parse(a["pickup_date"]);
                   DateTime dateB = DateTime.parse(b["pickup_date"]);
-                  return dateB.compareTo(dateA);
+                  return dateA.compareTo(dateB);
                 });
 
               return ListView.builder(
