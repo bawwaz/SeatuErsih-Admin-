@@ -116,15 +116,8 @@ class OrderStatusCompletedController extends GetxController {
     }).toList();
   }
 
-  void filterCompletedOrdersByWeek() {
-    var startOfWeek =
-        DateTime.now().subtract(Duration(days: DateTime.now().weekday - 1));
-    var endOfWeek = startOfWeek.add(Duration(days: 6));
-
-    completedOrder.value = completedOrder.where((order) {
-      DateTime orderDate = DateTime.parse(order["pickup_date"]);
-      return orderDate.isAfter(startOfWeek) && orderDate.isBefore(endOfWeek);
-    }).toList();
+  void fetchAllCompletedOrders() {
+    getCompletedOrder();
   }
 
   void filterCompletedOrdersByMonth() {
